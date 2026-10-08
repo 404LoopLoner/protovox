@@ -1,0 +1,1 @@
+Place real project photographs or renders here when available. Current showcase artwork is CSS-generated.
