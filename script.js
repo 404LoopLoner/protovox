@@ -53,13 +53,48 @@ $$('[data-scroll-start]').forEach(b=>b.addEventListener('click',()=>openModal('i
 $$('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('dialog');closeModal(d)}));
 allModals.forEach(d=>{d.addEventListener('close',()=>{if(!allModals.some(m=>m.open))document.body.classList.remove('modal-open')});d.addEventListener('click',e=>{if(e.target===d)closeModal(d)})});
 function showInfo(eyebrow,title,description,rows=[]){$('#infoEyebrow').textContent=eyebrow;$('#infoTitle').textContent=title;$('#infoText').textContent=description;$('#infoContent').innerHTML=rows.length?`<div class="detail-list">${rows.map(r=>`<div><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')}</div>`:'';openModal('infoModal')}
+function openEmailDraft(subject,body,kind='general'){
+ const draft=$('#internshipEmailDraft');
+ draft.dataset.subject=subject;draft.dataset.body=body;draft.dataset.kind=kind;
+ $('#internshipDraftSubject').textContent=subject;
+ $('#internshipDraftBody').value=body;
+ $('#emailDraftHeading').textContent=kind==='internship'?'Your internship request is ready.':'Your message is ready.';
+ $('#emailDraftIntro').textContent='Choose how you want to send it. Open Gmail in your browser or copy the message into your preferred email service.';
+ closeModal($('#infoModal'));closeModal($('#helpModal'));closeModal($('#ideaModal'));closeModal($('#internshipModal'));
+ openModal('internshipEmailDraft');
+}
+function makeEmailBody(entries){return entries.map(([label,value])=>`${label}:\n${value||'Not specified'}`).join('\n\n')+'\n\nSent via the ProtoVox website.'}
+$('#infoAskByEmail').addEventListener('click',()=>{
+ const title=$('#infoTitle').textContent;
+ const description=$('#infoText').textContent;
+ const rows=$$('#infoContent .detail-list > div').map(row=>[ $('b',row)?.textContent||'Detail', $('span',row)?.textContent||'']);
+ const body=makeEmailBody([['Topic',title],['Details',description],...rows,['Request','Please advise on next steps, required resources and relevant components.']]);
+ openEmailDraft('ProtoVox enquiry — '+title,body,'resource');
+});
+$$('[data-rd-inquiry]').forEach(button=>button.addEventListener('click',()=>{
+ const title=button.dataset.rdInquiry;
+ const body=makeEmailBody([['R&D topic',title],['Your idea / question','Please share more details about this research concept and possible collaboration.'],['Request','Please reply with relevant project details, resources or next steps.']]);
+ openEmailDraft('ProtoVox R&D enquiry — '+title,body,'rd');
+}));
 
-$('#helpForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const subject=encodeURIComponent('ProtoVox technical help request — '+fd.get('category'));const body=encodeURIComponent(`Name: ${fd.get('name')}\nCategory: ${fd.get('category')}\n\nIssue details:\n${fd.get('details')}\n\nSent via ProtoVox website prototype.`);window.location.href=`mailto:protovox.tech@gmail.com?subject=${subject}&body=${body}`;notify('Opening your email app with the help request. Review it and press Send.');closeModal(helpModal);});
-$('#ideaForm').addEventListener('submit',e=>{e.preventDefault();const fd=new FormData(e.currentTarget);const subject=encodeURIComponent('New ProtoVox project idea — '+fd.get('ideaName'));const body=encodeURIComponent(`Project / idea: ${fd.get('ideaName')}\nTechnology area: ${fd.get('technology')}\n\nProblem to solve:\n${fd.get('problem')}\n\nSent via ProtoVox website prototype.`);window.location.href=`mailto:protovox.tech@gmail.com?subject=${subject}&body=${body}`;notify('Opening your email app with the idea submission. Review it and press Send.');closeModal(ideaModal);});
+
+
+$('#helpForm').addEventListener('submit',e=>{
+ e.preventDefault();const fd=new FormData(e.currentTarget);
+ const subject='ProtoVox technical help request — '+fd.get('category');
+ const body=makeEmailBody([['Name',fd.get('name')],['Reply email',fd.get('email')],['Help category',fd.get('category')],['Issue details',fd.get('details')]]);
+ openEmailDraft(subject,body,'help');
+});
+$('#ideaForm').addEventListener('submit',e=>{
+ e.preventDefault();const fd=new FormData(e.currentTarget);
+ const subject='New ProtoVox project idea — '+fd.get('ideaName');
+ const body=makeEmailBody([['Project / idea',fd.get('ideaName')],['Technology area',fd.get('technology')],['Problem to solve',fd.get('problem')],['Request','Please help map the components, build plan and whether a project kit is suitable.']]);
+ openEmailDraft(subject,body,'idea');
+});
 [helpModal,ideaModal].forEach(d=>d.addEventListener('close',()=>{const f=$('form[id]',d);if(f){f.hidden=false;f.reset()}$('.modal-heading',d).hidden=false;$('.modal-success',d).hidden=true}));
 
 $$('[data-kit]').forEach(b=>b.addEventListener('click',()=>{const kit=b.dataset.kit;const info={'IoT Starter Kit':[['Controller','ESP32'],['Includes','Sensors, breadboard, jumper wires'],['Best for','Wi-Fi sensor prototypes'],['Demo price','₹1,499']],'Robotics Explorer Kit':[['Controller','Arduino-compatible board'],['Includes','Motor driver, chassis, sensors'],['Best for','Motion and obstacle projects'],['Demo price','₹2,299']],'Solar Tracker Kit':[['Controller','ESP32'],['Includes','Light sensors, servo, power monitor'],['Best for','Solar measurement experiments'],['Demo price','₹1,899']]};showInfo('KIT LAB / DEMO',kit,'Illustrative kit preview. This prototype does not take orders or payments. Use this checklist to decide whether the kit matches your project.',info[kit]||[])}));
-$$('[data-track]').forEach(b=>b.addEventListener('click',()=>showInfo('OPPORTUNITY TRACK',b.dataset.track,'This is an exploratory pathway, not a live vacancy. A future ProtoVox opportunity board could show eligibility, skills, location, deadlines and application links.',[['Status','Demo pathway'],['Suggested next step','Build one relevant project'],['Applications','Not connected']])));
+$$('[data-track]').forEach(b=>b.addEventListener('click',()=>showInfo('OPPORTUNITY TRACK',b.dataset.track,'This is an exploratory pathway, not a live vacancy. Email ProtoVox to ask about suggested resources, eligibility, skills to build and possible next steps.',[['Status','Demo pathway'],['Suggested next step','Build one relevant project'],['Applications','Not connected']])));
 $$('[data-tech]').forEach(b=>b.addEventListener('click',()=>{ $$('.tech-node').forEach(n=>n.classList.toggle('active',n===b));showInfo('TECHNOLOGY UNIVERSE',b.dataset.tech,({'IoT':'Connect sensors, devices and dashboards. Explore telemetry, MQTT, Wi-Fi and low-power design.','AI / ML':'Work with datasets, feature extraction, model evaluation and practical AI interfaces.','Hardware':'Explore circuit design, microcontrollers, PCB workflows, power and debugging.','Robotics':'Combine sensors, control logic, actuators and mechanical systems into interactive builds.'})[b.dataset.tech],[['Explore','Related projects'],['Build path','Learn → prototype → test']])}));
 $('#coreNode').addEventListener('click',()=>showInfo('PV / BUILD ENGINE','One idea. Many paths.','ProtoVox brings the pieces of student engineering together: a problem to solve, a technical path, the parts to build it and help to get unstuck.',[['01','Ideate'],['02','Prototype'],['03','Debug'],['04','Showcase']]));
 
@@ -79,38 +114,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classL
 $$('[data-open-internship]').forEach(b=>b.addEventListener('click',()=>openModal('internshipModal')));
 $$('[data-internship]').forEach(b=>b.addEventListener('click',()=>{const select=$('#internshipDomain');select.value=b.dataset.internship;openModal('internshipModal')}));
 $('#internshipForm').addEventListener('submit',e=>{
- e.preventDefault();
- const fd=new FormData(e.currentTarget);
+ e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject=`ProtoVox internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
- const body=`INTERNSHIP ENQUIRY — PROTOVOX
-
-Name: ${fd.get('name')}
-Email: ${fd.get('email')}
-Course / domain: ${fd.get('domain')}
-Current course / year: ${fd.get('course')}
-Preferred duration: ${fd.get('duration')}
-
-Skills and tools:
-${fd.get('skills')||'Not specified'}
-
-Learning goals / requirements:
-${fd.get('requirements')}
-
-Portfolio / GitHub:
-${fd.get('portfolio')||'Not provided'}
-
-Please review this request and reply with next steps.`;
- const draft=$('#internshipEmailDraft');
- $('#internshipDraftSubject').textContent=subject;
- $('#internshipDraftBody').value=body;
- draft.dataset.subject=subject;
- draft.dataset.body=body;
- closeModal($('#internshipModal'));
- openModal('internshipEmailDraft');
+ const body=makeEmailBody([
+  ['Name',fd.get('name')],['Email',fd.get('email')],['Course / domain',fd.get('domain')],
+  ['Current course / year',fd.get('course')],['Preferred duration',fd.get('duration')],
+  ['Skills and tools',fd.get('skills')],['Learning goals / requirements',fd.get('requirements')],
+  ['Portfolio / GitHub',fd.get('portfolio')]
+ ]);
+ openEmailDraft(subject,body,'internship');
 });
 const internshipDraft=$('#internshipEmailDraft');
 $('#openGmailDraft').addEventListener('click',()=>{
- const subject=internshipDraft.dataset.subject||'ProtoVox internship enquiry';
+ const subject=internshipDraft.dataset.subject||'ProtoVox enquiry';
  const body=internshipDraft.dataset.body||'';
  const url='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent('protovox.tech@gmail.com')+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
  window.open(url,'_blank','noopener,noreferrer');
@@ -137,7 +153,7 @@ $('#confirmInternshipSent').addEventListener('click',()=>{
      const title=$('h3',panel), message=$('p',panel), top=$('.assistant-top > span',panel);
      if(top)top.innerHTML='<i></i> VOX / THANK YOU';
      if(title)title.textContent='Thanks for reaching out! ✨';
-     if(message)message.textContent='Thanks, builder! If you pressed Send in your email app, your internship enquiry is on its way. We appreciate you taking the next step with ProtoVox.';
+     if(message)message.textContent='Thanks, builder! If you pressed Send in Gmail or your email service, your message is on its way. We appreciate you reaching out to ProtoVox.';
      buddy.classList.add('buddy-thanks');
      setTimeout(()=>{panel.hidden=false;buddy.setAttribute('aria-expanded','true')},80);
    }
