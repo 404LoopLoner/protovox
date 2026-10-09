@@ -44,7 +44,7 @@ $$('.journey-step').forEach(step=>step.addEventListener('click',()=>setJourney(N
 setJourney(0);
 
 const helpModal=$('#helpModal'),ideaModal=$('#ideaModal'),infoModal=$('#infoModal'),internshipModal=$('#internshipModal');
-const allModals=[helpModal,ideaModal,infoModal,internshipModal].filter(Boolean);
+const allModals=[helpModal,ideaModal,infoModal,internshipModal,$('#internshipEmailDraft'),$('#robotThanksModal')].filter(Boolean);
 function openModal(id){const d=$('#'+id);if(d&&!d.open){d.showModal();document.body.classList.add('modal-open')}}
 function closeModal(d){if(d?.open)d.close();if(!allModals.some(m=>m.open))document.body.classList.remove('modal-open')}
 $$('[data-open-help]').forEach(b=>b.addEventListener('click',()=>openModal('helpModal')));
@@ -81,9 +81,8 @@ $$('[data-internship]').forEach(b=>b.addEventListener('click',()=>{const select=
 $('#internshipForm').addEventListener('submit',e=>{
  e.preventDefault();
  const fd=new FormData(e.currentTarget);
- const subject=encodeURIComponent(`ProtoVox internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`);
- const body=encodeURIComponent(
-`INTERNSHIP ENQUIRY — PROTOVOX
+ const subject=`ProtoVox internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
+ const body=`INTERNSHIP ENQUIRY — PROTOVOX
 
 Name: ${fd.get('name')}
 Email: ${fd.get('email')}
@@ -100,13 +99,51 @@ ${fd.get('requirements')}
 Portfolio / GitHub:
 ${fd.get('portfolio')||'Not provided'}
 
-Please review this request and reply with next steps.`
- );
- window.location.href=`mailto:protovox.tech@gmail.com?subject=${subject}&body=${body}`;
- notify('Opening your email app with the internship requirements. Review and send the email.');
+Please review this request and reply with next steps.`;
+ const draft=$('#internshipEmailDraft');
+ $('#internshipDraftSubject').textContent=subject;
+ $('#internshipDraftBody').value=body;
+ draft.dataset.subject=subject;
+ draft.dataset.body=body;
  closeModal($('#internshipModal'));
+ openModal('internshipEmailDraft');
 });
-
+const internshipDraft=$('#internshipEmailDraft');
+$('#openGmailDraft').addEventListener('click',()=>{
+ const subject=internshipDraft.dataset.subject||'ProtoVox internship enquiry';
+ const body=internshipDraft.dataset.body||'';
+ const url='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent('protovox.tech@gmail.com')+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+ window.open(url,'_blank','noopener,noreferrer');
+ notify('Gmail compose opened. Review the message and press Send.');
+});
+$('#copyInternshipDraft').addEventListener('click',async()=>{
+ const all=`To: protovox.tech@gmail.com\nSubject: ${internshipDraft.dataset.subject||''}\n\n${$('#internshipDraftBody').value}`;
+ try{
+   await navigator.clipboard.writeText(all);
+   notify('Email address, subject and message copied.');
+ }catch(_){
+   const textarea=$('#internshipDraftBody');
+   textarea.focus();textarea.select();
+   const copied=document.execCommand('copy');
+   notify(copied?'Message copied. Add the address and subject shown above.':'Select and copy the message, then paste it into your email.');
+ }
+});
+$('#confirmInternshipSent').addEventListener('click',()=>{
+ closeModal(internshipDraft);
+ const buddy=$('#protoBuddy');
+ if(buddy){
+   const panel=$('#buddyAssistant');
+   if(panel){
+     const title=$('h3',panel), message=$('p',panel), top=$('.assistant-top > span',panel);
+     if(top)top.innerHTML='<i></i> VOX / THANK YOU';
+     if(title)title.textContent='Thanks for reaching out! ✨';
+     if(message)message.textContent='Thanks, builder! If you pressed Send in your email app, your internship enquiry is on its way. We appreciate you taking the next step with ProtoVox.';
+     buddy.classList.add('buddy-thanks');
+     setTimeout(()=>{panel.hidden=false;buddy.setAttribute('aria-expanded','true')},80);
+   }
+ }
+ notify('Vox says: Thanks for reaching out, builder!');
+});
 const creatorStorageKey='protovox_creator_project_drafts_v1';
 let creatorDrafts=[];
 function loadCreatorDrafts(){try{creatorDrafts=JSON.parse(localStorage.getItem(creatorStorageKey)||'[]')}catch(_){creatorDrafts=[]}renderCreatorDrafts()}

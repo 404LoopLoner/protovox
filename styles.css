@@ -358,3 +358,25 @@ dialog.modal .modal-form{padding-bottom:20px}
  .mini-rover{left:34%;top:22%;transform:scale(.8);transform-origin:top left}.robot-command{left:4%;bottom:10%;min-width:135px}
  .solar-sun{left:16%;top:10%;transform:scale(.8)}.solar-panel-stand{left:33%;top:31%;width:50%}.solar-readout{left:4%;bottom:10%;width:45%;padding:10px}.solar-readout>strong{font-size:20px}
 }
+
+
+/* Laptop-friendly email draft and Vox thank-you interaction */
+.email-draft-modal{width:min(680px,calc(100vw - 32px));max-height:min(88vh,850px);overflow-y:auto}
+.email-draft-summary{display:grid;grid-template-columns:90px 1fr;gap:8px 12px;padding:14px;margin:18px 0;border:1px solid var(--line,#3c304c);border-radius:10px;background:#0c0a12}
+.email-draft-summary span,.email-body-label{font:9px var(--mono,monospace);letter-spacing:1px;color:#a991d1}
+.email-draft-summary b{font-size:12px;font-weight:600;color:#f3edff;overflow-wrap:anywhere}
+.email-body-label{display:block;margin:12px 0 7px}
+.email-draft-body{display:block;width:100%;min-height:220px;resize:vertical;padding:13px;border:1px solid #514063;border-radius:9px;background:#0a0910;color:#d9d1e7;font:11px/1.65 var(--mono,monospace)}
+.email-draft-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.email-draft-actions .button{flex:1;justify-content:center;min-width:180px}
+.email-draft-note{display:block;margin:13px 0;color:#a79ab8;font-size:11px;line-height:1.6}
+.email-sent-confirm{width:100%;padding:12px 15px;border:1px solid #48d6a0;border-radius:9px;background:#0e241e;color:#9cf4c8;font-weight:700;cursor:pointer;transition:background .2s,transform .2s}
+.email-sent-confirm:hover{background:#14392e;transform:translateY(-1px)}
+.proto-buddy.buddy-thanks .buddy-head{box-shadow:0 0 0 2px #42eaff35,0 0 22px #42eaff77}
+.proto-buddy.buddy-thanks .buddy-eye-pods i{box-shadow:0 0 0 2px #544b41,inset 0 0 0 2px #1a2c34,0 0 14px #00f0ffcc}
+@media(max-width:600px){
+ .email-draft-modal{padding:20px 16px}
+ .email-draft-summary{grid-template-columns:68px 1fr}
+ .email-draft-actions{display:grid}
+ .email-draft-actions .button{width:100%}
+}

@@ -151,12 +151,33 @@
       <label>Preferred duration<select name="duration" required><option value="">Choose duration</option><option>2–4 weeks</option><option>1–2 months</option><option>3 months</option><option>Flexible / discuss with me</option></select></label>
       <label>What do you want to learn or build?<textarea name="requirements" rows="4" required placeholder="Your goals, preferred project, availability and questions"></textarea></label>
       <label>Portfolio / GitHub link (optional)<input name="portfolio" type="url" placeholder="https://"></label>
-      <button class="button button-primary button-large" type="submit">Prepare internship email ↗</button><small class="form-note">This opens your email app with a prefilled message to protovox.tech@gmail.com. Review and press Send.</small>
+      <button class="button button-primary button-large" type="submit">Prepare internship email ↗</button><small class="form-note">Next, review the prepared message and choose Gmail or copy it into your preferred email app.</small>
     </form>
   </dialog>
 
 
-<div class="proto-buddy" id="protoBuddy" aria-label="ProtoVox mini rover mascot" role="button" tabindex="0" title="Meet the ProtoVox rover">    <div class="buddy-shadow"></div>    <div class="buddy-antenna"><i></i></div>    <div class="buddy-head"><span class="buddy-ear left"></span><span class="buddy-ear right"></span><div class="buddy-eye-pods"><i><b></b></i><i><b></b></i></div><div class="buddy-mouth"></div></div>    <div class="buddy-neck"></div>    <div class="buddy-body"><span class="buddy-badge">PV</span><i class="buddy-panel"></i><i class="buddy-vent"></i></div>    <div class="buddy-arm left"></div><div class="buddy-arm right"></div>    <div class="buddy-track left"><i></i><i></i><i></i><i></i></div><div class="buddy-track right"><i></i><i></i><i></i><i></i></div>
+<dialog class="modal email-draft-modal" id="internshipEmailDraft">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close email draft">×</button></form>
+    <div class="modal-heading"><span class="eyebrow">PROTOVOX / EMAIL READY</span><h2>Your internship request is ready.</h2><p>Choose how you want to send it. On a laptop, you can open Gmail in your browser or copy the message into any email service.</p></div>
+    <div class="email-draft-summary"><span>TO</span><b>protovox.tech@gmail.com</b><span>SUBJECT</span><b id="internshipDraftSubject"></b></div>
+    <label class="email-body-label" for="internshipDraftBody">EMAIL MESSAGE</label>
+    <textarea id="internshipDraftBody" class="email-draft-body" rows="11" readonly></textarea>
+    <div class="email-draft-actions">
+      <button type="button" class="button button-primary" id="openGmailDraft">Open Gmail compose ↗</button>
+      <button type="button" class="button button-ghost" id="copyInternshipDraft">Copy email details</button>
+    </div>
+    <p class="form-note email-draft-note">The website cannot detect whether an email was actually sent. After sending it in your email app, come back here and choose “I've sent it”.</p>
+    <button type="button" class="email-sent-confirm" id="confirmInternshipSent">✓ I've sent it</button>
+  </dialog>
+  <dialog class="modal compact-modal robot-thanks-modal" id="robotThanksModal">
+    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close thank-you message">×</button></form>
+    <div class="thanks-robot-icon" aria-hidden="true">🤖</div>
+    <span class="eyebrow">VOX / MESSAGE RECEIVED</span>
+    <h2>Thanks for reaching out, builder!</h2>
+    <p>Your email is on its way if you pressed Send. Thanks for taking the next step with ProtoVox. Keep that idea moving! ✨</p>
+    <button class="button button-primary button-large" type="button" id="closeRobotThanks">Back to ProtoVox</button>
+  </dialog>
+  <div class="proto-buddy" id="protoBuddy" aria-label="ProtoVox mini rover mascot" role="button" tabindex="0" title="Meet the ProtoVox rover">    <div class="buddy-shadow"></div>    <div class="buddy-antenna"><i></i></div>    <div class="buddy-head"><span class="buddy-ear left"></span><span class="buddy-ear right"></span><div class="buddy-eye-pods"><i><b></b></i><i><b></b></i></div><div class="buddy-mouth"></div></div>    <div class="buddy-neck"></div>    <div class="buddy-body"><span class="buddy-badge">PV</span><i class="buddy-panel"></i><i class="buddy-vent"></i></div>    <div class="buddy-arm left"></div><div class="buddy-arm right"></div>    <div class="buddy-track left"><i></i><i></i><i></i><i></i></div><div class="buddy-track right"><i></i><i></i><i></i><i></i></div>
     <div class="buddy-assistant" id="buddyAssistant" hidden role="dialog" aria-label="ProtoVox assistant">
       <div class="assistant-top"><span><i></i> PROTOVOX ASSISTANT</span><button type="button" class="assistant-close" aria-label="Close assistant">×</button></div>
       <h3>Hey, builder! 👋</h3>
