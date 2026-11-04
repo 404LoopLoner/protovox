@@ -12,6 +12,7 @@ const projects = [
 ];
 let activeProject=0, slideTimer;
 const art=$('#projectArt');
+
 function showProject(index,resetTimer=true){
  activeProject=(index+projects.length)%projects.length;const p=projects[activeProject];
  $('#projectTitle').innerHTML=p.title;$('#projectDescription').textContent=p.description;$('#projectTags').innerHTML=p.tags.map(t=>`<span>${t}</span>`).join('');
@@ -23,7 +24,7 @@ function showProject(index,resetTimer=true){
 $('#prevProject').addEventListener('click',()=>showProject(activeProject-1));
 $('#nextProject').addEventListener('click',()=>showProject(activeProject+1));
 $('#projectDetails').addEventListener('click',()=>{const p=projects[activeProject];showInfo('PROJECT BLUEPRINT',p.plain,p.details,[['Controller',p.controller],['Sensors / data',p.sensors],['Connectivity',p.connectivity],['Level',p.level]])});
-$('#allProjects').addEventListener('click',()=>showInfo('PROJECT LAB','Explore the full project library','The complete project library will include build guides, verified component lists, code repositories and student-submitted prototypes. This prototype currently showcases four example concepts.',[['Featured projects','4 demo concepts'],['Build notes','Illustrative'],['Submissions','Not connected']]));
+// $('#allProjects').addEventListener('click',()=>showInfo('PROJECT LAB','Explore the full project library','The complete project library will include build guides, verified component lists, code repositories and student-submitted prototypes. This prototype currently showcases four example concepts.',[['Featured projects','4 demo concepts'],['Build notes','Illustrative'],['Submissions','Not connected']]));
 showProject(0);
 
 const journeyContent=[
@@ -52,7 +53,9 @@ $$('[data-open-idea]').forEach(b=>b.addEventListener('click',()=>openModal('idea
 $$('[data-scroll-start]').forEach(b=>b.addEventListener('click',()=>openModal('ideaModal')));
 $$('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('dialog');closeModal(d)}));
 allModals.forEach(d=>{d.addEventListener('close',()=>{if(!allModals.some(m=>m.open))document.body.classList.remove('modal-open')});d.addEventListener('click',e=>{if(e.target===d)closeModal(d)})});
+
 function showInfo(eyebrow,title,description,rows=[]){$('#infoEyebrow').textContent=eyebrow;$('#infoTitle').textContent=title;$('#infoText').textContent=description;$('#infoContent').innerHTML=rows.length?`<div class="detail-list">${rows.map(r=>`<div><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')}</div>`:'';openModal('infoModal')}
+
 function openEmailDraft(subject,body,kind='general'){
  const draft=$('#internshipEmailDraft');
  draft.dataset.subject=subject;draft.dataset.body=body;draft.dataset.kind=kind;
@@ -76,18 +79,15 @@ $$('[data-rd-inquiry]').forEach(button=>button.addEventListener('click',()=>{
  const body=makeEmailBody([['R&D topic',title],['Your idea / question','Please share more details about this research concept and possible collaboration.'],['Request','Please reply with relevant project details, resources or next steps.']]);
  openEmailDraft('ProtoVox R&D enquiry — '+title,body,'rd');
 }));
-
-
-
 $('#helpForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject='ProtoVox technical help request — '+fd.get('category');
+ const subject='Requesting for Technical Help — '+fd.get('category');
  const body=makeEmailBody([['Name',fd.get('name')],['Reply email',fd.get('email')],['Help category',fd.get('category')],['Issue details',fd.get('details')]]);
  openEmailDraft(subject,body,'help');
 });
 $('#ideaForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject='New ProtoVox project idea — '+fd.get('ideaName');
+ const subject='Idea Proposal — '+fd.get('ideaName');
  const body=makeEmailBody([['Project / idea',fd.get('ideaName')],['Technology area',fd.get('technology')],['Problem to solve',fd.get('problem')],['Request','Please help map the components, build plan and whether a project kit is suitable.']]);
  openEmailDraft(subject,body,'idea');
 });
@@ -115,7 +115,7 @@ $$('[data-open-internship]').forEach(b=>b.addEventListener('click',()=>openModal
 $$('[data-internship]').forEach(b=>b.addEventListener('click',()=>{const select=$('#internshipDomain');select.value=b.dataset.internship;openModal('internshipModal')}));
 $('#internshipForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject=`ProtoVox internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
+ const subject=`Internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
  const body=makeEmailBody([
   ['Name',fd.get('name')],['Email',fd.get('email')],['Course / domain',fd.get('domain')],
   ['Current course / year',fd.get('course')],['Preferred duration',fd.get('duration')],
