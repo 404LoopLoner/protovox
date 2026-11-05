@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#10191d">
+<title>ProtoVox Founder Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="founder-console.css">
+</head>
+<body class="founder-body">
+<section class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-mark">PV</div><div class="eyebrow">PRIVATE WORKSPACE / FOUNDER ACCESS</div>
+    <h1>ProtoVox<br><span>Founder Console</span></h1>
+    <p>Sign in with an authorised co-founder account to review requests and manage the ProtoVox pipeline.</p>
+    <form id="loginForm"><label>Email address<input name="email" type="email" autocomplete="username" required placeholder="Founder email"></label><label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Password"></label><button class="primary-btn" type="submit">Sign in securely <span>↗</span></button><p class="login-error" id="loginError" role="alert"></p></form>
+    <small>Access is restricted to founder accounts authorised in the database.</small>
+  </div>
+</section>
+<div class="console-shell" id="consoleShell" hidden>
+  <aside class="sidebar">
+    <a class="console-brand" href="index.html"><span class="brand-symbol">PV</span><span>ProtoVox<small>FOUNDER CONSOLE</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav" id="sideNav">
+      <button class="active" data-view="overview"><span>◫</span> Overview</button>
+      <button data-view="kit_order"><span>▣</span> Kit Orders <b id="navKitCount">0</b></button>
+      <button data-view="workshop"><span>⌑</span> Workshops <b id="navWorkshopCount">0</b></button>
+      <button data-view="idea"><span>✳</span> Ideas <b id="navIdeaCount">0</b></button>
+      <button data-view="help"><span>ⓘ</span> Help Desk <b id="navHelpCount">0</b></button>
+      <button data-view="all"><span>▤</span> All Requests <b id="navAllCount">0</b></button>
+    </nav>
+    <div class="side-bottom"><div class="secure-label"><i></i> PRIVATE / AUTHENTICATED</div><button id="logoutBtn" class="logout-btn">↪ Log out</button></div>
+  </aside>
+  <main class="console-main">
+    <header class="topbar"><div><div class="eyebrow" id="pageEyebrow">FOUNDER WORKSPACE / OVERVIEW</div><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><span class="live-pill"><i></i> LIVE DATABASE</span><div class="user-chip"><span class="avatar">PV</span><span id="signedInEmail">Founder</span></div></div></header>
+    <div class="notice" id="connectionNotice" hidden></div>
+    <section class="overview-view" id="overviewView">
+      <div class="welcome-row"><div><h2>Good to see you.</h2><p>Here is what's happening across ProtoVox.</p></div><button class="outline-btn" id="refreshBtn">↻ Refresh data</button></div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Total requests</span><strong id="statTotal">—</strong><small>All incoming enquiries</small><i>▤</i></article>
+        <article class="stat-card"><span>Needs attention</span><strong id="statPending">—</strong><small>New or under review</small><i>◷</i></article>
+        <article class="stat-card"><span>Workshops</span><strong id="statWorkshops">—</strong><small>Institutional requests</small><i>⌑</i></article>
+        <article class="stat-card"><span>Ideas submitted</span><strong id="statIdeas">—</strong><small>Student concepts</small><i>✳</i></article>
+      </div>
+      <div class="content-grid">
+        <section class="panel recent-panel"><div class="panel-head"><div><span class="eyebrow">INBOX / LATEST</span><h3>Recent requests</h3></div><button class="text-action" data-jump="all">View all ↗</button></div><div id="recentList" class="recent-list"><div class="empty-state">Connect the database to load requests.</div></div></section>
+        <section class="panel breakdown-panel"><div class="panel-head"><div><span class="eyebrow">PIPELINE / OVERVIEW</span><h3>Request distribution</h3></div></div><div id="typeBreakdown" class="breakdown-list"></div><div class="panel-foot">Counts update when new website forms are submitted.</div></section>
+      </div>
+    </section>
+    <section class="requests-view" id="requestsView" hidden>
+      <div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search name, email, subject or organisation"></div><select id="statusFilter"><option value="all">All statuses</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select><button class="outline-btn" id="exportBtn">↓ Export CSV</button></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Request</th><th>Contact</th><th>Type</th><th>Status</th><th>Received</th><th></th></tr></thead><tbody id="requestRows"><tr><td colspan="6" class="empty-cell">No requests loaded.</td></tr></tbody></table></div></div>
+    </section>
+    <footer class="console-footer"><span>PROTO VOX / FOUNDER OPERATIONS</span><span>Confidential workspace · Do not share access</span></footer>
+  </main>
+  <div class="detail-backdrop" id="detailBackdrop"></div>
+  <aside class="detail-drawer" id="detailDrawer" aria-label="Request details">
+    <div class="drawer-head"><div><div class="eyebrow">REQUEST RECORD</div><h2 id="detailTitle">Request details</h2></div><button id="closeDrawer" class="icon-btn" aria-label="Close details">×</button></div>
+    <div id="detailContent" class="detail-content"></div>
+    <div class="drawer-actions"><label>Status<select id="detailStatus"><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select></label><button class="primary-btn" id="saveStatusBtn">Save status</button><a class="outline-btn" id="replyLink" href="#">Reply by email ↗</a></div>
+  </aside>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="founder-console.js"></script>
+</body></html>

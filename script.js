@@ -101,34 +101,44 @@ $('#rdInquiryForm')?.addEventListener('submit',e=>{
   ['Organisation / institution',fd.get('organisation')],['Area of interest',fd.get('interest')],
   ['Message',fd.get('message')]
  ]);
- openEmailDraft('ProtoVox research discussion — '+fd.get('topic'),body,'rd');
+ submitProtoVoxRequest('research',Object.fromEntries(fd.entries()),'ProtoVox research discussion — '+fd.get('topic'),body,'rd',e.currentTarget);
 });
 
 
 
+async function submitProtoVoxRequest(type, payload, subject, body, context, form){
+ const result=window.protoSaveRequest?await window.protoSaveRequest(type,payload):{ok:false,reason:'not_configured'};
+ if(result.ok){
+  form?.reset();form?.closest('dialog')?.close();
+  notify('Request submitted successfully. The ProtoVox team can now review it in the founder console.');
+  return;
+ }
+ if(result.reason!=='not_configured') notify('Online submission is unavailable. Opening an email request instead.');
+ openEmailDraft(subject,body,context);
+}
 $('#contactMessageForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject=`ProtoVox contact message — ${fd.get('name')}`;
  const body=makeEmailBody([['Name',fd.get('name')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Institution',fd.get('institution')],['Message',fd.get('message')]]);
- openEmailDraft(subject,body,'contact');
+ submitProtoVoxRequest('contact',Object.fromEntries(fd.entries()),subject,body,'contact',e.currentTarget);
 });
 $('#workshopBookingForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject=`ProtoVox workshop request — ${fd.get('institution')}`;
  const body=makeEmailBody([['Institution',fd.get('institution')],['Contact person',fd.get('contact')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],['Request','Please confirm availability, proposed agenda, duration, pricing and next steps.']]);
- openEmailDraft(subject,body,'workshop');
+ submitProtoVoxRequest('workshop',Object.fromEntries(fd.entries()),subject,body,'workshop',e.currentTarget);
 });
 $('#helpForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject='ProtoVox technical help request — '+fd.get('category');
  const body=makeEmailBody([['Name',fd.get('name')],['Reply email',fd.get('email')],['Help category',fd.get('category')],['Issue details',fd.get('details')]]);
- openEmailDraft(subject,body,'help');
+ submitProtoVoxRequest('help',Object.fromEntries(fd.entries()),subject,body,'help',e.currentTarget);
 });
 $('#ideaForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject='New ProtoVox project idea — '+fd.get('ideaName');
  const body=makeEmailBody([['Project / idea',fd.get('ideaName')],['Technology area',fd.get('technology')],['Problem to solve',fd.get('problem')],['Request','Please help map the components, build plan and whether a project kit is suitable.']]);
- openEmailDraft(subject,body,'idea');
+ submitProtoVoxRequest('idea',Object.fromEntries(fd.entries()),subject,body,'idea',e.currentTarget);
 });
 [helpModal,ideaModal].forEach(d=>d.addEventListener('close',()=>{const f=$('form[id]',d);if(f){f.hidden=false;f.reset()}$('.modal-heading',d).hidden=false;$('.modal-success',d).hidden=true}));
 

@@ -102,3 +102,24 @@ New standalone student exploration pages:
 - Replaced the generic email draft action for "Discuss this research" with a dedicated research discussion dialogue. The form collects contact details, collaboration interest and a project-specific message before preparing an email for review.
 - Removed step-counter / progress-bar styling from the internship dialogue and changed workshop form headings to service-oriented labels rather than process steps.
 - Research discussion from the Innovation Lab page routes to the dedicated research dialogue on the homepage.
+
+
+## V20 — Three-division ProtoVox structure
+- Added a standalone `about.html` page with the organisation's purpose, vision, three operating divisions and founding team: Arjun Krishna, Aditya Krishna and Nanda Kishor S.
+- Updated navigation across public pages to use `Advanced ProtoVox` and the standalone About page.
+- Repositioned Advanced ProtoVox for learners beyond Class 12, including diploma, undergraduate and postgraduate students, technical clubs and institutions.
+- Replaced the campaign-library placeholder on the Advanced ProtoVox page with four advanced, student-buildable engineering pathways: autonomous indoor rover, AI vision quality inspector, smart microgrid monitor and vision-guided robotic manipulator.
+- Added preliminary requirements and project discussion links. Final hardware selection, safety and kit availability must be confirmed before a project is offered.
+- Replaced the campaign-library destination on the student idea area with a direct `Share Your Idea` route to the idea enquiry dialogue.
+- Repositioned the Innovation Lab as ProtoVox's own R&D division for high-impact, team-built concepts, industry collaborations, exhibitions, hackathons and technical showcases.
+- Added the `Book My Workshop` action to the homepage, About, Advanced ProtoVox and Innovation Lab headers.
+- Converted purple/violet styling in all site stylesheets and the project-detail embedded styles to a consistent cyan/blue palette.
+- Kept Build Planner as a separate utility page.
+
+
+## V22 — Blue-only visual correction
+- Replaced the remaining grey surfaces in the featured build carousel, flagship research cards, innovation art and support terminal with deep navy / reactor-blue styling.
+- Corrected low-contrast dark text in research descriptions and support-terminal labels.
+- Removed the amber/gold accent from the project-detail primary button.
+- Applied the blue-only corrections to project detail panels and kit enquiry surfaces.
+- No database credentials are included. Follow `FOUNDER_CONSOLE_SETUP.md` and `SUPABASE_SETUP.sql` to connect the founder console.

@@ -1,336 +1,302 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08070d">
-  <meta name="description" content="ProtoVox is a robotics and engineering innovation ecosystem: practical robotics education for school students, advanced project kits and workshops for institutions, flagship innovations and collaborative internships.">
-  <title>ProtoVox — Build the Idea. Ship the Technology.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#08070d" name="theme-color"/>
+<meta content="ProtoVox is a robotics and engineering innovation ecosystem: practical robotics education for school students, advanced project kits and workshops for institutions, flagship innovations and collaborative internships." name="description"/>
+<title>ProtoVox — Build the Idea. Ship the Technology.</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <header class="site-header" id="top">
-    <a class="brand brand-image" href="#top" aria-label="ProtoVox home"><img src="assets/brand/protovox-logo.png" alt="ProtoVox — From Idea to Prototype"></a>
-    <nav class="desktop-nav" aria-label="Main navigation"><a href="campaign-projects.html">Campaigns</a><a href="#about">About</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a></nav>
-    <div class="header-actions"><button class="text-button" data-open-help>Get help</button></div>
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
-  </header>
-  <nav class="mobile-nav" aria-label="Mobile navigation"><a href="campaign-projects.html">Campaign Projects</a><a href="#about">About ProtoVox</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a></nav>
-
-  <main>
-    <section class="hero section-wrap" id="home">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span class="live-dot"></span> THE ROBOTICS &amp; INNOVATION ECOSYSTEM <span class="eyebrow-line"></span> 01 / 05</div>
-        <h1>Learn to build.<br><span class="gradient-text">Build to innovate.</span></h1>
-        <p class="hero-sub">A hands-on robotics learning centre for school students, an advanced project and kit ecosystem for colleges, and a launchpad for original engineering innovations.</p>
-        <div class="hero-actions"><a class="button button-primary button-large" href="#robotics-centre">Explore Robotics Centre <span>↗</span></a><a class="button button-ghost button-large" href="campaign-projects.html"><span class="play-icon">▶</span> Advanced ProtoVox</a></div>
-        <div class="hero-proof"><div class="avatar-stack"><span>P</span><span>V</span><span>+</span></div><div><strong>Built for the next generation of innovators.</strong><small>Explore. Build. Debug. Repeat.</small></div></div>
-      </div>
-      <div class="hero-visual reveal" aria-label="Interactive ProtoVox technology network">
-        <div class="visual-topline"><span>PV / BUILD_ENGINE</span><span class="status-pill"><i></i> SYSTEM ONLINE</span></div>
-        <div class="orbital-scene" id="orbitalScene">
-          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
-          <div class="core-glow"></div><button class="core-node" id="coreNode" aria-label="Explore ProtoVox technology core"><span>PV</span><small>CORE</small></button>
-          <button class="tech-node node-iot" data-tech="IoT"><span class="node-icon">⌁</span><b>IoT</b><small>Connected devices</small></button>
-          <button class="tech-node node-ai" data-tech="AI / ML"><span class="node-icon">✳</span><b>AI / ML</b><small>Signal intelligence</small></button>
-          <button class="tech-node node-hardware" data-tech="Hardware"><span class="node-icon">⌘</span><b>Hardware</b><small>Prototype ready</small></button>
-          <button class="tech-node node-robot" data-tech="Robotics"><span class="node-icon">◈</span><b>Robotics</b><small>Motion systems</small></button>
-          <div class="floating-code"><div><span class="tiny-dot"></span><span class="tiny-dot"></span><span class="tiny-dot"></span><label>prototype.config</label></div><code><em>const</em> idea = <strong>"yours"</strong>;<br>idea.status = <strong>"BUILDING"</strong>;</code><small>ESP32 · PYTHON · PCB · CAD</small></div>
-          <div class="scan-line"></div>
-        </div>
-        <div class="visual-bottomline"><span>01 — IDEATION</span><span>02 — PROTOTYPING</span><span>03 — LAUNCH</span></div>
-      </div>
-      <div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span class="mono">A PLATFORM FOR THE CURIOUS →</span></div>
-    </section>
-
-    <section class="ticker" aria-label="Technology areas"><div class="ticker-track"><span>EMBEDDED SYSTEMS <b>✳</b></span><span>INTERNET OF THINGS <b>✳</b></span><span>ARTIFICIAL INTELLIGENCE <b>✳</b></span><span>ROBOTICS <b>✳</b></span><span>PCB DESIGN <b>✳</b></span><span>COMPUTER VISION <b>✳</b></span><span>EMBEDDED SYSTEMS <b>✳</b></span><span>INTERNET OF THINGS <b>✳</b></span><span>ARTIFICIAL INTELLIGENCE <b>✳</b></span><span>ROBOTICS <b>✳</b></span></div></section>
-
-    <section class="section robotics-centre-section" id="robotics-centre">
-      <div class="section-heading reveal"><div><div class="eyebrow">01 — PROTOVOX ROBOTICS CENTRE</div><h2>Young minds.<br><span class="gradient-text">Real-world makers.</span></h2></div><p>Practical robotics and engineering education for school students up to Class 12. Students learn by experimenting, assembling, coding, testing and improving—not just watching demonstrations.</p></div>
-      <div class="academy-intro reveal"><div class="academy-visual"><div class="academy-grid"></div><div class="academy-robot"><span>PV</span><i></i><b></b></div><div class="academy-orbit academy-orbit-a"></div><div class="academy-orbit academy-orbit-b"></div><span class="academy-chip chip-kids">SCHOOL / K–12</span><span class="academy-chip chip-build">LEARN BY BUILDING</span></div>
-        <div class="academy-content"><span class="tag">THE FOUNDATION OF FUTURE INNOVATORS</span><h3>From curiosity to capability.</h3><p>Age-appropriate learning pathways introduce students to electronics, mechanisms, sensors, coding and robotics through guided practical challenges.</p><div class="academy-levels"><div><b>01</b><span><strong>Explore</strong><small>Curiosity, circuits and creative problem solving</small></span></div><div><b>02</b><span><strong>Experiment</strong><small>Sensors, motors, logic and simple automation</small></span></div><div><b>03</b><span><strong>Engineer</strong><small>Build, code, test and present working prototypes</small></span></div></div><button class="button button-primary button-large" data-open-workshop>Book My Workshop ↗</button></div>
-      </div>
-    </section>
-
-    <section class="section advanced-section" id="advanced">
-      <div class="section-heading reveal"><div><div class="eyebrow">02 — ADVANCED PROTOVOX</div><h2>Beyond learning.<br><span class="gradient-text">Into engineering.</span></h2></div><p>For college students, institutions and ambitious builders: practical project campaigns, matched build kits, guided workshops and original high-end innovation work.</p></div>
-      <div class="advanced-pathways">
-        <article class="advanced-path campaign-path reveal"><div class="advanced-path-top"><span>DIVISION / 01</span><span class="path-status">BUILD WITH US</span></div><div class="advanced-visual campaign-visual"><div class="campaign-circuit"></div><div class="campaign-device"><i></i><b>BUILD KIT</b><small>ASSEMBLE / CODE / TEST</small></div></div><div class="advanced-path-copy"><span class="eyebrow">CAMPAIGN PROJECTS</span><h3>Own the build.<br>Understand every part.</h3><p>Structured project campaigns designed for college students and institutions. Choose a project, get its matched RoboBuild kit, follow the build pathway and create the working prototype yourself.</p><ul><li>Project-specific hardware and software kits</li><li>Build guides, circuit plans and source code</li><li>Individual and team-based project pathways</li><li>Institutional workshops and hands-on mentoring</li></ul><a class="button button-primary" href="campaign-projects.html">Explore campaign projects ↗</a></div></article>
-        <article class="advanced-path flagship-path reveal"><div class="advanced-path-top"><span>DIVISION / 02</span><span class="path-status">INNOVATION LAB</span></div><div class="advanced-visual flagship-visual"><div class="flagship-rings"></div><div class="flagship-core">PV<span>LAB</span></div><i class="flagship-satellite satellite-a"></i><i class="flagship-satellite satellite-b"></i><i class="flagship-satellite satellite-c"></i></div><div class="advanced-path-copy"><span class="eyebrow">FLAGSHIP / UNIQUE PROJECTS</span><h3>Build what<br>doesn't exist yet.</h3><p>A showcase of ambitious, original engineering projects developed to push technical boundaries and represent ProtoVox at hackathons, technical festivals, project expos and innovation platforms.</p><ul><li>Original multidisciplinary engineering concepts</li><li>Advanced robotics, embedded systems and AI</li><li>Prototype demonstrations and technical storytelling</li><li>Competition, festival and innovation showcases</li></ul><a class="button button-ghost" href="innovation-lab.html">Explore the innovation lab ↗</a></div></article>
-      </div>
-    </section>
-
-    
-
-<section class="section about-section" id="about">
-  <div class="about-heading reveal"><div><div class="eyebrow">03 — WHO WE ARE</div><h2>Built by curiosity.<br><span class="gradient-text">Driven by possibility.</span></h2></div><p>ProtoVox is being built as a practical robotics education and engineering innovation ecosystem—connecting young learners, institutions and ambitious builders through real projects.</p></div>
-  <div class="about-mission-panel reveal">
-    <div class="about-mission-visual" aria-hidden="true"><div class="about-orbit orbit-one"></div><div class="about-orbit orbit-two"></div><div class="about-core">PV<span>MISSION</span></div><i class="about-signal signal-one"></i><i class="about-signal signal-two"></i><i class="about-signal signal-three"></i><div class="about-gridline"></div></div>
-    <div class="about-mission-copy"><span class="tag">OUR PURPOSE</span><h3>Make advanced technology something people can <span class="gradient-text">understand, build and shape.</span></h3><p>We want school students to discover engineering through hands-on learning, college students to gain confidence by building complete projects, and original ideas to grow into meaningful prototypes that can be tested and shared.</p><div class="about-vision-line"><span>OUR VISION</span><strong>A future where every curious student can access the tools, guidance and confidence to become an inventor.</strong></div><div class="about-pillars"><article><b>01 / EDUCATE</b><strong>Learning through making</strong><span>Practical robotics and technology education for the next generation.</span></article><article><b>02 / ENABLE</b><strong>Access to real builds</strong><span>Project kits, mentoring and institutional collaboration.</span></article><article><b>03 / INNOVATE</b><strong>Ideas into prototypes</strong><span>Original engineering concepts developed with evidence and purpose.</span></article></div></div>
-  </div>
-  <div class="founder-block reveal"><div class="founder-heading"><span class="eyebrow">THE FOUNDING TEAM</span><span class="founder-line"></span><span class="mono">THREE FOUNDERS / ONE SHARED VISION</span></div><div class="founder-grid"><article><span>CO-FOUNDER / 01</span><h3>Arjun Krishna</h3><p>Building the ProtoVox vision through collaboration, initiative and a commitment to practical technology.</p></article><article><span>CO-FOUNDER / 02</span><h3>Aditya Krishna</h3><p>Part of the founding team shaping an ecosystem where students can learn, experiment and create.</p></article><article><span>CO-FOUNDER / 03</span><h3>Nanda Kishor S</h3><p>Part of the founding team focused on turning ambitious ideas into accessible engineering experiences.</p></article></div></div>
+<div aria-hidden="true" class="noise"></div>
+<header class="site-header" id="top">
+<a aria-label="ProtoVox home" class="brand brand-image" href="#top"><img alt="ProtoVox — From Idea to Prototype" src="assets/brand/protovox-logo.png"/></a>
+<nav aria-label="Main navigation" class="desktop-nav"><a href="campaign-projects.html">Advanced ProtoVox</a><a href="about.html">About</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a></nav>
+<div class="header-actions"><button class="text-button" data-open-help="">Get help</button><button class="button button-small button-primary workshop-trigger" data-open-workshop="" type="button">Book My Workshop ↗</button></div>
+<button aria-expanded="false" aria-label="Open menu" class="menu-toggle"><span></span><span></span></button>
+</header>
+<nav aria-label="Mobile navigation" class="mobile-nav"><a href="campaign-projects.html">Advanced ProtoVox</a><a href="about.html">About ProtoVox</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a></nav>
+<main>
+<section class="hero section-wrap" id="home">
+<div class="hero-copy reveal">
+<div class="eyebrow"><span class="live-dot"></span> THE ROBOTICS &amp; INNOVATION ECOSYSTEM <span class="eyebrow-line"></span> 01 / 05</div>
+<h1>Learn to build.<br/><span class="gradient-text">Build to innovate.</span></h1>
+<p class="hero-sub">A hands-on robotics learning centre for school students, an advanced project and kit ecosystem for colleges, and a launchpad for original engineering innovations.</p>
+<div class="hero-actions"><a class="button button-primary button-large" href="#robotics-centre">Explore Robotics Centre <span>↗</span></a><a class="button button-ghost button-large" href="campaign-projects.html"><span class="play-icon">▶</span> Advanced ProtoVox</a></div>
+<div class="hero-proof"><div class="avatar-stack"><span>P</span><span>V</span><span>+</span></div><div><strong>Built for the next generation of innovators.</strong><small>Explore. Build. Debug. Repeat.</small></div></div>
+</div>
+<div aria-label="Interactive ProtoVox technology network" class="hero-visual reveal">
+<div class="visual-topline"><span>PV / BUILD_ENGINE</span><span class="status-pill"><i></i> SYSTEM ONLINE</span></div>
+<div class="orbital-scene" id="orbitalScene">
+<div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+<div class="core-glow"></div><button aria-label="Explore ProtoVox technology core" class="core-node" id="coreNode"><span>PV</span><small>CORE</small></button>
+<button class="tech-node node-iot" data-tech="IoT"><span class="node-icon">⌁</span><b>IoT</b><small>Connected devices</small></button>
+<button class="tech-node node-ai" data-tech="AI / ML"><span class="node-icon">✳</span><b>AI / ML</b><small>Signal intelligence</small></button>
+<button class="tech-node node-hardware" data-tech="Hardware"><span class="node-icon">⌘</span><b>Hardware</b><small>Prototype ready</small></button>
+<button class="tech-node node-robot" data-tech="Robotics"><span class="node-icon">◈</span><b>Robotics</b><small>Motion systems</small></button>
+<div class="floating-code"><div><span class="tiny-dot"></span><span class="tiny-dot"></span><span class="tiny-dot"></span><label>prototype.config</label></div><code><em>const</em> idea = <strong>"yours"</strong>;<br/>idea.status = <strong>"BUILDING"</strong>;</code><small>ESP32 · PYTHON · PCB · CAD</small></div>
+<div class="scan-line"></div>
+</div>
+<div class="visual-bottomline"><span>01 — IDEATION</span><span>02 — PROTOTYPING</span><span>03 — LAUNCH</span></div>
+</div>
+<div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span class="scroll-line"></span><span class="mono">A PLATFORM FOR THE CURIOUS →</span></div>
 </section>
-
-    <section class="section section-projects" id="projects">
-      <div class="section-heading reveal"><div><div class="eyebrow">04 — CAMPAIGN PROJECT LIBRARY</div><h2>Choose a challenge.<br><span class="gradient-text">Build it yourself.</span></h2></div><p>Campaign projects are designed to be built by students using project-specific kits, technical documentation and optional institutional mentoring.</p></div>
-      <div class="project-feature reveal">
-        <div class="project-art art-disaster" id="projectArt" aria-label="Interactive holographic project preview">
-          <div class="art-grid"></div><div class="art-halo"></div>
-          <div class="holo-scene scene-disaster active" data-scene="disaster">
-            <div class="holo-map"><span class="map-contour contour-a"></span><span class="map-contour contour-b"></span><span class="map-contour contour-c"></span>
-              <div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div>
-              <i class="map-node node-a"><b></b><em>NODE 01</em></i><i class="map-node node-b"><b></b><em>NODE 02</em></i><i class="map-node node-c"><b></b><em>NODE 03</em></i>
-              <div class="alert-pulse"><span>!</span><small>ALERT</small></div>
-            </div>
-            <div class="holo-readout disaster-readout"><span class="readout-label">ENVIRONMENT WATCH</span><strong>LIVE <i></i></strong><div class="readout-row"><span>TEMP</span><b>28.6°C</b></div><div class="readout-row"><span>VIBRATION</span><b>NORMAL</b></div><div class="readout-row"><span>STATUS</span><b class="cyan">MONITORING</b></div></div>
-            <div class="holo-chip chip-one">ESP32 <span>↗</span></div><div class="holo-chip chip-two">MULTI-SENSOR NODE <span>◎</span></div>
-          </div>
-          <div class="holo-scene scene-neural" data-scene="neural">
-            <div class="brain-orbit orbit-one"></div><div class="brain-orbit orbit-two"></div>
-            <div class="brain-core"><span>AI</span><i class="brain-spark spark-a"></i><i class="brain-spark spark-b"></i><i class="brain-spark spark-c"></i></div>
-            <div class="signal-window"><div class="signal-window-head"><span>EEG SIGNAL / SAMPLE 08</span><b>● STREAMING</b></div><svg viewBox="0 0 340 90" role="img" aria-label="Illustrative neural signal waveform"><path class="signal-gridline" d="M0 20H340 M0 45H340 M0 70H340"/><path class="signal-wave wave-a" d="M0 47 L18 46 L26 35 L34 57 L44 43 L54 45 L63 13 L72 76 L81 42 L95 48 L107 45 L117 25 L128 66 L139 45 L153 43 L165 45 L176 9 L185 80 L197 46 L211 45 L224 35 L234 57 L244 44 L257 46 L268 21 L278 68 L289 44 L301 46 L314 42 L324 48 L340 44"/></svg><div class="signal-classes"><span>ALPHA <b>0.82</b></span><span>BETA <b>0.64</b></span><span>THETA <b>0.21</b></span></div></div>
-            <div class="holo-chip chip-one">PYTHON <span>↗</span></div><div class="holo-chip chip-two">FEATURE EXTRACTION <span>◎</span></div>
-          </div>
-          <div class="holo-scene scene-robot" data-scene="robot">
-            <div class="robot-stage-grid"></div><div class="robot-platform"></div>
-            <div class="mini-rover"><div class="rover-antenna"></div><div class="rover-head"><i></i><i></i></div><div class="rover-neck"></div><div class="rover-chassis"><span>PV</span><i></i></div><div class="rover-arm arm-left"></div><div class="rover-arm arm-right"></div><div class="rover-track track-left"><i></i><i></i><i></i><i></i></div><div class="rover-track track-right"><i></i><i></i><i></i><i></i></div></div>
-            <div class="motion-arc arc-left"></div><div class="motion-arc arc-right"></div>
-            <div class="robot-command"><span>GESTURE INPUT</span><b>↗ FORWARD</b><small>IMU → MCU → MOTOR DRIVER</small></div>
-            <div class="holo-chip chip-one">MPU6050 <span>↗</span></div><div class="holo-chip chip-two">MOTION LINK <span>◎</span></div>
-          </div>
-          <div class="holo-scene scene-solar" data-scene="solar">
-            <div class="solar-sun"><i></i></div><div class="solar-orbit"></div>
-            <div class="solar-panel-stand"><div class="solar-panel"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="solar-pivot"></div><div class="solar-leg"></div></div>
-            <div class="sun-ray ray-a"></div><div class="sun-ray ray-b"></div><div class="sun-ray ray-c"></div>
-            <div class="solar-readout"><span>POWER OUTPUT</span><strong>4.82 <small>W</small></strong><div class="power-meter"><i></i></div><footer><span>LIGHT 820 LX</span><b>TRACKING</b></footer></div>
-            <div class="holo-chip chip-one">LDR ARRAY <span>↗</span></div><div class="holo-chip chip-two">INA219 / ESP32 <span>◎</span></div>
-          </div>
-          <div class="art-caption">HOLOGRAPHIC PREVIEW / <span id="artProjectCode">001</span></div>
-        </div>
-        <div class="project-info"><div class="project-top"><span class="tag">FEATURED BUILD</span><span class="mono">01 / 04</span></div><h3 id="projectTitle">Smart Disaster<br>Monitoring System</h3><p id="projectDescription">A connected field system that detects environmental changes and sends real-time alerts before a situation escalates.</p>
-          <div class="project-tags" id="projectTags"><span>IoT</span><span>Embedded C</span><span>Sensor analytics</span></div>
-          <div class="spec-grid"><div><small>CONTROLLER</small><strong id="projectController">ESP32</strong></div><div><small>SENSORS</small><strong id="projectSensors">DHT11 · SW-420</strong></div><div><small>CONNECTIVITY</small><strong id="projectConnectivity">Wi-Fi / MQTT</strong></div><div><small>LEVEL</small><strong id="projectLevel">Intermediate</strong></div></div>
-          <div class="project-controls"><button class="button button-primary" id="projectDetails">Explore build <span>↗</span></button><div class="slider-controls"><button id="prevProject" aria-label="Previous project">←</button><span id="slideCount">01 <i>/</i> 04</span><button id="nextProject" aria-label="Next project">→</button></div></div>
-          <div class="slider-progress"><span id="sliderProgress"></span></div>
-        </div>
-      </div>
-      <div class="project-bottom"><span>REAL-WORLD PROBLEMS. BUILDABLE SOLUTIONS.</span><button class="inline-link" id="allProjects">Browse all projects <span>↗</span></button></div>
-    </section>
-
-    <section class="trust-band"><div class="trust-inner"><div class="trust-intro"><div class="eyebrow">BUILT FOR THE BUILDERS</div><h2>Not just another<br>project directory.</h2><p>A practical path from “what if?” to “it works.”</p></div><div class="trust-stats"><div class="stat"><strong data-count="4">0</strong><span>BUILD STAGES</span></div><div class="stat"><strong data-count="6">0</strong><span>TECH DOMAINS</span></div><div class="stat"><strong>∞</strong><span>WAYS TO EXPERIMENT</span></div></div><div class="trust-note"><span class="pulse-ring">✳</span><p>For curious minds who would rather <b>make it real.</b></p></div></div></section>
-
-    <section class="section journey-section" id="journey">
-      <div class="section-heading reveal"><div><div class="eyebrow">05 — THE BUILD JOURNEY</div><h2>From “what if?”<br><span class="gradient-text">to “it works.”</span></h2></div><p>One connected workflow to help you make progress, even when you're not sure what to do next.</p></div>
-      <div class="journey-layout reveal"><div class="journey-rail"><div class="journey-line"><span id="journeyLineProgress"></span></div><button class="journey-step active" data-step="0"><span>01</span><b>Submit an idea</b><small>Start with the problem</small></button><button class="journey-step" data-step="1"><span>02</span><b>Plan the build</b><small>Map components & skills</small></button><button class="journey-step" data-step="2"><span>03</span><b>Get your kit</b><small>Source the right parts</small></button><button class="journey-step" data-step="3"><span>04</span><b>Build & debug</b><small>Get help when stuck</small></button><button class="journey-step" data-step="4"><span>05</span><b>Show your work</b><small>Grow toward opportunities</small></button></div>
-        <div class="journey-detail" id="journeyDetail"><div class="detail-index">STAGE 01 <span>✳</span></div><div class="journey-illustration"><div class="idea-paper"><span>YOUR IDEA</span><i></i><i></i><i></i><div class="paper-spark">✳</div></div><div class="journey-orbit"></div></div><h3>Every great build starts with a question.</h3><p>Describe the problem you want to solve. You don't need a perfect plan — just a starting point.</p><button class="inline-link" data-scroll-start>Submit your first idea <span>↗</span></button></div></div>
-    </section>
-<section class="help-section" id="help"><div class="help-glow"></div><div class="help-inner reveal"><div class="help-left"><div class="eyebrow"><span class="live-dot"></span> 05 — TECHNICAL MENTORING</div><h2>Stuck on something?<br><span class="gradient-text">Let's figure it out.</span></h2><p>Wrong sensor readings. A circuit that won't cooperate. Code that refuses to compile. Tell us where you're stuck.</p><div class="help-pills"><span>⌘ Hardware</span><span>⟨/⟩ Code</span><span>⌁ IoT</span><span>◈ PCB & CAD</span></div><button class="button button-primary button-large" data-open-help>Open technical help <span>↗</span></button></div><div class="help-console"><div class="console-top"><span><i></i><i></i><i></i></span><b>protovox / support-terminal</b><span class="console-lock">SECURE-ish*</span></div><div class="console-body"><p><span class="console-prompt">pv@builder:~$</span> diagnose --project</p><p class="console-muted">Checking common blockers...</p><div class="diagnostic"><span>01</span><div><b>Component mismatch</b><small>Check voltage, pinout and interface</small></div><span class="diag-status">COMMON</span></div><div class="diagnostic"><span>02</span><div><b>Firmware / code errors</b><small>Inspect logs and reproduce the issue</small></div><span class="diag-status">DEBUG</span></div><div class="diagnostic"><span>03</span><div><b>Power or wiring issue</b><small>Verify supply, ground and continuity</small></div><span class="diag-status">CHECK</span></div><p class="console-prompt console-last">Ready when you are<span class="blink">_</span></p></div></div></div><div class="help-footnote">*Concept UI only — don't submit passwords or sensitive information.</div></section>
-
-    <section class="section rd-section" id="research">
-  <div class="section-heading reveal"><div><div class="eyebrow">06 — FLAGSHIP ENGINEERING / R&amp;D</div><h2>Two ambitious builds.<br><span class="gradient-text">One innovation mindset.</span></h2></div><p>Early-stage ProtoVox flagship concepts designed for multidisciplinary development, technical validation and future showcase opportunities. Specifications are preliminary and will evolve through prototyping.</p></div>
-  <div class="rd-grid rd-grid-two">
-    <article class="rd-card reveal flagship-project-card">
-      <div class="rd-card-top"><span class="rd-index">PV / LAB 001</span><span class="rd-status"><i></i> CONCEPT DEVELOPMENT</span></div>
-      <div class="rd-visual rd-rover"><div class="rd-orbit"></div><div class="rd-rover-body"><i></i><b></b><span></span></div><div class="rd-wheel left"></div><div class="rd-wheel right"></div></div>
-      <span class="eyebrow">AUTONOMY / FIELD ROBOTICS</span><h3>ARES — Autonomous Search &amp; Reconnaissance Rover</h3>
-      <p>A rugged mobile platform concept for mapping unfamiliar indoor environments, detecting obstacles and streaming situational data to a remote operator. Designed as a research demonstrator—not a certified emergency-response device.</p>
-      <div class="component-tags"><span>ROS 2 / SBC</span><span>LiDAR or ToF</span><span>IMU + encoders</span><span>Computer vision</span></div>
-      <div class="rd-project-brief"><b>CORE REQUIREMENTS</b><ul><li>Mobile chassis, geared motors and encoder feedback</li><li>Single-board computer with a microcontroller for real-time motor control</li><li>Depth sensing, IMU and camera; LiDAR as an upgrade</li><li>Motor driver, protected battery system and emergency stop</li><li>ROS 2 navigation stack, mapping and operator dashboard</li></ul></div>
-      <button class="rd-contact" data-rd-inquiry="ARES — Autonomous Search & Reconnaissance Rover">Discuss this research ↗</button>
-    </article>
-    <article class="rd-card reveal flagship-project-card">
-      <div class="rd-card-top"><span class="rd-index">PV / LAB 002</span><span class="rd-status"><i></i> CONCEPT DEVELOPMENT</span></div>
-      <div class="rd-visual rd-energy"><div class="rd-energy-ring"></div><div class="rd-energy-core">⌁</div><div class="rd-energy-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-      <span class="eyebrow">EDGE AI / CLIMATE INTELLIGENCE</span><h3>AGNI — AI-Powered Environmental Intelligence Station</h3>
-      <p>A modular edge-computing station that combines local environmental sensing with predictive analytics to identify changing conditions and generate useful alerts for campuses, farms or research sites.</p>
-      <div class="component-tags"><span>ESP32 / SBC</span><span>Environmental sensors</span><span>Edge analytics</span><span>Solar-ready</span></div>
-      <div class="rd-project-brief"><b>CORE REQUIREMENTS</b><ul><li>ESP32 sensor nodes with temperature, humidity, pressure and air-quality modules</li><li>Soil-moisture or particulate sensing selected for the deployment use case</li><li>Edge computer or cloud service for trend analysis and anomaly detection</li><li>Weather-resistant enclosure, regulated power and optional solar charging</li><li>Data dashboard, calibration workflow and alert logic</li></ul></div>
-      <button class="rd-contact" data-rd-inquiry="AGNI — AI-Powered Environmental Intelligence Station">Discuss this research ↗</button>
-    </article>
-  </div>
-  <div class="rd-bottom reveal"><div><span class="eyebrow">HAVE A RESEARCH QUESTION?</span><h3>Contribute to the next prototype.</h3><p>Share a technical question, collaboration proposal or capability that could strengthen either project.</p></div><button class="button button-primary button-large" data-rd-inquiry="New flagship R&D collaboration">Discuss an R&amp;D collaboration ↗</button></div>
+<section aria-label="Technology areas" class="ticker"><div class="ticker-track"><span>EMBEDDED SYSTEMS <b>✳</b></span><span>INTERNET OF THINGS <b>✳</b></span><span>ARTIFICIAL INTELLIGENCE <b>✳</b></span><span>ROBOTICS <b>✳</b></span><span>PCB DESIGN <b>✳</b></span><span>COMPUTER VISION <b>✳</b></span><span>EMBEDDED SYSTEMS <b>✳</b></span><span>INTERNET OF THINGS <b>✳</b></span><span>ARTIFICIAL INTELLIGENCE <b>✳</b></span><span>ROBOTICS <b>✳</b></span></div></section>
+<section class="section robotics-centre-section" id="robotics-centre">
+<div class="section-heading reveal"><div><div class="eyebrow">01 — PROTOVOX ROBOTICS CENTRE</div><h2>Young minds.<br/><span class="gradient-text">Real-world makers.</span></h2></div><p>Practical robotics and engineering education for school students up to Class 12. Students learn by experimenting, assembling, coding, testing and improving—not just watching demonstrations.</p></div>
+<div class="academy-intro reveal"><div class="academy-visual"><div class="academy-grid"></div><div class="academy-robot"><span>PV</span><i></i><b></b></div><div class="academy-orbit academy-orbit-a"></div><div class="academy-orbit academy-orbit-b"></div><span class="academy-chip chip-kids">SCHOOL / K–12</span><span class="academy-chip chip-build">LEARN BY BUILDING</span></div>
+<div class="academy-content"><span class="tag">THE FOUNDATION OF FUTURE INNOVATORS</span><h3>From curiosity to capability.</h3><p>Age-appropriate learning pathways introduce students to electronics, mechanisms, sensors, coding and robotics through guided practical challenges.</p><div class="academy-levels"><div><b>01</b><span><strong>Explore</strong><small>Curiosity, circuits and creative problem solving</small></span></div><div><b>02</b><span><strong>Experiment</strong><small>Sensors, motors, logic and simple automation</small></span></div><div><b>03</b><span><strong>Engineer</strong><small>Build, code, test and present working prototypes</small></span></div></div><button class="button button-primary button-large" data-open-workshop="">Book My Workshop ↗</button></div>
+</div>
 </section>
-
-    <section class="section institute-section" id="institutes">
-      <div class="section-heading reveal"><div><div class="eyebrow">07 — INSTITUTIONAL PROGRAMMES</div><h2>Bring the lab<br><span class="gradient-text">to your campus.</span></h2></div><p>Partner with ProtoVox to run practical robotics and advanced technology programmes for schools, colleges and technical communities.</p></div>
-      <div class="institute-grid">
-        <article class="institute-card reveal"><span class="institute-number">01 / SCHOOL PROGRAMMES</span><div class="institute-icon">⌘</div><h3>Robotics learning sessions</h3><p>Age-appropriate, hands-on robotics sessions for school students, with guided activities and practical build challenges.</p><button class="inline-link" data-open-workshop>Discuss a school programme ↗</button></article>
-        <article class="institute-card reveal"><span class="institute-number">02 / COLLEGE WORKSHOPS</span><div class="institute-icon">⚙</div><h3>Advanced technology workshops</h3><p>Practical sessions in robotics, IoT, embedded systems, AI, automation and prototyping—built around real hardware and guided implementation.</p><button class="inline-link" data-open-workshop>Plan a college workshop ↗</button></article>
-        <article class="institute-card reveal"><span class="institute-number">03 / ROBOBUILD KITS</span><div class="institute-icon">◈</div><h3>Build-kit programmes</h3><p>Project kits paired with documentation and optional mentoring, so students can assemble and understand the build themselves.</p><button class="inline-link" data-open-workshop>Enquire about kits ↗</button></article>
-      </div>
-      <div class="institute-banner reveal"><div><span class="eyebrow">SCHOOLS / COLLEGES / INNOVATION CELLS</span><h3>Let's design a practical programme for your institution.</h3><p>Share your student count, preferred domain and timeline. We'll prepare a workshop enquiry for the ProtoVox team.</p></div></div>
-    </section>
-
-    <section class="section internship-section" id="internships">
-      <div class="section-heading reveal"><div><div class="eyebrow">08 — COLLABORATIVE INTERNSHIPS</div><h2>Connect with mentors.<br><span class="gradient-text">Access real opportunities.</span></h2></div><p>ProtoVox aims to collaborate with colleges, training centres and industry partners to connect learners with internship opportunities, mentoring, technical exposure and institutional programmes. Select your area of interest to start a conversation.</p></div>
-      <div class="internship-domain-grid">
-        <button class="domain-card" data-internship="ECE"><span class="domain-symbol">⌁</span><b>ECE</b><small>Embedded systems, circuit design, PCB fundamentals and VLSI foundations.</small><span class="domain-arrow">↗</span></button>
-        <button class="domain-card" data-internship="AI & ML"><span class="domain-symbol">✳</span><b>AI &amp; ML</b><small>Python, data preparation, machine learning models and applied AI projects.</small><span class="domain-arrow">↗</span></button>
-        <button class="domain-card" data-internship="Mechatronics"><span class="domain-symbol">⚙</span><b>Mechatronics</b><small>Mechanical systems, sensors, control, automation and system integration.</small><span class="domain-arrow">↗</span></button>
-        <button class="domain-card" data-internship="Robotics"><span class="domain-symbol">◈</span><b>Robotics</b><small>Robot architecture, actuators, motion control, navigation and prototyping.</small><span class="domain-arrow">↗</span></button>
-        <button class="domain-card" data-internship="CSE"><span class="domain-symbol">&lt;/&gt;</span><b>CSE</b><small>Software engineering, web and app development, APIs and intelligent systems.</small><span class="domain-arrow">↗</span></button>
-        <button class="domain-card" data-internship="Other / Interdisciplinary"><span class="domain-symbol">✧</span><b>Interdisciplinary</b><small>IoT, 3D printing, product design, technical research and cross-domain builds.</small><span class="domain-arrow">↗</span></button>
-      </div>
-      <div class="internship-apply-bar"><div><span class="tag">INSTITUTION &amp; PARTNER NETWORK</span><h3>Build a pathway with ProtoVox.</h3><p>Tell us your interests and goals. We can explore suitable partner-led opportunities and collaboration pathways.</p></div></div>
-      <p class="demo-note"><span>ⓘ</span> Internship requests are emailed as a draft for you to review and send. Tracks are not confirmed vacancies or placement guarantees.</p>
-    </section>
-
-    <section class="final-cta" id="start"><div class="cta-grid"></div><div class="cta-orb"></div><div class="cta-content reveal"><div class="eyebrow"><span class="live-dot"></span> YOUR BUILD STARTS HERE</div><h2>Your idea could be<br><span class="gradient-text">the next big thing.</span></h2><p>Don't wait until you know everything. Start with one question, one component, one prototype.</p><div class="hero-actions"><button class="button button-primary button-large" data-open-idea>Submit your idea <span>↗</span></button><a class="button button-ghost button-large" href="innovation-lab.html">Explore the innovation lab</a></div></div><div class="cta-watermark">PV<span>.</span></div></section>
-  </main>
-
-
-
-  <footer class="site-footer"><a class="brand brand-image footer-brand-image" href="#top" aria-label="ProtoVox home"><img src="assets/brand/protovox-logo.png" alt="ProtoVox — From Idea to Prototype"></a><p>Robotics education. Advanced engineering. Original innovation.</p><div class="footer-links"><a href="#about">About ProtoVox</a><a href="campaign-projects.html">Campaign Projects</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a><a href="index.html?dialog=workshop">Institutional programmes</a><a href="index.html?dialog=internship">Internships</a></div><div class="footer-socials" aria-label="ProtoVox social links">
-<a href="https://www.instagram.com/protovox__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="solid"/></svg>
+<section class="section advanced-section" id="advanced">
+<div class="section-heading reveal"><div><div class="eyebrow">02 — ADVANCED PROTOVOX</div><h2>Beyond learning.<br/><span class="gradient-text">Into engineering.</span></h2></div><p>Designed for learners beyond Class 12: diploma and degree students, engineering teams, technical clubs and institutions. Build advanced systems through project kits and workshops, then explore original R&amp;D created by the ProtoVox team.</p></div>
+<div class="advanced-pathways">
+<article class="advanced-path campaign-path reveal"><div class="advanced-path-top"><span>DIVISION / 01</span><span class="path-status">BUILD WITH US</span></div><div class="advanced-visual campaign-visual"><div class="campaign-circuit"></div><div class="campaign-device"><i></i><b>BUILD KIT</b><small>ASSEMBLE / CODE / TEST</small></div></div><div class="advanced-path-copy"><span class="eyebrow">CAMPAIGN PROJECTS</span><h3>Own the build.<br/>Understand every part.</h3><p>Structured project campaigns designed for college students and institutions. Choose a project, get its matched RoboBuild kit, follow the build pathway and create the working prototype yourself.</p><ul><li>Project-specific hardware and software kits</li><li>Build guides, circuit plans and source code</li><li>Individual and team-based project pathways</li><li>Institutional workshops and hands-on mentoring</li></ul><a class="button button-primary" href="campaign-projects.html">Explore Advanced ProtoVox ↗</a></div></article>
+<article class="advanced-path flagship-path reveal"><div class="advanced-path-top"><span>DIVISION / 02</span><span class="path-status">INNOVATION LAB</span></div><div class="advanced-visual flagship-visual"><div class="flagship-rings"></div><div class="flagship-core">PV<span>LAB</span></div><i class="flagship-satellite satellite-a"></i><i class="flagship-satellite satellite-b"></i><i class="flagship-satellite satellite-c"></i></div><div class="advanced-path-copy"><span class="eyebrow">FLAGSHIP / UNIQUE PROJECTS</span><h3>Build what<br/>doesn't exist yet.</h3><p>ProtoVox's in-house R&amp;D division develops original, high-impact engineering systems for industry collaborations, exhibitions, hackathons and major technical showcases.</p><ul><li>Original multidisciplinary engineering concepts</li><li>Advanced robotics, embedded systems and AI</li><li>Prototype demonstrations and technical storytelling</li><li>Competition, festival and innovation showcases</li></ul><a class="button button-ghost" href="innovation-lab.html">Enter the Innovation Lab ↗</a></div></article>
+</div>
+</section>
+<section class="section section-projects" id="projects">
+<div class="section-heading reveal"><div><div class="eyebrow">04 — CAMPAIGN PROJECT LIBRARY</div><h2>Choose a challenge.<br/><span class="gradient-text">Build it yourself.</span></h2></div><p>Campaign projects are designed to be built by students using project-specific kits, technical documentation and optional institutional mentoring.</p></div>
+<div class="project-feature reveal">
+<div aria-label="Interactive holographic project preview" class="project-art art-disaster" id="projectArt">
+<div class="art-grid"></div><div class="art-halo"></div>
+<div class="holo-scene scene-disaster active" data-scene="disaster">
+<div class="holo-map"><span class="map-contour contour-a"></span><span class="map-contour contour-b"></span><span class="map-contour contour-c"></span>
+<div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div>
+<i class="map-node node-a"><b></b><em>NODE 01</em></i><i class="map-node node-b"><b></b><em>NODE 02</em></i><i class="map-node node-c"><b></b><em>NODE 03</em></i>
+<div class="alert-pulse"><span>!</span><small>ALERT</small></div>
+</div>
+<div class="holo-readout disaster-readout"><span class="readout-label">ENVIRONMENT WATCH</span><strong>LIVE <i></i></strong><div class="readout-row"><span>TEMP</span><b>28.6°C</b></div><div class="readout-row"><span>VIBRATION</span><b>NORMAL</b></div><div class="readout-row"><span>STATUS</span><b class="cyan">MONITORING</b></div></div>
+<div class="holo-chip chip-one">ESP32 <span>↗</span></div><div class="holo-chip chip-two">MULTI-SENSOR NODE <span>◎</span></div>
+</div>
+<div class="holo-scene scene-neural" data-scene="neural">
+<div class="brain-orbit orbit-one"></div><div class="brain-orbit orbit-two"></div>
+<div class="brain-core"><span>AI</span><i class="brain-spark spark-a"></i><i class="brain-spark spark-b"></i><i class="brain-spark spark-c"></i></div>
+<div class="signal-window"><div class="signal-window-head"><span>EEG SIGNAL / SAMPLE 08</span><b>● STREAMING</b></div><svg aria-label="Illustrative neural signal waveform" role="img" viewbox="0 0 340 90"><path class="signal-gridline" d="M0 20H340 M0 45H340 M0 70H340"></path><path class="signal-wave wave-a" d="M0 47 L18 46 L26 35 L34 57 L44 43 L54 45 L63 13 L72 76 L81 42 L95 48 L107 45 L117 25 L128 66 L139 45 L153 43 L165 45 L176 9 L185 80 L197 46 L211 45 L224 35 L234 57 L244 44 L257 46 L268 21 L278 68 L289 44 L301 46 L314 42 L324 48 L340 44"></path></svg><div class="signal-classes"><span>ALPHA <b>0.82</b></span><span>BETA <b>0.64</b></span><span>THETA <b>0.21</b></span></div></div>
+<div class="holo-chip chip-one">PYTHON <span>↗</span></div><div class="holo-chip chip-two">FEATURE EXTRACTION <span>◎</span></div>
+</div>
+<div class="holo-scene scene-robot" data-scene="robot">
+<div class="robot-stage-grid"></div><div class="robot-platform"></div>
+<div class="mini-rover"><div class="rover-antenna"></div><div class="rover-head"><i></i><i></i></div><div class="rover-neck"></div><div class="rover-chassis"><span>PV</span><i></i></div><div class="rover-arm arm-left"></div><div class="rover-arm arm-right"></div><div class="rover-track track-left"><i></i><i></i><i></i><i></i></div><div class="rover-track track-right"><i></i><i></i><i></i><i></i></div></div>
+<div class="motion-arc arc-left"></div><div class="motion-arc arc-right"></div>
+<div class="robot-command"><span>GESTURE INPUT</span><b>↗ FORWARD</b><small>IMU → MCU → MOTOR DRIVER</small></div>
+<div class="holo-chip chip-one">MPU6050 <span>↗</span></div><div class="holo-chip chip-two">MOTION LINK <span>◎</span></div>
+</div>
+<div class="holo-scene scene-solar" data-scene="solar">
+<div class="solar-sun"><i></i></div><div class="solar-orbit"></div>
+<div class="solar-panel-stand"><div class="solar-panel"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="solar-pivot"></div><div class="solar-leg"></div></div>
+<div class="sun-ray ray-a"></div><div class="sun-ray ray-b"></div><div class="sun-ray ray-c"></div>
+<div class="solar-readout"><span>POWER OUTPUT</span><strong>4.82 <small>W</small></strong><div class="power-meter"><i></i></div><footer><span>LIGHT 820 LX</span><b>TRACKING</b></footer></div>
+<div class="holo-chip chip-one">LDR ARRAY <span>↗</span></div><div class="holo-chip chip-two">INA219 / ESP32 <span>◎</span></div>
+</div>
+<div class="art-caption">HOLOGRAPHIC PREVIEW / <span id="artProjectCode">001</span></div>
+</div>
+<div class="project-info"><div class="project-top"><span class="tag">FEATURED BUILD</span><span class="mono">01 / 04</span></div><h3 id="projectTitle">Smart Disaster<br/>Monitoring System</h3><p id="projectDescription">A connected field system that detects environmental changes and sends real-time alerts before a situation escalates.</p>
+<div class="project-tags" id="projectTags"><span>IoT</span><span>Embedded C</span><span>Sensor analytics</span></div>
+<div class="spec-grid"><div><small>CONTROLLER</small><strong id="projectController">ESP32</strong></div><div><small>SENSORS</small><strong id="projectSensors">DHT11 · SW-420</strong></div><div><small>CONNECTIVITY</small><strong id="projectConnectivity">Wi-Fi / MQTT</strong></div><div><small>LEVEL</small><strong id="projectLevel">Intermediate</strong></div></div>
+<div class="project-controls"><button class="button button-primary" id="projectDetails">Explore build <span>↗</span></button><div class="slider-controls"><button aria-label="Previous project" id="prevProject">←</button><span id="slideCount">01 <i>/</i> 04</span><button aria-label="Next project" id="nextProject">→</button></div></div>
+<div class="slider-progress"><span id="sliderProgress"></span></div>
+</div>
+</div>
+<div class="project-bottom"><span>REAL-WORLD PROBLEMS. BUILDABLE SOLUTIONS.</span><button class="inline-link" id="allProjects">Browse all projects <span>↗</span></button></div>
+</section>
+<section class="trust-band"><div class="trust-inner"><div class="trust-intro"><div class="eyebrow">BUILT FOR THE BUILDERS</div><h2>Not just another<br/>project directory.</h2><p>A practical path from “what if?” to “it works.”</p></div><div class="trust-stats"><div class="stat"><strong data-count="4">0</strong><span>BUILD STAGES</span></div><div class="stat"><strong data-count="6">0</strong><span>TECH DOMAINS</span></div><div class="stat"><strong>∞</strong><span>WAYS TO EXPERIMENT</span></div></div><div class="trust-note"><span class="pulse-ring">✳</span><p>For curious minds who would rather <b>make it real.</b></p></div></div></section>
+<section class="section journey-section" id="journey">
+<div class="section-heading reveal"><div><div class="eyebrow">05 — THE BUILD JOURNEY</div><h2>From “what if?”<br/><span class="gradient-text">to “it works.”</span></h2></div><p>One connected workflow to help you make progress, even when you're not sure what to do next.</p></div>
+<div class="journey-layout reveal"><div class="journey-rail"><div class="journey-line"><span id="journeyLineProgress"></span></div><button class="journey-step active" data-step="0"><span>01</span><b>Submit an idea</b><small>Start with the problem</small></button><button class="journey-step" data-step="1"><span>02</span><b>Plan the build</b><small>Map components &amp; skills</small></button><button class="journey-step" data-step="2"><span>03</span><b>Get your kit</b><small>Source the right parts</small></button><button class="journey-step" data-step="3"><span>04</span><b>Build &amp; debug</b><small>Get help when stuck</small></button><button class="journey-step" data-step="4"><span>05</span><b>Show your work</b><small>Grow toward opportunities</small></button></div>
+<div class="journey-detail" id="journeyDetail"><div class="detail-index">STAGE 01 <span>✳</span></div><div class="journey-illustration"><div class="idea-paper"><span>YOUR IDEA</span><i></i><i></i><i></i><div class="paper-spark">✳</div></div><div class="journey-orbit"></div></div><h3>Every great build starts with a question.</h3><p>Describe the problem you want to solve. You don't need a perfect plan — just a starting point.</p><button class="inline-link" data-scroll-start="">Submit your first idea <span>↗</span></button></div></div>
+</section>
+<section class="help-section" id="help"><div class="help-glow"></div><div class="help-inner reveal"><div class="help-left"><div class="eyebrow"><span class="live-dot"></span> 05 — TECHNICAL MENTORING</div><h2>Stuck on something?<br/><span class="gradient-text">Let's figure it out.</span></h2><p>Wrong sensor readings. A circuit that won't cooperate. Code that refuses to compile. Tell us where you're stuck.</p><div class="help-pills"><span>⌘ Hardware</span><span>⟨/⟩ Code</span><span>⌁ IoT</span><span>◈ PCB &amp; CAD</span></div><button class="button button-primary button-large" data-open-help="">Open technical help <span>↗</span></button></div><div class="help-console"><div class="console-top"><span><i></i><i></i><i></i></span><b>protovox / support-terminal</b><span class="console-lock">SECURE-ish*</span></div><div class="console-body"><p><span class="console-prompt">pv@builder:~$</span> diagnose --project</p><p class="console-muted">Checking common blockers...</p><div class="diagnostic"><span>01</span><div><b>Component mismatch</b><small>Check voltage, pinout and interface</small></div><span class="diag-status">COMMON</span></div><div class="diagnostic"><span>02</span><div><b>Firmware / code errors</b><small>Inspect logs and reproduce the issue</small></div><span class="diag-status">DEBUG</span></div><div class="diagnostic"><span>03</span><div><b>Power or wiring issue</b><small>Verify supply, ground and continuity</small></div><span class="diag-status">CHECK</span></div><p class="console-prompt console-last">Ready when you are<span class="blink">_</span></p></div></div></div><div class="help-footnote">*Concept UI only — don't submit passwords or sensitive information.</div></section>
+<section class="section rd-section" id="research">
+<div class="section-heading reveal"><div><div class="eyebrow">06 — FLAGSHIP ENGINEERING / R&amp;D</div><h2>Two ambitious builds.<br/><span class="gradient-text">One innovation mindset.</span></h2></div><p>Early-stage ProtoVox flagship concepts designed for multidisciplinary development, technical validation and future showcase opportunities. Specifications are preliminary and will evolve through prototyping.</p></div>
+<div class="rd-grid rd-grid-two">
+<article class="rd-card reveal flagship-project-card">
+<div class="rd-card-top"><span class="rd-index">PV / LAB 001</span><span class="rd-status"><i></i> CONCEPT DEVELOPMENT</span></div>
+<div class="rd-visual rd-rover"><div class="rd-orbit"></div><div class="rd-rover-body"><i></i><b></b><span></span></div><div class="rd-wheel left"></div><div class="rd-wheel right"></div></div>
+<span class="eyebrow">AUTONOMY / FIELD ROBOTICS</span><h3>ARES — Autonomous Search &amp; Reconnaissance Rover</h3>
+<p>A rugged mobile platform concept for mapping unfamiliar indoor environments, detecting obstacles and streaming situational data to a remote operator. Designed as a research demonstrator—not a certified emergency-response device.</p>
+<div class="component-tags"><span>ROS 2 / SBC</span><span>LiDAR or ToF</span><span>IMU + encoders</span><span>Computer vision</span></div>
+<div class="rd-project-brief"><b>CORE REQUIREMENTS</b><ul><li>Mobile chassis, geared motors and encoder feedback</li><li>Single-board computer with a microcontroller for real-time motor control</li><li>Depth sensing, IMU and camera; LiDAR as an upgrade</li><li>Motor driver, protected battery system and emergency stop</li><li>ROS 2 navigation stack, mapping and operator dashboard</li></ul></div>
+<button class="rd-contact" data-rd-inquiry="ARES — Autonomous Search &amp; Reconnaissance Rover">Discuss this research ↗</button>
+</article>
+<article class="rd-card reveal flagship-project-card">
+<div class="rd-card-top"><span class="rd-index">PV / LAB 002</span><span class="rd-status"><i></i> CONCEPT DEVELOPMENT</span></div>
+<div class="rd-visual rd-energy"><div class="rd-energy-ring"></div><div class="rd-energy-core">⌁</div><div class="rd-energy-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<span class="eyebrow">EDGE AI / CLIMATE INTELLIGENCE</span><h3>AGNI — AI-Powered Environmental Intelligence Station</h3>
+<p>A modular edge-computing station that combines local environmental sensing with predictive analytics to identify changing conditions and generate useful alerts for campuses, farms or research sites.</p>
+<div class="component-tags"><span>ESP32 / SBC</span><span>Environmental sensors</span><span>Edge analytics</span><span>Solar-ready</span></div>
+<div class="rd-project-brief"><b>CORE REQUIREMENTS</b><ul><li>ESP32 sensor nodes with temperature, humidity, pressure and air-quality modules</li><li>Soil-moisture or particulate sensing selected for the deployment use case</li><li>Edge computer or cloud service for trend analysis and anomaly detection</li><li>Weather-resistant enclosure, regulated power and optional solar charging</li><li>Data dashboard, calibration workflow and alert logic</li></ul></div>
+<button class="rd-contact" data-rd-inquiry="AGNI — AI-Powered Environmental Intelligence Station">Discuss this research ↗</button>
+</article>
+</div>
+<div class="rd-bottom reveal"><div><span class="eyebrow">HAVE A RESEARCH QUESTION?</span><h3>Contribute to the next prototype.</h3><p>Share a technical question, collaboration proposal or capability that could strengthen either project.</p></div><button class="button button-primary button-large" data-rd-inquiry="New flagship R&amp;D collaboration">Discuss an R&amp;D collaboration ↗</button></div>
+</section>
+<section class="section institute-section" id="institutes">
+<div class="section-heading reveal"><div><div class="eyebrow">07 — INSTITUTIONAL PROGRAMMES</div><h2>Bring the lab<br/><span class="gradient-text">to your campus.</span></h2></div><p>Partner with ProtoVox to run practical robotics and advanced technology programmes for schools, colleges and technical communities.</p></div>
+<div class="institute-grid">
+<article class="institute-card reveal"><span class="institute-number">01 / SCHOOL PROGRAMMES</span><div class="institute-icon">⌘</div><h3>Robotics learning sessions</h3><p>Age-appropriate, hands-on robotics sessions for school students, with guided activities and practical build challenges.</p><button class="inline-link" data-open-workshop="">Discuss a school programme ↗</button></article>
+<article class="institute-card reveal"><span class="institute-number">02 / COLLEGE WORKSHOPS</span><div class="institute-icon">⚙</div><h3>Advanced technology workshops</h3><p>Practical sessions in robotics, IoT, embedded systems, AI, automation and prototyping—built around real hardware and guided implementation.</p><button class="inline-link" data-open-workshop="">Plan a college workshop ↗</button></article>
+<article class="institute-card reveal"><span class="institute-number">03 / ROBOBUILD KITS</span><div class="institute-icon">◈</div><h3>Build-kit programmes</h3><p>Project kits paired with documentation and optional mentoring, so students can assemble and understand the build themselves.</p><button class="inline-link" data-open-workshop="">Enquire about kits ↗</button></article>
+</div>
+<div class="institute-banner reveal"><div><span class="eyebrow">SCHOOLS / COLLEGES / INNOVATION CELLS</span><h3>Let's design a practical programme for your institution.</h3><p>Share your student count, preferred domain and timeline. We'll prepare a workshop enquiry for the ProtoVox team.</p></div></div>
+</section>
+<section class="section internship-section" id="internships">
+<div class="section-heading reveal"><div><div class="eyebrow">08 — COLLABORATIVE INTERNSHIPS</div><h2>Connect with mentors.<br/><span class="gradient-text">Access real opportunities.</span></h2></div><p>ProtoVox aims to collaborate with colleges, training centres and industry partners to connect learners with internship opportunities, mentoring, technical exposure and institutional programmes. Select your area of interest to start a conversation.</p></div>
+<div class="internship-domain-grid">
+<button class="domain-card" data-internship="ECE"><span class="domain-symbol">⌁</span><b>ECE</b><small>Embedded systems, circuit design, PCB fundamentals and VLSI foundations.</small><span class="domain-arrow">↗</span></button>
+<button class="domain-card" data-internship="AI &amp; ML"><span class="domain-symbol">✳</span><b>AI &amp; ML</b><small>Python, data preparation, machine learning models and applied AI projects.</small><span class="domain-arrow">↗</span></button>
+<button class="domain-card" data-internship="Mechatronics"><span class="domain-symbol">⚙</span><b>Mechatronics</b><small>Mechanical systems, sensors, control, automation and system integration.</small><span class="domain-arrow">↗</span></button>
+<button class="domain-card" data-internship="Robotics"><span class="domain-symbol">◈</span><b>Robotics</b><small>Robot architecture, actuators, motion control, navigation and prototyping.</small><span class="domain-arrow">↗</span></button>
+<button class="domain-card" data-internship="CSE"><span class="domain-symbol">&lt;/&gt;</span><b>CSE</b><small>Software engineering, web and app development, APIs and intelligent systems.</small><span class="domain-arrow">↗</span></button>
+<button class="domain-card" data-internship="Other / Interdisciplinary"><span class="domain-symbol">✧</span><b>Interdisciplinary</b><small>IoT, 3D printing, product design, technical research and cross-domain builds.</small><span class="domain-arrow">↗</span></button>
+</div>
+<div class="internship-apply-bar"><div><span class="tag">INSTITUTION &amp; PARTNER NETWORK</span><h3>Build a pathway with ProtoVox.</h3><p>Tell us your interests and goals. We can explore suitable partner-led opportunities and collaboration pathways.</p></div></div>
+<p class="demo-note"><span>ⓘ</span> Internship requests are emailed as a draft for you to review and send. Tracks are not confirmed vacancies or placement guarantees.</p>
+</section>
+<section class="final-cta" id="start"><div class="cta-grid"></div><div class="cta-orb"></div><div class="cta-content reveal"><div class="eyebrow"><span class="live-dot"></span> YOUR BUILD STARTS HERE</div><h2>Your idea could be<br/><span class="gradient-text">the next big thing.</span></h2><p>Don't wait until you know everything. Start with one question, one component, one prototype.</p><div class="hero-actions"><button class="button button-primary button-large" data-open-idea="">Submit your idea <span>↗</span></button><a class="button button-ghost button-large" href="innovation-lab.html">Enter the Innovation Lab</a></div></div><div class="cta-watermark">PV<span>.</span></div></section>
+</main>
+<footer class="site-footer"><a aria-label="ProtoVox home" class="brand brand-image footer-brand-image" href="#top"><img alt="ProtoVox — From Idea to Prototype" src="assets/brand/protovox-logo.png"/></a><p>Robotics education. Advanced engineering. Original innovation.</p><div class="footer-links"><a href="about.html">About ProtoVox</a><a href="campaign-projects.html">Advanced ProtoVox</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a><a href="index.html?dialog=workshop">Institutional programmes</a><a href="index.html?dialog=internship">Internships</a></div><div aria-label="ProtoVox social links" class="footer-socials">
+<a aria-label="Instagram" href="https://www.instagram.com/protovox__/" rel="noopener noreferrer" target="_blank" title="Instagram">
+<svg aria-hidden="true" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle class="solid" cx="17.5" cy="6.5" r="1"></circle></svg>
 </a>
-<a href="https://www.linkedin.com/in/protovox-undefined-568364449/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg>
+<a aria-label="LinkedIn" href="https://www.linkedin.com/in/protovox-undefined-568364449/" rel="noopener noreferrer" target="_blank" title="LinkedIn">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M5 9v10M5 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"></path></svg>
 </a></div><span class="footer-copy">© 2026 ProtoVox · Prototype experience</span></footer>
-
-  <dialog class="modal workshop-modal" id="workshopModal">
-    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close workshop booking">×</button></form>
-    <div class="workshop-modal-head">
-      <span class="eyebrow"><span class="live-dot"></span> PROTOVOX / CONNECT</span>
-      <h2>Let's build something<br><span class="gradient-text">worth remembering.</span></h2>
-      <p>Send a message to our team or tell us about a workshop for your institution. We'll prepare an email for you to review and send.</p>
-    </div>
-    <div class="workshop-form-grid">
-      <form id="contactMessageForm" class="workshop-form-card">
-        <div class="workshop-form-kicker">GENERAL ENQUIRY</div><h3>Contact ProtoVox</h3>
-        <label>Name *<input name="name" required placeholder="Your full name"></label>
-        <label>Email *<input name="email" type="email" required placeholder="your.email@example.com"></label>
-        <label>Phone<input name="phone" type="tel" placeholder="+91 98765 43210"></label>
-        <label>Institution<input name="institution" placeholder="Your school / college / company"></label>
-        <label>Message *<textarea name="message" rows="4" required placeholder="Tell us how we can help..."></textarea></label>
-        <button class="button button-primary button-large" type="submit">Prepare message ↗</button>
-      </form>
-      <form id="workshopBookingForm" class="workshop-form-card workshop-booking-card">
-        <div class="workshop-form-kicker">INSTITUTIONAL PROGRAMME</div><h3>Book a Workshop</h3>
-        <label>Institution Name *<input name="institution" required placeholder="School / College name"></label>
-        <label>Contact Person *<input name="contact" required placeholder="Coordinator name"></label>
-        <div class="workshop-field-pair">
-          <label>Email *<input name="email" type="email" required placeholder="email@example.com"></label>
-          <label>Phone *<input name="phone" type="tel" required placeholder="+91 98765 43210"></label>
-        </div>
-        <div class="workshop-field-pair">
-          <label>Student Count *<input name="students" type="number" min="1" required placeholder="50"></label>
-          <label>Preferred Date<input name="date" type="date"></label>
-        </div>
-        <label>Workshop Type *<select name="type" required><option value="">Select workshop type</option><option>School Robotics Programme (K–12)</option><option>College Robotics &amp; Automation Workshop</option><option>Advanced Embedded Systems &amp; IoT</option><option>AI &amp; Machine Learning</option><option>PCB Design &amp; Electronics</option><option>3D Printing &amp; Prototyping</option><option>Custom / Interdisciplinary</option></select></label>
-        <label>Additional Information<textarea name="notes" rows="3" placeholder="Any specific requirements or questions?"></textarea></label>
-        <button class="button button-primary button-large" type="submit">Prepare booking request ↗</button>
-      </form>
-    </div>
-    <p class="form-note workshop-footnote">No booking is confirmed automatically. Your email app opens with the request ready; ProtoVox will confirm availability and details after receiving it.</p>
-  </dialog>
-
-  <dialog class="modal" id="helpModal"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close">×</button></form><div class="modal-heading"><span class="eyebrow">PROTOVOX / DEBUG DESK</span><h2>Let's solve the blocker.</h2><p>Share enough detail for someone to understand what you are building.</p></div><form id="helpForm" class="modal-form"><label>Your name<input name="name" required placeholder="How should we call you?"></label><label>Your email<input name="email" type="email" required placeholder="you@example.com"></label><label>What do you need help with?<select name="category" required><option value="">Choose a category</option><option>Hardware / circuit</option><option>Embedded code</option><option>IoT / connectivity</option><option>AI / software</option><option>PCB / CAD</option><option>Project kit</option><option>Documentation</option><option>Other</option></select></label><label>Describe the issue<textarea name="details" required rows="4" placeholder="What are you trying to build? What have you tried?"></textarea></label><button class="button button-primary button-large" type="submit">Prepare help request ↗</button><small class="form-note">Demo only: this form does not send or store your request.</small></form><div class="modal-success" hidden><div class="success-icon">✓</div><h3>Request drafted.</h3><p>This prototype doesn't send requests to a support team yet. Your details were not uploaded.</p><button class="button button-ghost" data-close-modal>Close</button></div></dialog>
-
-  <dialog class="modal" id="ideaModal"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close">×</button></form><div class="modal-heading"><span class="eyebrow">PROTOVOX / IDEA INTAKE</span><h2>Start with the problem.</h2><p>Build a pathway with ProtoVox. We'll review the idea, map the likely components and next steps, and help you decide whether you need a project kit or build guidance.</p></div><form id="ideaForm" class="modal-form"><label>Project / idea name<input name="ideaName" required placeholder="e.g. Smart plant monitor"></label><label>Technology area<select name="technology" required><option value="">Pick your starting point</option><option>Embedded systems</option><option>IoT</option><option>AI / machine learning</option><option>Robotics</option><option>Electronics / PCB</option><option>Web / software</option><option>Not sure yet</option></select></label><label>What problem does it solve?<textarea name="problem" required rows="3" placeholder="Describe the problem, not just the product."></textarea></label><button class="button button-primary button-large" type="submit">Create idea brief ↗</button><small class="form-note">Demo only: your idea stays in this browser session and is not submitted to a server.</small></form><div class="modal-success" hidden><div class="success-icon">✓</div><h3>Your idea brief is ready.</h3><p id="ideaSuccessText"></p><button class="button button-ghost" data-close-modal>Done</button></div></dialog>
-
-  <dialog class="modal compact-modal" id="infoModal"><form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close">×</button></form><span class="eyebrow" id="infoEyebrow">PROTOVOX / LAB</span><h2 id="infoTitle">Explore the build</h2><p id="infoText"></p><div id="infoContent"></div><div class="info-modal-actions"><button class="button button-primary" id="infoAskByEmail" type="button">Ask ProtoVox about this ↗</button><button class="button button-ghost" data-close-modal>Got it</button></div></dialog>
-
-<dialog class="modal rd-inquiry-modal" id="rdInquiryModal" aria-label="Research discussion enquiry">
-  <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close research enquiry">×</button></form>
-  <div class="rd-dialog-layout">
-    <aside class="rd-dialog-aside"><span class="eyebrow">PROTO VOX / INNOVATION LAB</span><div class="rd-dialog-orbit"><span>PV</span><i></i><i></i><i></i></div><span class="tag">RESEARCH DISCUSSION</span><h2>Bring your expertise<br><span class="gradient-text">to the table.</span></h2><p>Use this enquiry to discuss the technical direction, potential collaboration, resources or development requirements for a ProtoVox research concept.</p><div class="rd-dialog-note"><b>WHAT HAPPENS NEXT</b><span>The team reviews your note and follows up by email to discuss feasibility and possible next steps.</span></div></aside>
-    <section class="rd-dialog-form-side"><div class="eyebrow">PROJECT ENQUIRY</div><h3 id="rdDialogProjectTitle">Discuss a research concept</h3><p>Share a little context so we can make the conversation useful.</p>
-      <form id="rdInquiryForm" class="rd-dialog-form">
-        <label>Research topic<input name="topic" id="rdDialogTopic" required readonly></label>
-        <div class="rd-dialog-pair"><label>Your name<input name="name" required placeholder="Full name"></label><label>Work / student email<input name="email" type="email" required placeholder="name@example.com"></label></div>
-        <label>Organisation / institution <span>OPTIONAL</span><input name="organisation" placeholder="Company, college or independent"></label>
-        <label>How would you like to contribute?<select name="interest" required><option value="">Select an area</option><option>Technical collaboration</option><option>Research and development</option><option>Hardware / component support</option><option>Testing and validation</option><option>Student project / academic collaboration</option><option>General discussion</option></select></label>
-        <label>Your message<textarea name="message" rows="4" required placeholder="Describe your question, expertise, proposed approach or the support you are looking for."></textarea></label>
-        <button class="button button-primary button-large" type="submit">Prepare research enquiry ↗</button>
-        <small class="form-note">Your email draft will open for review. No project partnership or development slot is confirmed by submitting this enquiry.</small>
-      </form>
-    </section>
-  </div>
+<dialog class="modal workshop-modal" id="workshopModal">
+<form class="modal-close-form" method="dialog"><button aria-label="Close workshop booking" class="modal-close">×</button></form>
+<div class="workshop-modal-head">
+<span class="eyebrow"><span class="live-dot"></span> PROTOVOX / CONNECT</span>
+<h2>Let's build something<br/><span class="gradient-text">worth remembering.</span></h2>
+<p>Send a message to our team or tell us about a workshop for your institution. We'll prepare an email for you to review and send.</p>
+</div>
+<div class="workshop-form-grid">
+<form class="workshop-form-card" id="contactMessageForm">
+<div class="workshop-form-kicker">GENERAL ENQUIRY</div><h3>Contact ProtoVox</h3>
+<label>Name *<input name="name" placeholder="Your full name" required=""/></label>
+<label>Email *<input name="email" placeholder="your.email@example.com" required="" type="email"/></label>
+<label>Phone<input name="phone" placeholder="+91 98765 43210" type="tel"/></label>
+<label>Institution<input name="institution" placeholder="Your school / college / company"/></label>
+<label>Message *<textarea name="message" placeholder="Tell us how we can help..." required="" rows="4"></textarea></label>
+<button class="button button-primary button-large" type="submit">Prepare message ↗</button>
+</form>
+<form class="workshop-form-card workshop-booking-card" id="workshopBookingForm">
+<div class="workshop-form-kicker">INSTITUTIONAL PROGRAMME</div><h3>Book a Workshop</h3>
+<label>Institution Name *<input name="institution" placeholder="School / College name" required=""/></label>
+<label>Contact Person *<input name="contact" placeholder="Coordinator name" required=""/></label>
+<div class="workshop-field-pair">
+<label>Email *<input name="email" placeholder="email@example.com" required="" type="email"/></label>
+<label>Phone *<input name="phone" placeholder="+91 98765 43210" required="" type="tel"/></label>
+</div>
+<div class="workshop-field-pair">
+<label>Student Count *<input min="1" name="students" placeholder="50" required="" type="number"/></label>
+<label>Preferred Date<input name="date" type="date"/></label>
+</div>
+<label>Workshop Type *<select name="type" required=""><option value="">Select workshop type</option><option>School Robotics Programme (K–12)</option><option>College Robotics &amp; Automation Workshop</option><option>Advanced Embedded Systems &amp; IoT</option><option>AI &amp; Machine Learning</option><option>PCB Design &amp; Electronics</option><option>3D Printing &amp; Prototyping</option><option>Custom / Interdisciplinary</option></select></label>
+<label>Additional Information<textarea name="notes" placeholder="Any specific requirements or questions?" rows="3"></textarea></label>
+<button class="button button-primary button-large" type="submit">Prepare booking request ↗</button>
+</form>
+</div>
+<p class="form-note workshop-footnote">No booking is confirmed automatically. Your email app opens with the request ready; ProtoVox will confirm availability and details after receiving it.</p>
 </dialog>
-
-  <dialog class="modal internship-modal" id="internshipModal" aria-label="ProtoVox internship application">
-    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close internship application">×</button></form>
-    <div class="internship-shell">
-      <aside class="internship-aside">
-        <div class="internship-aside-top"><span class="eyebrow">PROTO VOX / CAREER LAB</span><span class="internship-live"><i></i> ENQUIRIES OPEN</span></div>
-        <div class="internship-visual" aria-hidden="true">
-          <div class="internship-orbit orbit-a"></div><div class="internship-orbit orbit-b"></div><div class="internship-orbit orbit-c"></div>
-          <div class="internship-core"><span>PV</span><small>BUILD / LEARN</small></div>
-          <span class="internship-node node-one">ECE</span><span class="internship-node node-two">AI</span><span class="internship-node node-three">IoT</span><span class="internship-node node-four">ROBOTICS</span>
-        </div>
-        <div class="internship-aside-copy">
-          <span class="internship-index" id="internshipAsideIndex">01 — YOUR NEXT CHAPTER</span>
-          <h2 id="internshipAsideTitle">Turn your curiosity<br><span class="gradient-text">into capability.</span></h2>
-          <p id="internshipAsideDescription">Choose a technical pathway and tell us what you want to explore. We'll use your interests to understand the right opportunity and next steps.</p>
-        </div>
-        <div class="internship-perks" id="internshipAsidePerks"><div><b>01</b><span>Hands-on project pathways</span></div><div><b>02</b><span>Guidance across engineering domains</span></div><div><b>03</b><span>Learn by building real prototypes</span></div></div>
-        <div class="internship-aside-foot"><span>ENGINEERED FOR THE CURIOUS</span><span>PV / 2026</span></div>
-      </aside>
-      <section class="internship-form-side">
-        <div class="internship-form-heading">
-          <div><span class="eyebrow">INTERNSHIP ENQUIRY</span><h2>Tell us where you want to <span class="gradient-text">make an impact.</span></h2><p>Share your background, technical interests and preferred learning experience.</p></div>
-        </div>
-        <form id="internshipForm" class="internship-fields">
-          <div class="internship-field"><label for="internName">Full name <em>*</em></label><input id="internName" name="name" required placeholder="Your full name" autocomplete="name"></div>
-          <div class="internship-field"><label for="internEmail">Email address <em>*</em></label><input id="internEmail" name="email" type="email" required placeholder="you@example.com" autocomplete="email"></div>
-          <div class="internship-field"><label for="internshipDomain">Course / domain <em>*</em></label><select name="domain" id="internshipDomain" required><option value="">Choose your track</option><option>ECE</option><option>AI &amp; ML</option><option>Mechatronics</option><option>Robotics</option><option>CSE</option><option>And more — IoT / 3D Printing / Electronics</option></select></div>
-          <div class="internship-field"><label for="internCourse">Current course / year <em>*</em></label><input id="internCourse" name="course" required placeholder="e.g. B.Tech ECE, 3rd year"></div>
-          <div class="internship-field internship-field-wide"><label for="internSkills">Skills and tools <span>OPTIONAL</span></label><textarea id="internSkills" name="skills" rows="2" placeholder="Arduino, Python, PCB design, CAD..."></textarea></div>
-          <div class="internship-field"><label for="internDuration">Preferred duration <em>*</em></label><select id="internDuration" name="duration" required><option value="">Choose duration</option><option>2–4 weeks</option><option>1–2 months</option><option>3 months</option><option>Flexible / discuss with me</option></select></div>
-          <div class="internship-field internship-field-wide"><label for="internRequirements">What do you want to learn or build? <em>*</em></label><textarea id="internRequirements" name="requirements" rows="3" required placeholder="Your goals, preferred project, availability and questions"></textarea></div>
-          <div class="internship-field internship-field-wide"><label for="internPortfolio">Portfolio / GitHub link <span>OPTIONAL</span></label><input id="internPortfolio" name="portfolio" type="url" placeholder="https://github.com/yourname"></div>
-          <div class="internship-submit-row"><p><span aria-hidden="true">↗</span> Your details will be placed into an email draft for you to review before sending.</p><button class="button button-primary button-large" type="submit">Prepare my application <span>↗</span></button></div>
-        </form>
-      </section>
-    </div>
-  </dialog>
-
-
+<dialog class="modal" id="helpModal"><form class="modal-close-form" method="dialog"><button aria-label="Close" class="modal-close">×</button></form><div class="modal-heading"><span class="eyebrow">PROTOVOX / DEBUG DESK</span><h2>Let's solve the blocker.</h2><p>Share enough detail for someone to understand what you are building.</p></div><form class="modal-form" id="helpForm"><label>Your name<input name="name" placeholder="How should we call you?" required=""/></label><label>Your email<input name="email" placeholder="you@example.com" required="" type="email"/></label><label>What do you need help with?<select name="category" required=""><option value="">Choose a category</option><option>Hardware / circuit</option><option>Embedded code</option><option>IoT / connectivity</option><option>AI / software</option><option>PCB / CAD</option><option>Project kit</option><option>Documentation</option><option>Other</option></select></label><label>Describe the issue<textarea name="details" placeholder="What are you trying to build? What have you tried?" required="" rows="4"></textarea></label><button class="button button-primary button-large" type="submit">Prepare help request ↗</button><small class="form-note">Demo only: this form does not send or store your request.</small></form><div class="modal-success" hidden=""><div class="success-icon">✓</div><h3>Request drafted.</h3><p>This prototype doesn't send requests to a support team yet. Your details were not uploaded.</p><button class="button button-ghost" data-close-modal="">Close</button></div></dialog>
+<dialog class="modal" id="ideaModal"><form class="modal-close-form" method="dialog"><button aria-label="Close" class="modal-close">×</button></form><div class="modal-heading"><span class="eyebrow">PROTOVOX / IDEA INTAKE</span><h2>Start with the problem.</h2><p>Build a pathway with ProtoVox. We'll review the idea, map the likely components and next steps, and help you decide whether you need a project kit or build guidance.</p></div><form class="modal-form" id="ideaForm"><label>Project / idea name<input name="ideaName" placeholder="e.g. Smart plant monitor" required=""/></label><label>Technology area<select name="technology" required=""><option value="">Pick your starting point</option><option>Embedded systems</option><option>IoT</option><option>AI / machine learning</option><option>Robotics</option><option>Electronics / PCB</option><option>Web / software</option><option>Not sure yet</option></select></label><label>What problem does it solve?<textarea name="problem" placeholder="Describe the problem, not just the product." required="" rows="3"></textarea></label><button class="button button-primary button-large" type="submit">Create idea brief ↗</button><small class="form-note">Demo only: your idea stays in this browser session and is not submitted to a server.</small></form><div class="modal-success" hidden=""><div class="success-icon">✓</div><h3>Your idea brief is ready.</h3><p id="ideaSuccessText"></p><button class="button button-ghost" data-close-modal="">Done</button></div></dialog>
+<dialog class="modal compact-modal" id="infoModal"><form class="modal-close-form" method="dialog"><button aria-label="Close" class="modal-close">×</button></form><span class="eyebrow" id="infoEyebrow">PROTOVOX / LAB</span><h2 id="infoTitle">Explore the build</h2><p id="infoText"></p><div id="infoContent"></div><div class="info-modal-actions"><button class="button button-primary" id="infoAskByEmail" type="button">Ask ProtoVox about this ↗</button><button class="button button-ghost" data-close-modal="">Got it</button></div></dialog>
+<dialog aria-label="Research discussion enquiry" class="modal rd-inquiry-modal" id="rdInquiryModal">
+<form class="modal-close-form" method="dialog"><button aria-label="Close research enquiry" class="modal-close">×</button></form>
+<div class="rd-dialog-layout">
+<aside class="rd-dialog-aside"><span class="eyebrow">PROTO VOX / INNOVATION LAB</span><div class="rd-dialog-orbit"><span>PV</span><i></i><i></i><i></i></div><span class="tag">RESEARCH DISCUSSION</span><h2>Bring your expertise<br/><span class="gradient-text">to the table.</span></h2><p>Use this enquiry to discuss the technical direction, potential collaboration, resources or development requirements for a ProtoVox research concept.</p><div class="rd-dialog-note"><b>WHAT HAPPENS NEXT</b><span>The team reviews your note and follows up by email to discuss feasibility and possible next steps.</span></div></aside>
+<section class="rd-dialog-form-side"><div class="eyebrow">PROJECT ENQUIRY</div><h3 id="rdDialogProjectTitle">Discuss a research concept</h3><p>Share a little context so we can make the conversation useful.</p>
+<form class="rd-dialog-form" id="rdInquiryForm">
+<label>Research topic<input id="rdDialogTopic" name="topic" readonly="" required=""/></label>
+<div class="rd-dialog-pair"><label>Your name<input name="name" placeholder="Full name" required=""/></label><label>Work / student email<input name="email" placeholder="name@example.com" required="" type="email"/></label></div>
+<label>Organisation / institution <span>OPTIONAL</span><input name="organisation" placeholder="Company, college or independent"/></label>
+<label>How would you like to contribute?<select name="interest" required=""><option value="">Select an area</option><option>Technical collaboration</option><option>Research and development</option><option>Hardware / component support</option><option>Testing and validation</option><option>Student project / academic collaboration</option><option>General discussion</option></select></label>
+<label>Your message<textarea name="message" placeholder="Describe your question, expertise, proposed approach or the support you are looking for." required="" rows="4"></textarea></label>
+<button class="button button-primary button-large" type="submit">Prepare research enquiry ↗</button>
+<small class="form-note">Your email draft will open for review. No project partnership or development slot is confirmed by submitting this enquiry.</small>
+</form>
+</section>
+</div>
+</dialog>
+<dialog aria-label="ProtoVox internship application" class="modal internship-modal" id="internshipModal">
+<form class="modal-close-form" method="dialog"><button aria-label="Close internship application" class="modal-close">×</button></form>
+<div class="internship-shell">
+<aside class="internship-aside">
+<div class="internship-aside-top"><span class="eyebrow">PROTO VOX / CAREER LAB</span><span class="internship-live"><i></i> ENQUIRIES OPEN</span></div>
+<div aria-hidden="true" class="internship-visual">
+<div class="internship-orbit orbit-a"></div><div class="internship-orbit orbit-b"></div><div class="internship-orbit orbit-c"></div>
+<div class="internship-core"><span>PV</span><small>BUILD / LEARN</small></div>
+<span class="internship-node node-one">ECE</span><span class="internship-node node-two">AI</span><span class="internship-node node-three">IoT</span><span class="internship-node node-four">ROBOTICS</span>
+</div>
+<div class="internship-aside-copy">
+<span class="internship-index" id="internshipAsideIndex">01 — YOUR NEXT CHAPTER</span>
+<h2 id="internshipAsideTitle">Turn your curiosity<br/><span class="gradient-text">into capability.</span></h2>
+<p id="internshipAsideDescription">Choose a technical pathway and tell us what you want to explore. We'll use your interests to understand the right opportunity and next steps.</p>
+</div>
+<div class="internship-perks" id="internshipAsidePerks"><div><b>01</b><span>Hands-on project pathways</span></div><div><b>02</b><span>Guidance across engineering domains</span></div><div><b>03</b><span>Learn by building real prototypes</span></div></div>
+<div class="internship-aside-foot"><span>ENGINEERED FOR THE CURIOUS</span><span>PV / 2026</span></div>
+</aside>
+<section class="internship-form-side">
+<div class="internship-form-heading">
+<div><span class="eyebrow">INTERNSHIP ENQUIRY</span><h2>Tell us where you want to <span class="gradient-text">make an impact.</span></h2><p>Share your background, technical interests and preferred learning experience.</p></div>
+</div>
+<form class="internship-fields" id="internshipForm">
+<div class="internship-field"><label for="internName">Full name <em>*</em></label><input autocomplete="name" id="internName" name="name" placeholder="Your full name" required=""/></div>
+<div class="internship-field"><label for="internEmail">Email address <em>*</em></label><input autocomplete="email" id="internEmail" name="email" placeholder="you@example.com" required="" type="email"/></div>
+<div class="internship-field"><label for="internshipDomain">Course / domain <em>*</em></label><select id="internshipDomain" name="domain" required=""><option value="">Choose your track</option><option>ECE</option><option>AI &amp; ML</option><option>Mechatronics</option><option>Robotics</option><option>CSE</option><option>And more — IoT / 3D Printing / Electronics</option></select></div>
+<div class="internship-field"><label for="internCourse">Current course / year <em>*</em></label><input id="internCourse" name="course" placeholder="e.g. B.Tech ECE, 3rd year" required=""/></div>
+<div class="internship-field internship-field-wide"><label for="internSkills">Skills and tools <span>OPTIONAL</span></label><textarea id="internSkills" name="skills" placeholder="Arduino, Python, PCB design, CAD..." rows="2"></textarea></div>
+<div class="internship-field"><label for="internDuration">Preferred duration <em>*</em></label><select id="internDuration" name="duration" required=""><option value="">Choose duration</option><option>2–4 weeks</option><option>1–2 months</option><option>3 months</option><option>Flexible / discuss with me</option></select></div>
+<div class="internship-field internship-field-wide"><label for="internRequirements">What do you want to learn or build? <em>*</em></label><textarea id="internRequirements" name="requirements" placeholder="Your goals, preferred project, availability and questions" required="" rows="3"></textarea></div>
+<div class="internship-field internship-field-wide"><label for="internPortfolio">Portfolio / GitHub link <span>OPTIONAL</span></label><input id="internPortfolio" name="portfolio" placeholder="https://github.com/yourname" type="url"/></div>
+<div class="internship-submit-row"><p><span aria-hidden="true">↗</span> Your details will be placed into an email draft for you to review before sending.</p><button class="button button-primary button-large" type="submit">Prepare my application <span>↗</span></button></div>
+</form>
+</section>
+</div>
+</dialog>
 <dialog class="modal email-draft-modal" id="internshipEmailDraft">
-    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close email draft">×</button></form>
-    <div class="modal-heading"><span class="eyebrow">PROTOVOX / EMAIL READY</span><h2 id="emailDraftHeading">Your message is ready.</h2><p id="emailDraftIntro">Choose how you want to send it. Open Gmail in your browser or copy the message into your preferred email service.</p></div>
-    <div class="email-draft-summary"><span>TO</span><b>protovox.tech@gmail.com</b><span>SUBJECT</span><b id="internshipDraftSubject"></b></div>
-    <label class="email-body-label" for="internshipDraftBody">EMAIL MESSAGE</label>
-    <textarea id="internshipDraftBody" class="email-draft-body" rows="11" readonly></textarea>
-    <div class="email-draft-actions">
-      <button type="button" class="button button-primary" id="openGmailDraft">Open Gmail compose ↗</button>
-      <button type="button" class="button button-ghost" id="copyInternshipDraft">Copy email details</button>
-    </div>
-    <p class="form-note email-draft-note">After you press Send in your email service, return here and choose “I've sent it”. The website cannot verify delivery automatically.</p>
-    <button type="button" class="email-sent-confirm" id="confirmInternshipSent">✓ I've sent it</button>
-  </dialog>
-  <dialog class="modal compact-modal robot-thanks-modal" id="robotThanksModal">
-    <form method="dialog" class="modal-close-form"><button class="modal-close" aria-label="Close thank-you message">×</button></form>
-    <div class="thanks-robot-icon" aria-hidden="true">🤖</div>
-    <span class="eyebrow">VOX / MESSAGE RECEIVED</span>
-    <h2>Thanks for reaching out, builder!</h2>
-    <p>Your email is on its way if you pressed Send. Thanks for taking the next step with ProtoVox. Keep that idea moving! ✨</p>
-    <button class="button button-primary button-large" type="button" id="closeRobotThanks">Back to ProtoVox</button>
-  </dialog>
-  <div class="proto-buddy" id="protoBuddy" aria-label="ProtoVox mini rover mascot" role="button" tabindex="0" title="Meet the ProtoVox rover">    <div class="buddy-shadow"></div>    <div class="buddy-antenna"><i></i></div>    <div class="buddy-head"><span class="buddy-ear left"></span><span class="buddy-ear right"></span><div class="buddy-eye-pods"><i><b></b></i><i><b></b></i></div><div class="buddy-mouth"></div></div>    <div class="buddy-neck"></div>    <div class="buddy-body"><span class="buddy-badge">PV</span><i class="buddy-panel"></i><i class="buddy-vent"></i></div>    <div class="buddy-arm left"></div><div class="buddy-arm right"></div>    <div class="buddy-track left"><i></i><i></i><i></i><i></i></div><div class="buddy-track right"><i></i><i></i><i></i><i></i></div>
-    <div class="buddy-assistant" id="buddyAssistant" hidden role="dialog" aria-label="ProtoVox assistant">
-      <div class="assistant-top"><span><i></i> PROTOVOX ASSISTANT</span><button type="button" class="assistant-close" aria-label="Close assistant">×</button></div>
-      <h3>Hey, builder! 👋</h3>
-      <p>I'm Vox. What would you like to do today?</p>
-      <div class="assistant-actions">
-        <button type="button" data-assist="idea">💡 Submit a project idea</button>
-        <button type="button" data-assist="help">🛠️ Get technical help</button>
-        <a href="projects.html">⌘ Explore projects <span>↗</span></a>
-        <a href="campaign-projects.html">⚙️ Find a campaign kit <span>↗</span></a>
-        <a href="index.html?dialog=internship">✦ Explore internships <span>↗</span></a>
-      </div>
-      <small>Built to help you go from idea to prototype.</small>
-    </div>  </div>
-    <div class="buddy-speech">beep boop! catch me ✦</div>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="script.js"></script>
-  <script src="buddy.js"></script>
+<form class="modal-close-form" method="dialog"><button aria-label="Close email draft" class="modal-close">×</button></form>
+<div class="modal-heading"><span class="eyebrow">PROTOVOX / EMAIL READY</span><h2 id="emailDraftHeading">Your message is ready.</h2><p id="emailDraftIntro">Choose how you want to send it. Open Gmail in your browser or copy the message into your preferred email service.</p></div>
+<div class="email-draft-summary"><span>TO</span><b>protovox.tech@gmail.com</b><span>SUBJECT</span><b id="internshipDraftSubject"></b></div>
+<label class="email-body-label" for="internshipDraftBody">EMAIL MESSAGE</label>
+<textarea class="email-draft-body" id="internshipDraftBody" readonly="" rows="11"></textarea>
+<div class="email-draft-actions">
+<button class="button button-primary" id="openGmailDraft" type="button">Open Gmail compose ↗</button>
+<button class="button button-ghost" id="copyInternshipDraft" type="button">Copy email details</button>
+</div>
+<p class="form-note email-draft-note">After you press Send in your email service, return here and choose “I've sent it”. The website cannot verify delivery automatically.</p>
+<button class="email-sent-confirm" id="confirmInternshipSent" type="button">✓ I've sent it</button>
+</dialog>
+<dialog class="modal compact-modal robot-thanks-modal" id="robotThanksModal">
+<form class="modal-close-form" method="dialog"><button aria-label="Close thank-you message" class="modal-close">×</button></form>
+<div aria-hidden="true" class="thanks-robot-icon">🤖</div>
+<span class="eyebrow">VOX / MESSAGE RECEIVED</span>
+<h2>Thanks for reaching out, builder!</h2>
+<p>Your email is on its way if you pressed Send. Thanks for taking the next step with ProtoVox. Keep that idea moving! ✨</p>
+<button class="button button-primary button-large" id="closeRobotThanks" type="button">Back to ProtoVox</button>
+</dialog>
+<div aria-label="ProtoVox mini rover mascot" class="proto-buddy" id="protoBuddy" role="button" tabindex="0" title="Meet the ProtoVox rover"> <div class="buddy-shadow"></div> <div class="buddy-antenna"><i></i></div> <div class="buddy-head"><span class="buddy-ear left"></span><span class="buddy-ear right"></span><div class="buddy-eye-pods"><i><b></b></i><i><b></b></i></div><div class="buddy-mouth"></div></div> <div class="buddy-neck"></div> <div class="buddy-body"><span class="buddy-badge">PV</span><i class="buddy-panel"></i><i class="buddy-vent"></i></div> <div class="buddy-arm left"></div><div class="buddy-arm right"></div> <div class="buddy-track left"><i></i><i></i><i></i><i></i></div><div class="buddy-track right"><i></i><i></i><i></i><i></i></div>
+<div aria-label="ProtoVox assistant" class="buddy-assistant" hidden="" id="buddyAssistant" role="dialog">
+<div class="assistant-top"><span><i></i> PROTOVOX ASSISTANT</span><button aria-label="Close assistant" class="assistant-close" type="button">×</button></div>
+<h3>Hey, builder! 👋</h3>
+<p>I'm Vox. What would you like to do today?</p>
+<div class="assistant-actions">
+<button data-assist="idea" type="button">💡 Submit a project idea</button>
+<button data-assist="help" type="button">🛠️ Get technical help</button>
+<a href="projects.html">⌘ Explore projects <span>↗</span></a>
+<a href="campaign-projects.html">⚙️ Find a campaign kit <span>↗</span></a>
+<a href="index.html?dialog=internship">✦ Explore internships <span>↗</span></a>
+</div>
+<small>Built to help you go from idea to prototype.</small>
+</div> </div>
+<div class="buddy-speech">beep boop! catch me ✦</div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="proto-submit.js"></script><script src="script.js"></script>
+<script src="buddy.js"></script>
 </body>
 </html>
