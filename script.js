@@ -5,14 +5,13 @@ let toastTimer;
 function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),3000)}
 
 const projects = [
- {title:'Smart Disaster<br>Monitoring System',plain:'Smart Disaster Monitoring System',description:'A connected field system that detects environmental changes and sends real-time alerts before a situation escalates.',tags:['IoT','Embedded C','Sensor analytics'],controller:'ESP32',sensors:'DHT11 · SW-420',connectivity:'Wi-Fi / MQTT',level:'Intermediate',value:'68.4',kind:'disaster',details:'Monitor temperature, vibration and water level with an ESP32-based node. A real deployment needs careful sensor calibration, robust power design and a tested alert pipeline.'},
- {title:'Neural Signal<br>Classifier',plain:'Neural Signal Classifier',description:'A learning-focused signal pipeline that cleans sample data, extracts features and classifies patterns for an interactive dashboard.',tags:['Python','Signal processing','Machine learning'],controller:'Laptop / SBC',sensors:'Synthetic EEG data',connectivity:'CSV / local UI',level:'Advanced',value:'74.2',kind:'neural',details:'Explore filtering, feature extraction and model evaluation using synthetic data. This demo is educational and is not a medical device or diagnostic system.'},
- {title:'Gesture-Controlled<br>Robot',plain:'Gesture-Controlled Robot',description:'Translate motion sensor readings into movement commands and drive a small robot through a wireless control link.',tags:['Robotics','Arduino','Motion sensing'],controller:'Arduino',sensors:'MPU6050 IMU',connectivity:'RF / Bluetooth',level:'Intermediate',value:'82.1',kind:'robot',details:'A practical build around sensor calibration, serial communication and motor control. Test movement commands at low speed and include a physical power cutoff.'},
- {title:'Solar Energy<br>Tracker',plain:'Solar Energy Tracker',description:'Measure light and energy data to study panel positioning, output and the effect of changing environmental conditions.',tags:['Energy','ESP32','Analytics'],controller:'ESP32',sensors:'LDR · INA219',connectivity:'Wi-Fi / MQTT',level:'Intermediate',value:'91.6',kind:'solar',details:'Compare fixed and tracked panel output, log measurements and visualize trends. Treat the listed specifications as a project concept, not a validated performance claim.'}
+ {slug:'smart-disaster-monitoring',title:'Smart Disaster<br>Monitoring System',plain:'Smart Disaster Monitoring System',description:'A connected field system that detects environmental changes and sends real-time alerts before a situation escalates.',tags:['IoT','Embedded C','Sensor analytics'],controller:'ESP32',sensors:'DHT11 · SW-420',connectivity:'Wi-Fi / MQTT',level:'Intermediate',value:'68.4',kind:'disaster',details:'Monitor temperature, vibration and water level with an ESP32-based node. A real deployment needs careful sensor calibration, robust power design and a tested alert pipeline.'},
+ {slug:'neural-signal-classifier',title:'Neural Signal<br>Classifier',plain:'Neural Signal Classifier',description:'A learning-focused signal pipeline that cleans sample data, extracts features and classifies patterns for an interactive dashboard.',tags:['Python','Signal processing','Machine learning'],controller:'Laptop / SBC',sensors:'Synthetic EEG data',connectivity:'CSV / local UI',level:'Advanced',value:'74.2',kind:'neural',details:'Explore filtering, feature extraction and model evaluation using synthetic data. This demo is educational and is not a medical device or diagnostic system.'},
+ {slug:'gesture-controlled-robot',title:'Gesture-Controlled<br>Robot',plain:'Gesture-Controlled Robot',description:'Translate motion sensor readings into movement commands and drive a small robot through a wireless control link.',tags:['Robotics','Arduino','Motion sensing'],controller:'Arduino',sensors:'MPU6050 IMU',connectivity:'RF / Bluetooth',level:'Intermediate',value:'82.1',kind:'robot',details:'A practical build around sensor calibration, serial communication and motor control. Test movement commands at low speed and include a physical power cutoff.'},
+ {slug:'solar-energy-tracker',title:'Solar Energy<br>Tracker',plain:'Solar Energy Tracker',description:'Measure light and energy data to study panel positioning, output and the effect of changing environmental conditions.',tags:['Energy','ESP32','Analytics'],controller:'ESP32',sensors:'LDR · INA219',connectivity:'Wi-Fi / MQTT',level:'Intermediate',value:'91.6',kind:'solar',details:'Compare fixed and tracked panel output, log measurements and visualize trends. Treat the listed specifications as a project concept, not a validated performance claim.'}
 ];
 let activeProject=0, slideTimer;
 const art=$('#projectArt');
-
 function showProject(index,resetTimer=true){
  activeProject=(index+projects.length)%projects.length;const p=projects[activeProject];
  $('#projectTitle').innerHTML=p.title;$('#projectDescription').textContent=p.description;$('#projectTags').innerHTML=p.tags.map(t=>`<span>${t}</span>`).join('');
@@ -23,8 +22,8 @@ function showProject(index,resetTimer=true){
 }
 $('#prevProject').addEventListener('click',()=>showProject(activeProject-1));
 $('#nextProject').addEventListener('click',()=>showProject(activeProject+1));
-$('#projectDetails').addEventListener('click',()=>{const p=projects[activeProject];showInfo('PROJECT BLUEPRINT',p.plain,p.details,[['Controller',p.controller],['Sensors / data',p.sensors],['Connectivity',p.connectivity],['Level',p.level]])});
-// $('#allProjects').addEventListener('click',()=>showInfo('PROJECT LAB','Explore the full project library','The complete project library will include build guides, verified component lists, code repositories and student-submitted prototypes. This prototype currently showcases four example concepts.',[['Featured projects','4 demo concepts'],['Build notes','Illustrative'],['Submissions','Not connected']]));
+$('#projectDetails').addEventListener('click',()=>{const p=projects[activeProject];window.location.href=`project-detail.html?id=${encodeURIComponent(p.slug)}`;});
+$('#allProjects').addEventListener('click',()=>{window.location.href='projects.html';});
 showProject(0);
 
 const journeyContent=[
@@ -45,17 +44,31 @@ $$('.journey-step').forEach(step=>step.addEventListener('click',()=>setJourney(N
 setJourney(0);
 
 const helpModal=$('#helpModal'),ideaModal=$('#ideaModal'),infoModal=$('#infoModal'),internshipModal=$('#internshipModal');
-const allModals=[helpModal,ideaModal,infoModal,internshipModal,$('#internshipEmailDraft'),$('#robotThanksModal')].filter(Boolean);
+const rdInquiryModal=$('#rdInquiryModal');
+const allModals=[helpModal,ideaModal,infoModal,internshipModal,$('#workshopModal'),rdInquiryModal,$('#internshipEmailDraft'),$('#robotThanksModal')].filter(Boolean);
 function openModal(id){const d=$('#'+id);if(d&&!d.open){d.showModal();document.body.classList.add('modal-open')}}
 function closeModal(d){if(d?.open)d.close();if(!allModals.some(m=>m.open))document.body.classList.remove('modal-open')}
 $$('[data-open-help]').forEach(b=>b.addEventListener('click',()=>openModal('helpModal')));
+// Cross-page enquiry links open the requested dialog immediately, rather than
+// making visitors land on an unrelated homepage section.
+const requestedDialog=new URLSearchParams(window.location.search).get('dialog');
+const dialogRoutes={help:'helpModal',workshop:'workshopModal',internship:'internshipModal',idea:'ideaModal',research:'rdInquiryModal'};
+if(requestedDialog&&dialogRoutes[requestedDialog]){
+  if(requestedDialog==='research'){
+    const topic=new URLSearchParams(window.location.search).get('topic')||'ProtoVox research collaboration';
+    if($('#rdDialogProjectTitle'))$('#rdDialogProjectTitle').textContent=topic;
+    if($('#rdDialogTopic'))$('#rdDialogTopic').value=topic;
+  }
+  openModal(dialogRoutes[requestedDialog]);
+  if(requestedDialog==='internship') setInternshipTrack($('#internshipDomain')?.value||'');
+}
+
+$$('[data-open-workshop]').forEach(b=>b.addEventListener('click',()=>openModal('workshopModal')));
 $$('[data-open-idea]').forEach(b=>b.addEventListener('click',()=>openModal('ideaModal')));
 $$('[data-scroll-start]').forEach(b=>b.addEventListener('click',()=>openModal('ideaModal')));
 $$('[data-close-modal]').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('dialog');closeModal(d)}));
 allModals.forEach(d=>{d.addEventListener('close',()=>{if(!allModals.some(m=>m.open))document.body.classList.remove('modal-open')});d.addEventListener('click',e=>{if(e.target===d)closeModal(d)})});
-
 function showInfo(eyebrow,title,description,rows=[]){$('#infoEyebrow').textContent=eyebrow;$('#infoTitle').textContent=title;$('#infoText').textContent=description;$('#infoContent').innerHTML=rows.length?`<div class="detail-list">${rows.map(r=>`<div><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')}</div>`:'';openModal('infoModal')}
-
 function openEmailDraft(subject,body,kind='general'){
  const draft=$('#internshipEmailDraft');
  draft.dataset.subject=subject;draft.dataset.body=body;draft.dataset.kind=kind;
@@ -63,7 +76,7 @@ function openEmailDraft(subject,body,kind='general'){
  $('#internshipDraftBody').value=body;
  $('#emailDraftHeading').textContent=kind==='internship'?'Your internship request is ready.':'Your message is ready.';
  $('#emailDraftIntro').textContent='Choose how you want to send it. Open Gmail in your browser or copy the message into your preferred email service.';
- closeModal($('#infoModal'));closeModal($('#helpModal'));closeModal($('#ideaModal'));closeModal($('#internshipModal'));
+ closeModal($('#infoModal'));closeModal($('#helpModal'));closeModal($('#ideaModal'));closeModal($('#internshipModal'));closeModal($('#workshopModal'));
  openModal('internshipEmailDraft');
 }
 function makeEmailBody(entries){return entries.map(([label,value])=>`${label}:\n${value||'Not specified'}`).join('\n\n')+'\n\nSent via the ProtoVox website.'}
@@ -75,25 +88,50 @@ $('#infoAskByEmail').addEventListener('click',()=>{
  openEmailDraft('ProtoVox enquiry — '+title,body,'resource');
 });
 $$('[data-rd-inquiry]').forEach(button=>button.addEventListener('click',()=>{
- const title=button.dataset.rdInquiry;
- const body=makeEmailBody([['R&D topic',title],['Your idea / question','Please share more details about this research concept and possible collaboration.'],['Request','Please reply with relevant project details, resources or next steps.']]);
- openEmailDraft('ProtoVox R&D enquiry — '+title,body,'rd');
+ const title=button.dataset.rdInquiry||'ProtoVox research collaboration';
+ $('#rdDialogProjectTitle').textContent=title;
+ $('#rdDialogTopic').value=title;
+ openModal('rdInquiryModal');
 }));
+$('#rdInquiryForm')?.addEventListener('submit',e=>{
+ e.preventDefault();
+ const fd=new FormData(e.currentTarget);
+ const body=makeEmailBody([
+  ['Research topic',fd.get('topic')],['Name',fd.get('name')],['Email',fd.get('email')],
+  ['Organisation / institution',fd.get('organisation')],['Area of interest',fd.get('interest')],
+  ['Message',fd.get('message')]
+ ]);
+ openEmailDraft('ProtoVox research discussion — '+fd.get('topic'),body,'rd');
+});
+
+
+
+$('#contactMessageForm').addEventListener('submit',e=>{
+ e.preventDefault();const fd=new FormData(e.currentTarget);
+ const subject=`ProtoVox contact message — ${fd.get('name')}`;
+ const body=makeEmailBody([['Name',fd.get('name')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Institution',fd.get('institution')],['Message',fd.get('message')]]);
+ openEmailDraft(subject,body,'contact');
+});
+$('#workshopBookingForm').addEventListener('submit',e=>{
+ e.preventDefault();const fd=new FormData(e.currentTarget);
+ const subject=`ProtoVox workshop request — ${fd.get('institution')}`;
+ const body=makeEmailBody([['Institution',fd.get('institution')],['Contact person',fd.get('contact')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],['Request','Please confirm availability, proposed agenda, duration, pricing and next steps.']]);
+ openEmailDraft(subject,body,'workshop');
+});
 $('#helpForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject='Requesting for Technical Help — '+fd.get('category');
+ const subject='ProtoVox technical help request — '+fd.get('category');
  const body=makeEmailBody([['Name',fd.get('name')],['Reply email',fd.get('email')],['Help category',fd.get('category')],['Issue details',fd.get('details')]]);
  openEmailDraft(subject,body,'help');
 });
 $('#ideaForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject='Idea Proposal — '+fd.get('ideaName');
+ const subject='New ProtoVox project idea — '+fd.get('ideaName');
  const body=makeEmailBody([['Project / idea',fd.get('ideaName')],['Technology area',fd.get('technology')],['Problem to solve',fd.get('problem')],['Request','Please help map the components, build plan and whether a project kit is suitable.']]);
  openEmailDraft(subject,body,'idea');
 });
 [helpModal,ideaModal].forEach(d=>d.addEventListener('close',()=>{const f=$('form[id]',d);if(f){f.hidden=false;f.reset()}$('.modal-heading',d).hidden=false;$('.modal-success',d).hidden=true}));
 
-$$('[data-kit]').forEach(b=>b.addEventListener('click',()=>{const kit=b.dataset.kit;const info={'IoT Starter Kit':[['Controller','ESP32'],['Includes','Sensors, breadboard, jumper wires'],['Best for','Wi-Fi sensor prototypes'],['Demo price','₹1,499']],'Robotics Explorer Kit':[['Controller','Arduino-compatible board'],['Includes','Motor driver, chassis, sensors'],['Best for','Motion and obstacle projects'],['Demo price','₹2,299']],'Solar Tracker Kit':[['Controller','ESP32'],['Includes','Light sensors, servo, power monitor'],['Best for','Solar measurement experiments'],['Demo price','₹1,899']]};showInfo('KIT LAB / DEMO',kit,'Illustrative kit preview. This prototype does not take orders or payments. Use this checklist to decide whether the kit matches your project.',info[kit]||[])}));
 $$('[data-track]').forEach(b=>b.addEventListener('click',()=>showInfo('OPPORTUNITY TRACK',b.dataset.track,'This is an exploratory pathway, not a live vacancy. Email ProtoVox to ask about suggested resources, eligibility, skills to build and possible next steps.',[['Status','Demo pathway'],['Suggested next step','Build one relevant project'],['Applications','Not connected']])));
 $$('[data-tech]').forEach(b=>b.addEventListener('click',()=>{ $$('.tech-node').forEach(n=>n.classList.toggle('active',n===b));showInfo('TECHNOLOGY UNIVERSE',b.dataset.tech,({'IoT':'Connect sensors, devices and dashboards. Explore telemetry, MQTT, Wi-Fi and low-power design.','AI / ML':'Work with datasets, feature extraction, model evaluation and practical AI interfaces.','Hardware':'Explore circuit design, microcontrollers, PCB workflows, power and debugging.','Robotics':'Combine sensors, control logic, actuators and mechanical systems into interactive builds.'})[b.dataset.tech],[['Explore','Related projects'],['Build path','Learn → prototype → test']])}));
 $('#coreNode').addEventListener('click',()=>showInfo('PV / BUILD ENGINE','One idea. Many paths.','ProtoVox brings the pieces of student engineering together: a problem to solve, a technical path, the parts to build it and help to get unstuck.',[['01','Ideate'],['02','Prototype'],['03','Debug'],['04','Showcase']]));
@@ -110,12 +148,27 @@ if(window.matchMedia('(pointer:fine)').matches&&!window.matchMedia('(prefers-red
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('modal-open')});
 
 
-// Internship application: select a course/domain card to prefill the intake dialog.
-$$('[data-open-internship]').forEach(b=>b.addEventListener('click',()=>openModal('internshipModal')));
-$$('[data-internship]').forEach(b=>b.addEventListener('click',()=>{const select=$('#internshipDomain');select.value=b.dataset.internship;openModal('internshipModal')}));
+// Internship application: each domain loads its own learning-track story in the modal.
+const internshipTracks={
+ 'ECE':{index:'TRACK / 01 — ELECTRONICS & COMMUNICATION',title:'Make ideas<br><span class="gradient-text">work in the real world.</span>',description:'Explore the bridge between circuits, signals and intelligent devices. Build a foundation in embedded electronics and hardware systems.',perks:['Embedded systems & microcontrollers','Circuit design, PCB & instrumentation','Signal processing & VLSI foundations']},
+ 'AI & ML':{index:'TRACK / 02 — ARTIFICIAL INTELLIGENCE',title:'Teach machines<br><span class="gradient-text">to find patterns.</span>',description:'Move from raw data to useful intelligence. Explore how models are trained, evaluated and applied to real problems.',perks:['Python, data preparation & analysis','Machine learning model development','Computer vision and applied AI']},
+ 'Mechatronics':{index:'TRACK / 03 — MECHATRONICS',title:'Bring mechanics<br><span class="gradient-text">and intelligence together.</span>',description:'Work across mechanical design, electronics and control to understand how complete automated systems are engineered.',perks:['Sensors, actuators & control systems','Mechanical-electrical integration','Automation and system testing']},
+ 'Robotics':{index:'TRACK / 04 — ROBOTICS ENGINEERING',title:'Design machines<br><span class="gradient-text">that move with purpose.</span>',description:'Explore robot architecture from the ground up: perception, motion, control and the iterative process of building a working machine.',perks:['Robot mechanisms & chassis design','Motor control, sensing & navigation','Prototype assembly and field testing']},
+ 'CSE':{index:'TRACK / 05 — COMPUTER SCIENCE',title:'Engineer the software<br><span class="gradient-text">behind the future.</span>',description:'Design the digital systems that power products: from clean software and connected applications to intelligent interfaces and services.',perks:['Programming & software engineering','Web, app development & APIs','AI-enabled applications and deployment']},
+ 'Other / Interdisciplinary':{index:'TRACK / 06 — INTERDISCIPLINARY',title:'Connect disciplines.<br><span class="gradient-text">Create new possibilities.</span>',description:'Some of the most interesting innovations happen between fields. Tell us what you want to combine and explore.',perks:['IoT, 3D printing & product design','Technical research and prototyping','Cross-domain collaborative projects']}
+};
+function setInternshipTrack(domain){
+ const track=internshipTracks[domain]||{index:'CAREER LAB / OPEN APPLICATION',title:'Turn your curiosity<br><span class="gradient-text">into capability.</span>',description:'Choose a technical pathway and tell us what you want to explore. We will use your interests to understand the right opportunity and next steps.',perks:['Explore a technical domain','Discuss mentoring and learning goals','Map possible partner-led opportunities']};
+ const idx=$('#internshipAsideIndex'),title=$('#internshipAsideTitle'),desc=$('#internshipAsideDescription'),perks=$('#internshipAsidePerks');
+ if(idx)idx.textContent=track.index;if(title)title.innerHTML=track.title;if(desc)desc.textContent=track.description;
+ if(perks)perks.innerHTML=track.perks.map((item,i)=>`<div><b>0${i+1}</b><span>${item}</span></div>`).join('');
+}
+$$('[data-open-internship]').forEach(b=>b.addEventListener('click',()=>{setInternshipTrack($('#internshipDomain')?.value||'');openModal('internshipModal')}));
+$$('[data-internship]').forEach(b=>b.addEventListener('click',()=>{const select=$('#internshipDomain');select.value=b.dataset.internship;setInternshipTrack(b.dataset.internship);openModal('internshipModal')}));
+$('#internshipDomain')?.addEventListener('change',e=>setInternshipTrack(e.target.value));
 $('#internshipForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject=`Internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
+ const subject=`ProtoVox internship enquiry — ${fd.get('domain')} — ${fd.get('name')}`;
  const body=makeEmailBody([
   ['Name',fd.get('name')],['Email',fd.get('email')],['Course / domain',fd.get('domain')],
   ['Current course / year',fd.get('course')],['Preferred duration',fd.get('duration')],

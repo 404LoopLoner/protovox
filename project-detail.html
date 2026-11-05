@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore a ProtoVox project blueprint, matching kit and ways to contact the engineering team.">
+<title>Project Build | ProtoVox</title><link rel="stylesheet" href="styles.css">
+<style>
+.detail-page{min-height:100vh;background:radial-gradient(ellipse at 75% 15%,#39166a55,transparent 38%),#08080d;color:#f7f3ff}
+.detail-wrap{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:64px 0 100px}
+.back-link{display:inline-flex;color:#c3a6ff;text-decoration:none;margin-bottom:28px;font-size:13px}
+.detail-hero{display:grid;grid-template-columns:1fr .9fr;gap:34px;align-items:center}
+.detail-kicker,.mono{font:11px ui-monospace,monospace;letter-spacing:1.6px;color:#b994ff}
+.detail-hero h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-2px;margin:18px 0}
+.detail-lead{color:#bcb3ca;line-height:1.8;max-width:650px}
+.detail-art{min-height:320px;border:1px solid #49365f;border-radius:22px;background:radial-gradient(circle at 50% 50%,#7b38d633,transparent 55%),linear-gradient(145deg,#191326,#0c101b);display:grid;place-items:center;position:relative;overflow:hidden}
+.detail-art:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#b995ff12 1px,transparent 1px),linear-gradient(90deg,#b995ff12 1px,transparent 1px);background-size:28px 28px;transform:perspective(400px) rotateX(58deg) scale(1.4);transform-origin:bottom}
+.detail-art .art-core{position:relative;width:150px;height:150px;border:1px solid #a77cff;border-radius:30px;background:#201638;box-shadow:0 0 65px #803cff55;display:grid;place-items:center;font-size:40px;color:#d9c2ff}
+.detail-art .art-label{position:absolute;bottom:20px;left:22px;color:#a99bbd;font:10px ui-monospace,monospace;letter-spacing:1px}
+.detail-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.detail-section{margin-top:64px}.detail-section h2{font-size:clamp(26px,4vw,38px);margin:8px 0 22px}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.detail-panel{border:1px solid #392b4c;border-radius:15px;padding:22px;background:linear-gradient(145deg,#17121f,#0e1119)}
+.detail-panel h3{font-size:16px;margin:0 0 10px}.detail-panel p,.detail-panel li{color:#b9b0c8;font-size:13px;line-height:1.8}
+.component-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.component-item{border:1px solid #382b49;background:#120f1b;border-radius:10px;padding:13px;color:#e9e0f8;font-size:13px}
+.component-item small{display:block;color:#9988b0;margin-top:5px}
+.kit-feature{display:grid;grid-template-columns:1fr .8fr;gap:25px;border:1px solid #66429a;border-radius:20px;padding:28px;background:radial-gradient(ellipse at 90% 20%,#6c2ad533,transparent 45%),#14101d}
+.kit-price{font-size:34px;font-weight:800;margin:15px 0 3px}.kit-note{font-size:11px;color:#9f93b1}
+.kit-list{padding-left:18px;color:#c8bdd7;line-height:2;font-size:13px}
+.checkout-panel{display:none;margin-top:18px;border:1px solid #7450a0;border-radius:16px;padding:22px;background:#100d18}
+.checkout-panel.open{display:block}.payment-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
+.payment-option{padding:13px;border:1px solid #473458;border-radius:10px;background:#171220;color:#eee;cursor:pointer;text-align:center}
+.payment-option.active{border-color:#a477ff;background:#28183c}.checkout-note{color:#a99db8;font-size:12px;line-height:1.7}
+.detail-footer{margin-top:70px;border-top:1px solid #32263f;padding-top:25px;color:#988ba8;font-size:12px}
+@media(max-width:760px){.detail-hero,.kit-feature{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.component-list{grid-template-columns:1fr}.detail-wrap{padding-top:35px}.payment-options{grid-template-columns:1fr}}
+
+/* J.A.R.V.I.S.-inspired ProtoVox interface: graphite, reactor cyan and restrained amber */
+:root{--violet:#20c8f4;--violet2:#0879b9;--cyan:#7cecff;--line:rgba(79,207,246,.24)}
+::selection{background:#0d9dce;color:#fff}
+body{background-color:#060b12;background-image:radial-gradient(ellipse at 78% 8%,rgba(0,132,190,.17),transparent 36%),radial-gradient(ellipse at 8% 55%,rgba(12,70,118,.12),transparent 42%)}
+.site-header{position:fixed;top:0;left:0;right:0;width:100%;height:82px;z-index:1000;background:rgba(4,9,16,.88);border-bottom:1px solid rgba(69,210,255,.24);box-shadow:0 8px 35px rgba(0,0,0,.3);backdrop-filter:blur(18px)}
+body.detail-page{padding-top:82px;background-image:radial-gradient(ellipse at 75% 10%,rgba(0,151,215,.16),transparent 40%),linear-gradient(135deg,#050a11,#080d16 55%,#080a10)}
+.brand-image img{display:block;width:164px;height:64px;object-fit:contain;object-position:left center}
+.desktop-nav a:hover,.desktop-nav a.active,.footer-links a:hover{color:#5de2ff}
+.button-primary{background:linear-gradient(110deg,#087db8,#0bbfe8 55%,#d89a35);border-color:#55dfff;color:#03111b;box-shadow:0 0 22px rgba(0,180,235,.18)}
+.button-primary:hover{box-shadow:0 0 30px rgba(0,194,255,.36);transform:translateY(-2px)}
+.button-ghost,.button:not(.button-primary){border-color:rgba(88,204,242,.35)}
+.detail-kicker,.mono{color:#65dcff}
+.detail-hero h1,.detail-section h2{ text-shadow:0 0 26px rgba(29,177,235,.13)}
+.detail-lead,.detail-panel p,.detail-panel li{color:#b4c8d8}
+.detail-art{border-color:#1e7597;background:radial-gradient(circle at 50% 50%,#087fb944,transparent 56%),linear-gradient(145deg,#101e2a,#080e17);box-shadow:inset 0 0 40px rgba(0,177,225,.07),0 0 30px rgba(0,145,200,.08)}
+.detail-art:before{background-image:linear-gradient(#48dfff12 1px,transparent 1px),linear-gradient(90deg,#48dfff12 1px,transparent 1px)}
+.detail-art .art-core{border-color:#50dfff;background:linear-gradient(145deg,#0e3347,#101d2a);color:#a5f1ff;box-shadow:0 0 65px #00bde955,0 0 0 8px #27c9f40c}
+.detail-art .art-label{color:#79cfe4}
+.detail-panel,.component-item,.kit-feature,.checkout-panel{border-color:rgba(75,193,230,.24);background:linear-gradient(145deg,rgba(14,27,39,.96),rgba(7,13,21,.97))}
+.component-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.component-item{position:relative;display:grid;grid-template-columns:1fr;gap:0;padding:0;overflow:hidden;min-height:82px;transition:border-color .25s,box-shadow .25s,transform .25s,background .25s;cursor:default}
+.component-item .component-copy{padding:17px 18px;position:relative;z-index:2;transition:padding .3s}
+.component-item strong{display:block;font-size:14px;color:#e9f8ff}
+.component-item small{display:block;color:#80b8ce;margin-top:5px;font-size:11px}
+.component-item .component-visual{height:0;opacity:0;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at center,#0a668c55,transparent 70%);border-top:0 solid rgba(65,210,255,.2);transition:height .32s ease,opacity .25s,border-width .25s}
+.component-item .component-visual svg{width:min(220px,80%);height:116px;filter:drop-shadow(0 0 12px rgba(27,202,255,.22));transform:translateY(8px) scale(.92);transition:transform .32s}
+.component-item:hover,.component-item:focus-within{border-color:#27c9f4;box-shadow:0 0 26px rgba(0,176,230,.16);transform:translateY(-2px);background:linear-gradient(145deg,#102b3a,#09131e)}
+.component-item:hover .component-visual,.component-item:focus-within .component-visual{height:142px;opacity:1;border-top-width:1px}
+.component-item:hover .component-visual svg,.component-item:focus-within .component-visual svg{transform:translateY(0) scale(1)}
+.component-item:after{content:"HOVER TO INSPECT";position:absolute;right:14px;top:14px;color:#4baac7;font:8px ui-monospace,monospace;letter-spacing:1px;opacity:.75}
+.kit-feature{border-color:#2685a5;background:radial-gradient(ellipse at 90% 20%,#0586ad2b,transparent 45%),linear-gradient(110deg,#101d29,#080e16)}
+.kit-price{color:#9ceeff;text-shadow:0 0 22px #10bce944}
+.payment-option{border-color:#23546a;background:#0b1822}
+.payment-option.active{border-color:#38d6ff;background:#10364a;box-shadow:0 0 18px #0ba9db22}
+.checkout-panel{border-color:#1b8db4}
+.back-link{color:#67dfff}
+.detail-footer{border-color:#1d5368;color:#8db9ca}
+.detail-footer a{color:#5edfff}
+@media(max-width:760px){.component-list{grid-template-columns:1fr}.brand-image img{width:138px}.site-header{height:72px}.detail-page{padding-top:72px}}
+
+
+/* V9 detail page: cool graphite + reactor cyan */
+.detail-page{background:radial-gradient(ellipse at 75% 15%,rgba(0,146,190,.13),transparent 38%),#070d14!important;color:#f3f8fc}
+.detail-kicker,.mono{color:#72def3}
+.back-link{color:#79dff1}
+.detail-art{border-color:rgba(91,194,224,.25);background:radial-gradient(circle at 50% 50%,rgba(0,164,206,.16),transparent 55%),linear-gradient(145deg,#10202c,#09131d)}
+.detail-art:before{background-image:linear-gradient(rgba(109,217,242,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(109,217,242,.08) 1px,transparent 1px)}
+.detail-art .art-core{border-color:#4bd3ee;background:#102b39;box-shadow:0 0 65px rgba(0,174,220,.2);color:#a6f1ff}
+.detail-panel{border-color:rgba(91,194,224,.2);background:linear-gradient(145deg,#101d28,#0a131d)}
+.component-list{gap:12px}
+.component-item{position:relative;overflow:hidden;padding:0;border:1px solid rgba(91,194,224,.22);border-radius:14px;background:linear-gradient(145deg,#0e1b26,#09131c);color:#f1f7fa;transition:all .38s cubic-bezier(.2,.7,.2,1);min-height:94px}
+.component-copy{position:relative;padding:18px 22px;min-height:94px;z-index:2;transition:padding .35s}
+.component-item strong{font-size:15px}
+.component-item small{color:#91b6c7}
+.inspect-hint{position:absolute;right:18px;top:18px;font:9px ui-monospace,monospace;letter-spacing:1px;color:#4eaac1;opacity:.8}
+.component-visual{height:0;opacity:0;overflow:hidden;border-top:1px solid transparent;display:grid;place-items:center;position:relative;background:radial-gradient(ellipse at 50% 50%,rgba(0,157,203,.12),transparent 68%);transition:height .42s ease,opacity .32s ease}
+.component-visual img{width:100%;height:185px;object-fit:contain;padding:12px 20px;display:block;background:rgba(255,255,255,.96);border-radius:0 0 12px 12px}
+.component-fallback{display:none;width:100%;height:160px}
+.component-fallback svg{height:150px;width:100%}
+.photo-caption{position:absolute;bottom:8px;right:12px;padding:3px 7px;border-radius:5px;background:rgba(5,15,22,.82);color:#a8d8e6!important;font-size:9px!important}
+.component-item:hover,.component-item:focus-visible,.component-item:focus-within{border-color:#4bd6ef;box-shadow:0 14px 36px rgba(0,158,199,.12);transform:translateY(-2px)}
+.component-item:hover .component-visual,.component-item:focus-visible .component-visual,.component-item:focus-within .component-visual{height:205px;opacity:1;border-top-color:rgba(91,194,224,.2)}
+.component-item:hover .component-copy,.component-item:focus-visible .component-copy{padding-bottom:12px}
+.kit-feature,.checkout-panel{border-color:rgba(91,194,224,.28);background:radial-gradient(ellipse at 90% 20%,rgba(0,147,190,.12),transparent 45%),#0d1822}
+.kit-price{color:#8feaff}
+.payment-option{border-color:rgba(91,194,224,.23);background:#0d1a24}
+.payment-option.active{border-color:#4bd6ef;background:#103445}
+.detail-footer{border-top-color:rgba(91,194,224,.2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.detail-footer .footer-socials{margin-left:auto}
+.detail-footer .footer-socials a{width:34px;height:34px}
+@media(max-width:760px){.component-item:hover .component-visual,.component-item:focus-visible .component-visual{height:180px}.component-visual img{height:165px}.detail-footer .footer-socials{margin-left:0}}
+
+
+/* V10 / CONTACT TRANSMISSION — cinematic reactor-blue interface */
+.detail-page{background:#050b13!important;background-image:radial-gradient(ellipse at 72% 8%,rgba(0,155,220,.17),transparent 42%),radial-gradient(ellipse at 12% 75%,rgba(0,88,160,.12),transparent 40%),linear-gradient(135deg,#050a11,#081522 56%,#050b13)!important}
+.detail-wrap{max-width:1320px}
+.detail-hero{min-height:520px;gap:clamp(34px,5vw,86px)}
+.detail-hero h1{font-size:clamp(44px,6.4vw,86px);letter-spacing:-.055em;line-height:.98;text-wrap:balance}
+.detail-kicker,.mono{color:#5fdfff;text-shadow:0 0 16px rgba(50,202,255,.18)}
+.detail-art{min-height:390px;border-radius:4px 28px 4px 28px;border-color:rgba(75,207,255,.36);background:radial-gradient(circle at 50% 48%,rgba(0,177,239,.2),transparent 53%),linear-gradient(145deg,#0d2334,#07111c 72%);box-shadow:inset 0 0 70px rgba(0,170,230,.08),0 30px 90px rgba(0,0,0,.35)}
+.detail-art:after{content:"SYSTEM VISUALIZATION  /  PV-01";position:absolute;right:18px;top:18px;color:#5dbbd6;font:9px ui-monospace,monospace;letter-spacing:1.6px}
+.detail-art .art-core{border-radius:50%;width:170px;height:170px;border:1px solid #6ce8ff;background:radial-gradient(circle,#164b65,#081b2a 70%);box-shadow:0 0 0 14px rgba(35,190,240,.05),0 0 0 34px rgba(35,190,240,.035),0 0 85px rgba(0,190,255,.28);font-size:48px}
+.detail-section{margin-top:clamp(70px,8vw,118px)}
+.detail-section h2{font-size:clamp(32px,4.8vw,58px);letter-spacing:-.045em;line-height:1.04}
+.detail-panel{border-radius:4px 18px 4px 18px;box-shadow:0 18px 50px rgba(0,0,0,.16)}
+.kit-feature{border-radius:4px 26px 4px 26px;border-color:rgba(67,205,247,.36);background:radial-gradient(ellipse at 85% 12%,rgba(0,165,225,.2),transparent 48%),linear-gradient(120deg,#0d2231,#08121d 72%);box-shadow:0 26px 80px rgba(0,0,0,.22)}
+.kit-feature h2{font-size:clamp(28px,3.5vw,42px)}
+.button-primary{background:linear-gradient(110deg,#087eae,#13bfe9);border-color:#5cddf7;color:#03121c}
+.gradient-text,.contact-accent{background:linear-gradient(95deg,#e2faff,#68ddff 52%,#239bc8);background-clip:text;-webkit-background-clip:text;color:transparent}
+.contact-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,100px);align-items:center;border:1px solid rgba(85,202,238,.25);border-radius:4px 30px 4px 30px;padding:clamp(25px,5vw,68px);background:radial-gradient(ellipse at 88% 10%,rgba(0,160,220,.16),transparent 48%),linear-gradient(130deg,#0b1b29,#07111b 68%);box-shadow:0 30px 90px rgba(0,0,0,.22);position:relative;overflow:hidden}
+.contact-layout:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(78,199,235,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(78,199,235,.045) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(90deg,transparent,#000);pointer-events:none}
+.contact-copy,.contact-orbit-panel{position:relative;z-index:1}
+.contact-status{display:inline-flex;align-items:center;gap:9px;color:#78dff4;font:10px ui-monospace,monospace;letter-spacing:1.5px;padding:9px 12px;border:1px solid rgba(88,211,246,.25);background:rgba(13,75,100,.18)}
+.contact-status i{width:7px;height:7px;border-radius:50%;background:#4ce4c0;box-shadow:0 0 12px #4ce4c0}
+.contact-copy h2{margin:24px 0 16px!important}
+.contact-copy .detail-lead{max-width:520px}
+.contact-email{display:flex;align-items:center;gap:14px;max-width:470px;margin:28px 0 18px;padding:16px;border:1px solid rgba(91,207,239,.28);background:rgba(4,17,27,.65);color:#eafaff;text-decoration:none;transition:.25s}
+.contact-email:hover{border-color:#65e4ff;transform:translateY(-3px);box-shadow:0 12px 34px rgba(0,168,220,.13)}
+.contact-email-icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(92,215,247,.34);color:#77e5ff;font-size:20px}
+.contact-email span:nth-child(2){display:grid;gap:5px;min-width:0}.contact-email small,.contact-socials small{font:9px ui-monospace,monospace;letter-spacing:1.3px;color:#70b9cf}.contact-email strong{font-size:clamp(13px,1.5vw,17px);overflow-wrap:anywhere}.contact-email>b{margin-left:auto;color:#65dcf5}
+.contact-gmail{display:inline-flex;gap:10px;align-items:center}
+.contact-orbit-panel{min-height:360px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.contact-radar{width:min(100%,330px);aspect-ratio:1;position:relative;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,rgba(0,152,213,.13),transparent 66%)}
+.radar-ring{position:absolute;border:1px solid rgba(76,211,247,.24);border-radius:50%;inset:8%}.ring-b{inset:21%;border-style:dashed;animation:pv-spin 26s linear infinite}.ring-c{inset:35%;border-color:rgba(103,224,255,.42)}
+.radar-cross{position:absolute;background:rgba(78,193,226,.16)}.cross-h{height:1px;left:0;right:0;top:50%}.cross-v{width:1px;top:0;bottom:0;left:50%}
+.radar-core{width:100px;height:100px;border-radius:50%;display:grid;place-content:center;text-align:center;border:1px solid #65e3ff;background:radial-gradient(circle,#14506b,#071a29 74%);box-shadow:0 0 38px rgba(0,183,242,.3),0 0 0 12px rgba(49,197,241,.05);font-size:30px;font-weight:800;color:#c7f7ff}.radar-core span{font:9px ui-monospace,monospace;letter-spacing:2px;color:#6fdcf4}
+.radar-ping{position:absolute;width:9px;height:9px;border-radius:50%;background:#77eaff;box-shadow:0 0 16px #48dfff}.ping-a{top:20%;right:21%}.ping-b{bottom:22%;left:18%;width:6px;height:6px}
+.contact-socials{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:430px;margin-top:-10px}
+.contact-socials a{display:flex;align-items:center;gap:10px;padding:13px 12px;text-decoration:none;color:#eafaff;border:1px solid rgba(91,202,235,.24);background:rgba(5,18,28,.8);transition:.25s;min-width:0}
+.contact-socials a:hover{border-color:#67e1ff;transform:translateY(-4px);background:rgba(12,57,76,.75)}
+.contact-socials svg{width:22px;height:22px;flex:none;fill:none;stroke:#78e6ff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.contact-socials svg .solid{fill:#78e6ff;stroke:none}
+.contact-socials span{display:grid;gap:4px;min-width:0}.contact-socials strong{font-size:13px}.contact-socials b{margin-left:auto;color:#6ddff8}
+.detail-footer{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.detail-footer .footer-socials{margin-left:auto}
+@keyframes pv-spin{to{transform:rotate(360deg)}}
+@media(max-width:760px){.detail-wrap{width:min(100% - 30px,600px);padding-top:35px}.detail-hero{min-height:0}.detail-art{min-height:290px}.contact-layout{grid-template-columns:1fr;padding:25px 20px}.contact-orbit-panel{min-height:300px}.contact-radar{max-width:270px}.contact-socials{grid-template-columns:1fr}.detail-footer .footer-socials{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.ring-b{animation:none}}
+
+
+/* Project requirements — hardware-first blueprint layout */
+.component-requirements{grid-template-columns:1.15fr .85fr;align-items:stretch}
+.component-panel,.essentials-panel{background:linear-gradient(145deg,rgba(9,28,43,.96),rgba(5,13,23,.98));border:1px solid rgba(74,197,239,.25);border-radius:4px 18px 4px 18px;padding:clamp(18px,3vw,30px)}
+.component-heading{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.component-heading h3{margin:0 0 4px}.component-heading p{margin:0;color:#82a9bc;font-size:12px}
+.component-symbol{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(91,215,247,.38);color:#70e5ff;font-size:22px;background:rgba(0,150,210,.08)}
+.component-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.component-item{border:1px solid rgba(82,190,226,.22);background:rgba(4,17,28,.72);border-radius:3px 12px 3px 12px;padding:14px;color:#e7f7ff;font-size:13px;transition:transform .22s,border-color .22s,background .22s}
+.component-item:hover{transform:translateY(-3px);border-color:#48ccef;background:rgba(9,44,64,.75)}
+.component-item strong{display:block;font-size:13px;color:#eafaff;font-weight:700}
+.component-item small{display:block;color:#83b6c9;margin-top:6px;line-height:1.55}
+.essentials-panel .kit-list{margin:0;padding-left:19px}.essentials-panel .kit-list li{padding:5px 0;border-bottom:1px solid rgba(94,174,205,.12)}
+@media(max-width:760px){.component-requirements{grid-template-columns:1fr}.component-list{grid-template-columns:1fr}}
+</style></head>
+<body class="detail-page">
+<header class="site-header" id="top">
+<a class="brand brand-image" href="index.html#top" aria-label="ProtoVox home"><img src="assets/brand/protovox-logo.png" alt="ProtoVox — From Idea to Prototype"></a>
+<nav class="desktop-nav" aria-label="Main navigation"><a href="campaign-projects.html">Campaigns</a><a href="index.html#about">About</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a></nav>
+<div class="header-actions"><a class="text-button" href="index.html?dialog=help">Get help</a><a class="button button-small button-primary" href="index.html?dialog=idea">Start building <span>↗</span></a></div>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation"><a href="campaign-projects.html">Campaign Projects</a><a href="index.html#about">About ProtoVox</a><a href="innovation-lab.html">Innovation Lab</a><a href="builder.html">Build Planner</a><button data-open-help>Get help</button></nav>
+<main class="detail-wrap">
+<a class="back-link" href="projects.html">← Back to all projects</a>
+<section class="detail-hero"><div><div class="detail-kicker" id="detailKicker">PROTO VOX / PROJECT BLUEPRINT</div><h1 id="detailTitle">Project title</h1><p class="detail-lead" id="detailDescription"></p><div class="detail-actions"><a class="button button-primary button-large" href="#project-kit">Explore matching kit ↓</a><a class="button button-ghost" href="index.html?dialog=help">Ask for technical help ↗</a></div></div><div class="detail-art"><div class="art-core" id="artCore">PV</div><span class="art-label" id="artLabel">BUILD SYSTEM / 001</span></div></section>
+<section class="detail-section"><div class="detail-kicker">01 / UNDERSTAND THE BUILD</div><h2>What are we building?</h2><div class="detail-grid"><article class="detail-panel"><h3>Project overview</h3><p id="detailOverview"></p></article><article class="detail-panel"><h3>How it works</h3><p id="detailWorking"></p></article><article class="detail-panel"><h3>Build level &amp; platform</h3><p id="detailLevel"></p></article></div></section>
+<section class="detail-section" id="project-components">
+  <div class="detail-kicker">02 / BUILD REQUIREMENTS</div>
+  <h2>What you need for this build.</h2>
+  <p class="detail-lead">A practical breakdown of the hardware, software and supporting essentials required to bring this project to life.</p>
+  <div class="detail-grid component-requirements">
+    <article class="detail-panel component-panel">
+      <div class="component-heading"><span class="component-symbol">⌁</span><div><h3>Core components</h3><p>Project-specific hardware and software</p></div></div>
+      <div class="component-list" id="componentList"></div>
+    </article>
+    <article class="detail-panel essentials-panel">
+      <div class="component-heading"><span class="component-symbol">▤</span><div><h3>Tools &amp; setup</h3><p>Workspace, software and supporting tools</p></div></div>
+      <ul class="kit-list" id="essentialList"></ul>
+      <p class="checkout-note">These are supporting tools and setup requirements, separate from the project-specific components and kit contents. Confirm your workspace and safety requirements before starting.</p>
+    </article>
+  </div>
+</section>
+<section class="detail-section"><div class="detail-kicker">03 / PROJECT KIT</div><h2>Your project kit.</h2><div class="kit-feature" id="project-kit"><div><div class="detail-kicker" id="kitCode">PROTO VOX KIT / 001</div><h2 id="kitTitle" style="margin:12px 0">Starter kit</h2><p class="detail-lead" id="kitDescription"></p><div class="kit-price" id="kitPrice">₹—</div><div class="kit-note">Indicative prototype price · final price and availability to be confirmed</div><div class="detail-actions"><button class="button button-primary button-large" id="buyKit">Buy this kit ↗</button><button class="button button-ghost" id="askKit">Ask about this kit</button></div></div><div><h3>What's included</h3><ul class="kit-list" id="kitContents"></ul><p class="checkout-note">The kit is matched to this project's component list. Exact brands, quantities and substitutions should be confirmed before purchase.</p></div></div>
+<div class="checkout-panel" id="checkoutPanel"><div class="detail-kicker">PROTO VOX / CHECKOUT PREVIEW</div><h3>Choose a payment preference</h3><div class="payment-options"><button class="payment-option active" data-payment="UPI">UPI</button><button class="payment-option" data-payment="Card">Credit / Debit card</button><button class="payment-option" data-payment="Bank transfer">Bank transfer</button></div><p class="checkout-note" id="paymentNote">UPI selected. This is a checkout preview only; no payment will be collected on this prototype.</p><button class="button button-primary button-large" id="requestPayment">Request purchase details ↗</button><p class="checkout-note">Payment gateway integration will be added after ProtoVox confirms its seller, inventory, shipping, taxes and refund process. Do not enter payment credentials here.</p></div>
+</section>
+<div class="detail-footer">PROTO VOX · FROM IDEA TO PROTOTYPE · <a href="mailto:protovox.tech@gmail.com">protovox.tech@gmail.com</a><div class="footer-socials" aria-label="ProtoVox social links">
+<a href="https://www.instagram.com/protovox__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="solid"/></svg>
+</a>
+<a href="https://www.linkedin.com/in/protovox-undefined-568364449/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v10M5 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg>
+</a></div></div>
+</main><script src="project-data.js"></script><script src="project-detail.js"></script></body></html>

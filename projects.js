@@ -18,17 +18,12 @@
  search?.addEventListener('input',update);sort?.addEventListener('change',update);
  filters.forEach(b=>b.addEventListener('click',()=>{active=b.dataset.filter;update()}));
  $('#resetProjectFilters')?.addEventListener('click',()=>{search.value='';active='All';sort.value='featured';update()});
- const modal=$('#directoryDetailModal');
  $$('[data-detail]').forEach(btn=>btn.addEventListener('click',()=>{
-   const [title,domain,components,description]=btn.dataset.detail.split('|');
-   $('#detailTitle').textContent=title;$('#detailDomain').textContent=domain;$('#detailComponents').textContent=components;$('#detailDescription').textContent=description;
-   modal.showModal();document.body.classList.add('modal-open');
+   const title=btn.closest('.directory-card')?.dataset.title||btn.dataset.detail.split('|')[0];
+   const aliases={'Campus Lost and Found App':'campus-lost-and-found','Voice Controlled Desktop Assistant':'voice-controlled-desktop-assistant','Smart Disaster Monitoring':'smart-disaster-monitoring','Gesture Controlled Robot':'gesture-controlled-robot'};
+   const slug=aliases[title]||title.toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+   window.location.href=`project-detail.html?id=${encodeURIComponent(slug)}`;
  }));
- if(modal){
-  const unlock=()=>{if(!modal.open)document.body.classList.remove('modal-open')};
-  modal.addEventListener('close',unlock);
-  modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});
- }
  const menu=$('.menu-toggle'),mobile=$('.mobile-nav');
  menu?.addEventListener('click',()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));

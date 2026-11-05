@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050b13">
+<meta name="description" content="Contact ProtoVox, ask for engineering guidance or book a hands-on student technology workshop.">
+<title>Contact & Workshops | ProtoVox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.contact-page{padding-top:82px;background:#050b13;color:#eff8ff;min-height:100vh}
+.contact-hero{width:min(1320px,calc(100% - 48px));margin:auto;padding:68px 0 35px;position:relative}
+.contact-eyebrow{font:11px "DM Mono",monospace;letter-spacing:2px;color:#61ddff;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.contact-eyebrow:before{content:"";width:28px;height:1px;background:#39cfff;box-shadow:0 0 12px #39cfff}
+.contact-hero h1{font-size:clamp(42px,6vw,76px);line-height:.99;letter-spacing:-3px;margin:20px 0 15px;max-width:800px}
+.contact-hero h1 span{background:linear-gradient(100deg,#eafaff,#50d9ff 48%,#168cc8);background-clip:text;-webkit-background-clip:text;color:transparent}
+.contact-hero p{color:#a9bdcd;max-width:650px;font-size:15px;line-height:1.85}
+.contact-status{position:absolute;right:5px;top:78px;border:1px solid #1b526a;background:#071824;padding:11px 15px;font:10px "DM Mono",monospace;letter-spacing:1.2px;color:#8cecff}
+.contact-status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#43e5c1;box-shadow:0 0 12px #43e5c1;margin-right:8px;animation:statusPulse 1.8s infinite}
+.contact-layout{width:min(1320px,calc(100% - 48px));margin:0 auto 100px;display:grid;grid-template-columns:.88fr 1.12fr;gap:20px;align-items:stretch}
+.contact-card{position:relative;overflow:hidden;border:1px solid rgba(63,190,235,.25);background:linear-gradient(145deg,rgba(10,26,41,.97),rgba(5,12,22,.98));border-radius:18px;padding:clamp(24px,3vw,42px);box-shadow:0 18px 70px #0005;isolation:isolate}
+.contact-card:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.45;background-image:linear-gradient(rgba(60,193,236,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(60,193,236,.07) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(135deg,#000,transparent 85%)}
+.contact-card:after{content:"";position:absolute;z-index:-1;width:280px;height:280px;border:1px solid #1b7895;border-radius:50%;right:-160px;top:-170px;box-shadow:0 0 0 24px #0b8bb10a,0 0 0 50px #0b8bb108}
+.contact-card h2{font-size:clamp(24px,3vw,34px);letter-spacing:-1px;margin:0 0 8px}
+.card-intro{font-size:13px;color:#9eb5c7;line-height:1.7;margin:0 0 27px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;color:#c4d3df;font-weight:700}
+.field input,.field select,.field textarea{width:100%;border:1px solid #1b536c;background:#0b1928;color:#effaff;border-radius:7px;padding:13px 14px;outline:none;transition:border-color .25s,box-shadow .25s,transform .25s;font:12px "Manrope",sans-serif}
+.field input,.field select{height:46px}
+.field textarea{min-height:108px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:#647b8e}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#3ed7ff;box-shadow:0 0 0 3px #16bde51b,0 0 20px #16bde51b}
+.field select{color:#c4d5e2}
+.form-submit{grid-column:1/-1;width:100%;height:49px;border:1px solid #43dcff;border-radius:7px;background:linear-gradient(100deg,#087fb4,#10b8dc);color:#03121c;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;gap:12px;transition:transform .25s,box-shadow .25s}
+.form-submit:hover{transform:translateY(-3px);box-shadow:0 12px 30px #05b8e544}
+.contact-card.workshop{background:linear-gradient(145deg,rgba(8,24,39,.99),rgba(5,13,24,.99))}
+.workshop .form-grid{gap:17px 15px}
+.workshop .field textarea{min-height:84px}
+.workshop-label{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.workshop-label small{font:10px "DM Mono",monospace;letter-spacing:1px;color:#5fdfff}
+.workshop-note{font-size:10px;color:#7892a5;line-height:1.6;margin:14px 0 0}
+.contact-orbit{position:absolute;right:38px;top:30px;width:86px;height:86px;border:1px solid #197c9b;border-radius:50%;opacity:.65;animation:orbitSpin 18s linear infinite}
+.contact-orbit:before,.contact-orbit:after{content:"";position:absolute;border:1px dashed #1b7895;border-radius:50%;inset:12px}
+.contact-orbit:after{inset:31px;background:#0a9ec5;box-shadow:0 0 24px #00cfff}
+.contact-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.contact-link{display:inline-flex;align-items:center;gap:9px;border:1px solid #1d5c76;background:#071724;padding:10px 13px;border-radius:7px;color:#bfefff;font-size:11px;transition:.25s}
+.contact-link:hover{border-color:#51dfff;transform:translateY(-3px);box-shadow:0 8px 24px #00bde522}
+.contact-link svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+.contact-bottom{width:min(1320px,calc(100% - 48px));margin:-62px auto 70px;border-top:1px solid #15384c;padding-top:20px;display:flex;justify-content:space-between;gap:15px;color:#7892a5;font:10px "DM Mono",monospace;letter-spacing:1px}
+.contact-bottom a{color:#66dcff}
+.contact-reveal{opacity:0;transform:translateY(28px) scale(.99);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.75,.25,1)}
+.contact-reveal.visible{opacity:1;transform:none}
+@keyframes statusPulse{50%{opacity:.35;box-shadow:0 0 2px #43e5c1}}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr}.contact-status{position:static;display:inline-block;margin-top:16px}.contact-hero{padding-top:48px}}
+@media(max-width:560px){.contact-hero,.contact-layout,.contact-bottom{width:calc(100% - 28px)}.contact-hero h1{letter-spacing:-2px}.contact-card{padding:23px 18px}.form-grid{grid-template-columns:1fr}.field.full,.form-submit{grid-column:1}.contact-orbit{right:15px;top:20px;transform:scale(.75)}.contact-bottom{flex-direction:column}.contact-layout{margin-bottom:90px}}
+@media(prefers-reduced-motion:reduce){.contact-reveal{opacity:1;transform:none;transition:none}.contact-orbit,.contact-status i{animation:none}*{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="contact-page">
+<div class="noise" aria-hidden="true"></div>
+<header class="site-header" id="top">
+<a class="brand brand-image" href="index.html#top" aria-label="ProtoVox home"><img src="assets/brand/protovox-logo.png" alt="ProtoVox — From Idea to Prototype"></a>
+<nav class="desktop-nav" aria-label="Main navigation"><a href="projects.html">Projects</a><a href="index.html#journey">How it works</a><a href="index.html#internships">Internships</a><a href="index.html#research">R&amp;D</a><a class="active" href="contact.html">Contact</a></nav>
+<div class="header-actions"><a class="text-button" href="index.html#help">Get help</a><a class="button button-small button-primary" href="#workshop">Book a workshop <span>↗</span></a></div>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+<nav class="mobile-nav" aria-label="Mobile navigation"><a href="projects.html">Projects</a><a href="index.html#journey">How it works</a><a href="index.html#internships">Internships</a><a href="index.html#research">R&amp;D</a><a href="contact.html">Contact</a><a href="#workshop">Book a workshop</a></nav>
+<main>
+<section class="contact-hero">
+<div class="contact-eyebrow">PROTO VOX / OPEN CHANNEL / 06</div>
+<h1>Let's build<br><span>something real.</span></h1>
+<p>Have a project idea, need technical guidance, want to collaborate or bring ProtoVox to your campus? Reach out to the team or request a hands-on workshop.</p>
+<div class="contact-status"><i></i> BUILDER CHANNELS ONLINE</div>
+</section>
+<section class="contact-layout">
+<article class="contact-card contact-reveal">
+<div class="contact-orbit" aria-hidden="true"></div>
+<div class="contact-eyebrow">01 / DIRECT TRANSMISSION</div>
+<h2>Send us a message</h2>
+<p class="card-intro">Tell us what you're working on. We'll help you find the next practical step.</p>
+<form id="messageForm" class="form-grid">
+<div class="field full"><label for="msgName">Name *</label><input id="msgName" name="name" placeholder="Your full name" autocomplete="name" required></div>
+<div class="field"><label for="msgEmail">Email *</label><input id="msgEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+<div class="field"><label for="msgPhone">Phone</label><input id="msgPhone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel"></div>
+<div class="field full"><label for="msgInstitution">College / Institution</label><input id="msgInstitution" name="institution" placeholder="Your college or organisation"></div>
+<div class="field full"><label for="msgTopic">What can we help with? *</label><select id="msgTopic" name="topic" required><option value="">Choose a topic</option><option>Project development</option><option>Technical guidance / debugging</option><option>Project kit enquiry</option><option>Internship / collaboration</option><option>Research and development</option><option>Other</option></select></div>
+<div class="field full"><label for="msgBody">Message *</label><textarea id="msgBody" name="message" placeholder="Tell us about your idea, challenge or question..." required></textarea></div>
+<button class="form-submit" type="submit">Send message <span>↗</span></button>
+</form>
+<div class="contact-links">
+<a class="contact-link" href="mailto:protovox.tech@gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg> protovox.tech@gmail.com</a>
+<a class="contact-link" href="https://www.instagram.com/protovox__/" target="_blank" rel="noopener noreferrer" aria-label="ProtoVox Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg> Instagram</a>
+<a class="contact-link" href="https://www.linkedin.com/in/protovox-undefined-568364449/" target="_blank" rel="noopener noreferrer" aria-label="ProtoVox LinkedIn"><svg viewBox="0 0 24 24"><path d="M5 9v10M5 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg> LinkedIn</a>
+</div>
+</article>
+<article class="contact-card workshop contact-reveal" id="workshop">
+<div class="workshop-label"><div class="contact-eyebrow">02 / CAMPUS PROGRAM</div><small>PROTO VOX / WORKSHOP REQUEST</small></div>
+<h2>Bring the build to your campus.</h2>
+<p class="card-intro">Plan a practical technology session for your students. Share your institution details and the kind of workshop you're interested in.</p>
+<form id="workshopForm" class="form-grid">
+<div class="field full"><label for="wsInstitution">Institution name *</label><input id="wsInstitution" name="institution" placeholder="School / college / organisation" required></div>
+<div class="field full"><label for="wsContact">Contact person *</label><input id="wsContact" name="contact" placeholder="Coordinator or faculty name" required></div>
+<div class="field"><label for="wsEmail">Email *</label><input id="wsEmail" name="email" type="email" placeholder="coordinator@example.com" required></div>
+<div class="field"><label for="wsPhone">Phone *</label><input id="wsPhone" name="phone" type="tel" placeholder="+91 98765 43210" required></div>
+<div class="field"><label for="wsCount">Expected student count *</label><input id="wsCount" name="students" type="number" min="1" placeholder="e.g. 40" required></div>
+<div class="field"><label for="wsDate">Preferred date</label><input id="wsDate" name="date" type="date"></div>
+<div class="field full"><label for="wsType">Workshop focus *</label><select id="wsType" name="workshop" required><option value="">Select a workshop focus</option><option>IoT & ESP32 prototyping</option><option>Embedded systems & sensors</option><option>Robotics & automation</option><option>AI / Machine Learning</option><option>PCB design & electronics</option><option>Build your engineering project</option><option>Custom campus workshop</option></select></div>
+<div class="field full"><label for="wsNotes">Additional information</label><textarea id="wsNotes" name="notes" placeholder="Tell us about student level, facilities, goals or any specific requirements..."></textarea></div>
+<button class="form-submit" type="submit">Submit workshop request <span>↗</span></button>
+</form>
+<p class="workshop-note">This request opens a pre-filled email for you to review and send. A submission is not a confirmed booking; the ProtoVox team will coordinate details with your institution.</p>
+</article>
+</section>
+<div class="contact-bottom"><span>PROTO VOX / FROM IDEA TO PROTOTYPE</span><span>EMAIL <a href="mailto:protovox.tech@gmail.com">PROTO VOX.TECH@GMAIL.COM</a></span><a href="index.html">RETURN TO HOME ↑</a></div>
+</main>
+<footer class="site-footer"><a class="brand brand-image footer-brand-image" href="index.html#top" aria-label="ProtoVox home"><img src="assets/brand/protovox-logo.png" alt="ProtoVox"></a><p>For the curious. By the builders.</p><div class="footer-links"><a href="projects.html">Projects</a><a href="index.html#journey">How it works</a><a href="index.html#internships">Opportunities</a><a href="index.html#research">R&amp;D</a><a href="mailto:protovox.tech@gmail.com">protovox.tech@gmail.com ↗</a></div><div class="footer-socials"><a href="https://www.instagram.com/protovox__/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="solid"/></svg></a><a href="https://www.linkedin.com/in/protovox-undefined-568364449/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M5 9v10M5 5.5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 9v10"/></svg></a></div><span class="footer-copy">© 2026 ProtoVox · Prototype experience</span></footer>
+<script>
+const menuButton=document.querySelector('.menu-toggle');
+const mobileNav=document.querySelector('.mobile-nav');
+menuButton?.addEventListener('click',()=>{const open=mobileNav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));});
+mobileNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobileNav.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');}));
+const email='protovox.tech@gmail.com';
+function sendMail(form,subject){const data=new FormData(form);const lines=[];for(const [key,value] of data.entries())lines.push(key.replace(/_/g,' ').replace(/^\w/,c=>c.toUpperCase())+': '+value);const body=encodeURIComponent(lines.join('\n'));window.location.href='mailto:'+email+'?subject='+encodeURIComponent(subject)+'&body='+body;}
+document.getElementById('messageForm').addEventListener('submit',e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;sendMail(e.currentTarget,'ProtoVox enquiry — '+document.getElementById('msgTopic').value);});
+document.getElementById('workshopForm').addEventListener('submit',e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;sendMail(e.currentTarget,'ProtoVox campus workshop request');});
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}}),{threshold:.12});
+document.querySelectorAll('.contact-reveal').forEach(el=>revealObserver.observe(el));
+const dateInput=document.getElementById('wsDate');dateInput.min=new Date().toISOString().slice(0,10);
+</script>
+</body></html>
