@@ -116,16 +116,10 @@ async function submitProtoVoxRequest(type, payload, subject, body, context, form
  if(result.reason!=='not_configured') notify('Online submission is unavailable. Opening an email request instead.');
  openEmailDraft(subject,body,context);
 }
-$('#contactMessageForm').addEventListener('submit',e=>{
- e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject=`ProtoVox contact message — ${fd.get('name')}`;
- const body=makeEmailBody([['Name',fd.get('name')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Institution',fd.get('institution')],['Message',fd.get('message')]]);
- submitProtoVoxRequest('contact',Object.fromEntries(fd.entries()),subject,body,'contact',e.currentTarget);
-});
 $('#workshopBookingForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
  const subject=`ProtoVox workshop request — ${fd.get('institution')}`;
- const body=makeEmailBody([['Institution',fd.get('institution')],['Contact person',fd.get('contact')],['Email',fd.get('email')],['Phone',fd.get('phone')],['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],['Request','Please confirm availability, proposed agenda, duration, pricing and next steps.']]);
+ const body=makeEmailBody([['Institution',fd.get('institution')],['Contact person',fd.get('contact')],['Email',fd.get('email')],['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],['Request','Please confirm availability, proposed agenda, duration, pricing and next steps.']]);
  submitProtoVoxRequest('workshop',Object.fromEntries(fd.entries()),subject,body,'workshop',e.currentTarget);
 });
 $('#helpForm').addEventListener('submit',e=>{
