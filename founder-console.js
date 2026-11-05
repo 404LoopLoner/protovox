@@ -5,95 +5,36 @@
  const sb=configured&&window.supabase?.createClient?window.supabase.createClient(cfg.url,cfg.anonKey):null;
  const loginScreen=$('#loginScreen'),shell=$('#consoleShell'),loginForm=$('#loginForm'),loginError=$('#loginError');
  let requests=[],currentView='overview',selected=null;
- const labels={kit_order:'Kit order',workshop:'Workshop',idea:'Student idea',help:'Help desk',research:'Research',contact:'General enquiry'};
+ const labels={kit_order:'Kit order',workshop:'Workshop',internship:'Internship',idea:'Student idea',help:'Help desk',research:'R&D enquiry',contact:'General enquiry',project_enquiry:'Project enquiry'};
  const statusLabels={new:'New',reviewing:'Reviewing',in_progress:'In progress',completed:'Completed',declined:'Declined'};
- const fmtDate=v=>new Date(v).toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+ const palette=['#29d7ff','#8b7cff','#39d6a0','#ffbd59','#ff6f91','#69a8ff','#b5d86b','#b8a0ff'];
+ const fmtDate=v=>v?new Date(v).toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
  const safe=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const payloadOf=r=>r?.payload&&typeof r.payload==='object'?r.payload:{};
  function notice(msg){const n=$('#connectionNotice');n.textContent=msg;n.hidden=false}
  function showConsole(email){loginScreen.hidden=true;shell.hidden=false;$('#signedInEmail').textContent=email||'Founder'}
- async function verifyFounder(){
-   if(!sb)return false;
-   const {data:{user}}=await sb.auth.getUser();if(!user)return false;
-   const {data,error}=await sb.rpc('is_proto_founder');
-   if(error||data!==true)return false;
-   showConsole(user.email);await loadRequests();return true;
- }
- async function loadRequests(){
-   const {data,error}=await sb.from('proto_requests').select('*').order('created_at',{ascending:false}).limit(1000);
-   if(error){notice('Could not load requests: '+error.message);return}
-   requests=data||[];$('#connectionNotice').hidden=true;render();
- }
- loginForm.addEventListener('submit',async e=>{
-   e.preventDefault();loginError.textContent='';
-   if(!sb){loginError.textContent='Founder console is not connected yet. Complete the Supabase setup in SUPABASE_SETUP.md.';return}
-   const fd=new FormData(loginForm);const {data,error}=await sb.auth.signInWithPassword({email:fd.get('email'),password:fd.get('password')});
-   if(error){loginError.textContent=error.message;return}
-   const {data:isFounder,error:founderError}=await sb.rpc('is_proto_founder');
-   if(founderError||isFounder!==true){await sb.auth.signOut();loginError.textContent='This account is not authorised for founder access.';return}
-   showConsole(data.user.email);await loadRequests();
- });
+ async function verifyFounder(){if(!sb)return false;const {data:{user}}=await sb.auth.getUser();if(!user)return false;const {data,error}=await sb.rpc('is_proto_founder');if(error||data!==true)return false;showConsole(user.email);await loadRequests();return true}
+ async function loadRequests(){if(!sb)return;const {data,error}=await sb.from('proto_requests').select('*').order('created_at',{ascending:false}).limit(2000);if(error){notice('Database read failed: '+error.message);return}requests=data||[];$('#connectionNotice').hidden=true;render()}
+ loginForm.addEventListener('submit',async e=>{e.preventDefault();loginError.textContent='';if(!sb){loginError.textContent='Supabase configuration is missing.';return}const fd=new FormData(loginForm);const {data,error}=await sb.auth.signInWithPassword({email:fd.get('email'),password:fd.get('password')});if(error){loginError.textContent=error.message;return}const {data:isFounder,error:founderError}=await sb.rpc('is_proto_founder');if(founderError||isFounder!==true){await sb.auth.signOut();loginError.textContent='This account is not authorised for founder access.';return}showConsole(data.user.email);await loadRequests()});
  $('#logoutBtn').addEventListener('click',async()=>{await sb?.auth.signOut();requests=[];shell.hidden=true;loginScreen.hidden=false;loginForm.reset()});
- async function init(){
-   if(!sb){loginError.textContent='Database setup is required before founders can sign in.';return}
-   try{await verifyFounder()}catch(err){loginError.textContent='Unable to verify founder session. Please sign in.'}
- }
- function filtered(){
-   let list=requests.filter(r=>currentView==='all'||currentView==='overview'||r.request_type===currentView);
-   const q=($('#searchInput')?.value||'').toLowerCase().trim(),st=$('#statusFilter')?.value||'all';
-   if(q)list=list.filter(r=>[r.subject,r.sender_name,r.email,r.organisation,JSON.stringify(r.payload||{})].join(' ').toLowerCase().includes(q));
-   if(st!=='all')list=list.filter(r=>r.status===st);
-   return list;
- }
- function updateCounts(){
-   const count=t=>requests.filter(r=>r.request_type===t&&['new','reviewing','in_progress'].includes(r.status)).length;
-   $('#navKitCount').textContent=count('kit_order');$('#navWorkshopCount').textContent=count('workshop');$('#navIdeaCount').textContent=count('idea');$('#navHelpCount').textContent=count('help');$('#navAllCount').textContent=requests.filter(r=>['new','reviewing','in_progress'].includes(r.status)).length;
-   $('#statTotal').textContent=requests.length;$('#statPending').textContent=requests.filter(r=>['new','reviewing','in_progress'].includes(r.status)).length;$('#statWorkshops').textContent=requests.filter(r=>r.request_type==='workshop').length;$('#statIdeas').textContent=requests.filter(r=>r.request_type==='idea').length;
- }
- function statusChip(status){return `<span class="status-chip ${safe(status)}">${safe(statusLabels[status]||status)}</span>`}
+ async function init(){if(!sb){loginError.textContent='Database setup is required before founders can sign in.';return}try{await verifyFounder()}catch(err){loginError.textContent='Unable to verify founder session. Please sign in.'}}
+ function filtered(){let list=requests.filter(r=>currentView==='all'||currentView==='overview'||currentView==='intelligence'||r.request_type===currentView);const q=$('#searchInput')?.value?.toLowerCase().trim()||'',st=$('#statusFilter')?.value||'all';if(q)list=list.filter(r=>[r.subject,r.sender_name,r.email,r.organisation,JSON.stringify(payloadOf(r))].join(' ').toLowerCase().includes(q));if(st!=='all')list=list.filter(r=>r.status===st);return list}
+ function activeCount(type){return requests.filter(r=>r.request_type===type&&['new','reviewing','in_progress'].includes(r.status)).length}
+ function updateCounts(){const count=t=>activeCount(t);$('#navKitCount').textContent=count('kit_order');$('#navWorkshopCount').textContent=count('workshop');$('#navInternshipCount').textContent=count('internship');$('#navIdeaCount').textContent=count('idea');$('#navHelpCount').textContent=count('help');$('#navResearchCount').textContent=count('research');$('#navAllCount').textContent=requests.filter(r=>['new','reviewing','in_progress'].includes(r.status)).length;$('#statTotal').textContent=requests.length;$('#statPending').textContent=requests.filter(r=>['new','reviewing','in_progress'].includes(r.status)).length;$('#statWorkshops').textContent=requests.filter(r=>r.request_type==='workshop').length;$('#statInternships').textContent=requests.filter(r=>r.request_type==='internship').length;$('#statIdeas').textContent=requests.filter(r=>r.request_type==='idea').length;$('#statCompleted').textContent=requests.filter(r=>r.status==='completed').length;$('#statDeclined').textContent=requests.filter(r=>r.status==='declined').length;$('#statResearch').textContent=requests.filter(r=>r.request_type==='research').length}
+ function statusChip(status){return `<span class="status-chip ${safe(status)}">${safe(statusLabels[status]||status||'Unknown')}</span>`}
  function row(r){return `<tr data-id="${safe(r.id)}"><td><div class="request-main"><strong>${safe(r.subject||labels[r.request_type]||'Request')}</strong><small>#${safe(String(r.id).slice(0,8))}</small></div></td><td>${safe(r.sender_name)}<br><small>${safe(r.email)}</small></td><td><span class="type-chip">${safe(labels[r.request_type]||r.request_type)}</span></td><td>${statusChip(r.status)}</td><td>${safe(fmtDate(r.created_at))}</td><td>›</td></tr>`}
- function render(){
-   updateCounts();
-   const recent=requests.slice(0,6);
-   $('#recentList').innerHTML=recent.length?recent.map(r=>`<div class="recent-item" data-id="${safe(r.id)}"><div><strong>${safe(r.subject||labels[r.request_type]||'Request')}</strong><small>${safe(r.sender_name)} · ${safe(fmtDate(r.created_at))}</small></div>${statusChip(r.status)}</div>`).join(''):'<div class="recent-empty">No requests yet. New website enquiries will appear here.</div>';
-   const types=Object.keys(labels).map(k=>[labels[k],requests.filter(r=>r.request_type===k).length]).filter(x=>x[1]||['kit_order','workshop','idea','help'].includes(Object.keys(labels).find(k=>labels[k]===x[0])));
-   const max=Math.max(1,...types.map(x=>x[1]));
-   $('#typeBreakdown').innerHTML=types.map(([name,n])=>`<div class="break-row"><span>${safe(name)}</span><div class="bar-track"><i style="width:${Math.round(n/max*100)}%"></i></div><b>${n}</b></div>`).join('');
-   const rows=filtered();$('#requestRows').innerHTML=rows.length?rows.map(row).join(''):'<tr><td colspan="6" class="empty-cell">No matching requests.</td></tr>';
-   document.querySelectorAll('[data-id]').forEach(el=>el.addEventListener('click',()=>openDetail(el.dataset.id)));
- }
- function showView(view){
-   currentView=view;
-   const overview=view==='overview';$('#overviewView').hidden=!overview;$('#requestsView').hidden=overview;
-   const title=overview?'Dashboard':view==='all'?'All Requests':(labels[view]||'Requests')+'s';
-   $('#pageTitle').textContent=title;$('#pageEyebrow').textContent='FOUNDER WORKSPACE / '+title.toUpperCase();
-   document.querySelectorAll('#sideNav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
-   if(!overview)render();
- }
- $('#sideNav').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)showView(b.dataset.view)});
- document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.jump)));
- $('#searchInput').addEventListener('input',render);$('#statusFilter').addEventListener('change',render);
- $('#refreshBtn').addEventListener('click',loadRequests);
- function openDetail(id){
-   selected=requests.find(r=>r.id===id);if(!selected)return;
-   $('#detailTitle').textContent=selected.subject||labels[selected.request_type]||'Request';
-   const fields=[['Request type',labels[selected.request_type]||selected.request_type],['Status',statusLabels[selected.status]||selected.status],['Name',selected.sender_name],['Email',selected.email],['Phone',selected.phone],['Organisation',selected.organisation],['Received',fmtDate(selected.created_at)],...Object.entries(selected.payload||{}).map(([k,v])=>[k.replace(/([A-Z])/g,' $1').replace(/^./,s=>s.toUpperCase()),typeof v==='object'?JSON.stringify(v):v])];
-   const seen=new Set();$('#detailContent').innerHTML=fields.filter(([k,v])=>v!==null&&v!==undefined&&String(v)!==''&&!seen.has(k)&&seen.add(k)).map(([k,v])=>`<div class="detail-field"><label>${safe(k)}</label><div>${safe(v)}</div></div>`).join('');
-   $('#detailStatus').value=selected.status;$('#replyLink').href=selected.email?'mailto:'+encodeURIComponent(selected.email)+'?subject='+encodeURIComponent('ProtoVox — '+(selected.subject||'Your enquiry')):'#';$('#replyLink').style.opacity=selected.email?'1':'.45';
-   $('#detailDrawer').classList.add('open');$('#detailBackdrop').classList.add('open');
- }
- function closeDetail(){$('#detailDrawer').classList.remove('open');$('#detailBackdrop').classList.remove('open');selected=null}
- $('#closeDrawer').addEventListener('click',closeDetail);$('#detailBackdrop').addEventListener('click',closeDetail);
- $('#saveStatusBtn').addEventListener('click',async()=>{
-   if(!selected)return;const status=$('#detailStatus').value;
-   const {error}=await sb.from('proto_requests').update({status,updated_at:new Date().toISOString()}).eq('id',selected.id);
-   if(error){notice('Could not update status: '+error.message);return}
-   selected.status=status;const i=requests.findIndex(r=>r.id===selected.id);if(i>=0)requests[i].status=status;
-   closeDetail();render();
- });
- $('#exportBtn').addEventListener('click',()=>{
-   const list=filtered();const keys=['id','request_type','subject','sender_name','email','phone','organisation','status','created_at','payload'];
-   const csv=[keys.join(','),...list.map(r=>keys.map(k=>'"'+String(r[k]??'').replaceAll('"','""')+'"').join(','))].join('\n');
-   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='protovox-requests.csv';a.click();URL.revokeObjectURL(a.href);
- });
+ function classifyProject(r){const p=payloadOf(r),s=[r.subject,r.request_type,...Object.entries(p).filter(([k])=>/project|idea|technology|domain|category|interest|type|topic|message|problem/i.test(k)).map(([,v])=>v)].join(' ').toLowerCase();const groups=[['Robotics',/robot|arduino|motor|actuator|automation|mechanic/],['IoT & Embedded',/iot|esp32|esp8266|embedded|sensor|microcontroller|firmware/],['AI & Machine Learning',/\bai\b|machine learning|\bml\b|computer vision|neural|deep learning/],['Electronics & Hardware',/electronics|circuit|pcb|hardware|vlsi|communication|signal/],['Energy & Sustainability',/solar|energy|renewable|power monitoring/],['Software & Applications',/software|web app|mobile app|python|dashboard|website/]];for(const [name,re] of groups)if(re.test(s))return name;return 'Other / unspecified'}
+ function classifyInternship(r){const p=payloadOf(r),s=[r.subject,r.organisation,...Object.entries(p).filter(([k])=>/domain|track|department|technology|interest|area|course|special/i.test(k)).map(([,v])=>v)].join(' ').toLowerCase();const groups=[['Electronics & Communication',/ece|electronics|communication|vlsi|embedded|pcb|circuit/],['Robotics',/robot/],['AI & Machine Learning',/\bai\b|machine learning|\bml\b|computer vision/],['Computer Science',/cse|computer science|software|web development|programming/],['Mechatronics',/mechatronic|automation|control system/],['Interdisciplinary',/interdisciplinary|other|iot|3d print/]];for(const [name,re] of groups)if(re.test(s))return name;return 'Other / unspecified'}
+ function donutMarkup(items,total){if(!total)return 'conic-gradient(#243746 0deg 360deg)';let start=0,parts=[];items.forEach(([,n],i)=>{if(!n)return;let end=start+n/total*360;parts.push(`${palette[i%palette.length]} ${start}deg ${end}deg`);start=end});return `conic-gradient(${parts.join(',')})`}
+ function renderDonut(prefix,items){const total=items.reduce((a,x)=>a+x[1],0),top=[...items].sort((a,b)=>b[1]-a[1]).find(x=>x[1]>0);const donut=$('#'+prefix+'Donut');if(donut)donut.style.background=donutMarkup(items,total);const totalEl=$('#'+prefix+'DemandTotal');if(totalEl)totalEl.textContent=total;const legend=$('#'+prefix+'Legend');if(legend)legend.innerHTML=items.map(([name,n],i)=>`<div class="legend-row"><i style="background:${palette[i%palette.length]}"></i><span>${safe(name)}</span><b>${n}</b></div>`).join('')||'<div class="chart-empty">No records yet</div>';const insight=$('#'+prefix+'Insight');if(insight)insight.textContent=top?`Leading signal: ${top[0]} · ${top[1]} of ${total} (${Math.round(top[1]/total*100)}%).`:'Not enough records to identify a leading category yet.';}
+ function renderLargeDonut(prefix,items){const total=items.reduce((a,x)=>a+x[1],0),el=$('#'+prefix+'DonutLarge');if(el)el.style.background=donutMarkup(items,total);const t=$('#'+prefix+'DemandTotalLarge');if(t)t.textContent=total;const legend=$('#'+prefix+'LegendLarge');if(legend)legend.innerHTML=items.map(([name,n],i)=>`<div class="legend-row"><i style="background:${palette[i%palette.length]}"></i><span>${safe(name)}</span><b>${n}</b></div>`).join('')||'<div class="chart-empty">No records yet</div>';const insight=$('#'+prefix+'InsightLarge');if(insight){const top=[...items].sort((a,b)=>b[1]-a[1]).find(x=>x[1]>0);insight.textContent=top?`Leading signal: ${top[0]} · ${top[1]} of ${total} (${Math.round(top[1]/total*100)}%).`:'Not enough records to identify a leading category yet.'}}
+ function renderAnalytics(){const projectRecords=requests.filter(r=>['idea','kit_order','research','project_enquiry'].includes(r.request_type));const internshipRecords=requests.filter(r=>r.request_type==='internship');const projectNames=['Robotics','IoT & Embedded','AI & Machine Learning','Electronics & Hardware','Energy & Sustainability','Software & Applications','Other / unspecified'];const internshipNames=['Electronics & Communication','Robotics','AI & Machine Learning','Computer Science','Mechatronics','Interdisciplinary','Other / unspecified'];const pc=projectNames.map(n=>[n,projectRecords.filter(r=>classifyProject(r)===n).length]);const ic=internshipNames.map(n=>[n,internshipRecords.filter(r=>classifyInternship(r)===n).length]);renderDonut('project',pc);renderDonut('internship',ic);renderLargeDonut('project',pc);renderLargeDonut('internship',ic)}
+ function render(){updateCounts();const recent=requests.slice(0,6);$('#recentList').innerHTML=recent.length?recent.map(r=>`<div class="recent-item" data-id="${safe(r.id)}"><div><strong>${safe(r.subject||labels[r.request_type]||'Request')}</strong><small>${safe(r.sender_name)} · ${safe(fmtDate(r.created_at))}</small></div>${statusChip(r.status)}</div>`).join(''):'<div class="recent-empty">No requests yet. New website enquiries will appear here.</div>';const statusKeys=['new','reviewing','in_progress','completed','declined'];const statusNames=['New','Reviewing','In progress','Completed','Declined'];const max=Math.max(1,...statusKeys.map(s=>requests.filter(r=>r.status===s).length));$('#statusBreakdown').innerHTML=statusKeys.map((s,i)=>{const n=requests.filter(r=>r.status===s).length;return `<div class="status-row"><span>${statusNames[i]}</span><div class="bar-track"><i style="width:${n/max*100}%"></i></div><b>${n}</b></div>`}).join('');const types=Object.keys(labels).map(k=>[labels[k],requests.filter(r=>r.request_type===k).length]).filter(x=>x[1]||['kit_order','workshop','internship','idea','help','research'].includes(Object.keys(labels).find(k=>labels[k]===x[0])));const tmax=Math.max(1,...types.map(x=>x[1]));$('#typeBreakdown').innerHTML=types.map(([name,n])=>`<div class="break-row"><span>${safe(name)}</span><div class="bar-track"><i style="width:${n/tmax*100}%"></i></div><b>${n}</b></div>`).join('');renderAnalytics();const rows=filtered();$('#requestRows').innerHTML=rows.length?rows.map(row).join(''):'<tr><td colspan="6" class="empty-cell">No matching requests.</td></tr>';document.querySelectorAll('[data-id]').forEach(el=>el.addEventListener('click',()=>openDetail(el.dataset.id)))}
+ function showView(view){currentView=view;const overview=view==='overview',intel=view==='intelligence';$('#overviewView').hidden=!overview;$('#requestsView').hidden=overview||intel;$('#intelligenceView').hidden=!intel;const title=overview?'Operations overview':intel?'Demand intelligence':view==='all'?'All requests':(labels[view]||'Requests')+'s';$('#pageTitle').textContent=title;$('#pageEyebrow').textContent='COMMAND CENTRE / '+title.toUpperCase();if($('#listEyebrow'))$('#listEyebrow').textContent=(labels[view]||'ALL REQUESTS').toUpperCase()+' / PIPELINE';if($('#listDescription'))$('#listDescription').textContent=`${filtered().length} records in this view. Select a record to inspect and update its status.`;document.querySelectorAll('#sideNav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(!overview&&!intel)render()}
+ $('#sideNav').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)showView(b.dataset.view)});document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.jump)));$('#searchInput').addEventListener('input',render);$('#statusFilter').addEventListener('change',render);$('#refreshBtn').addEventListener('click',loadRequests);$('#intelligenceRefresh').addEventListener('click',renderAnalytics);
+ function openDetail(id){selected=requests.find(r=>String(r.id)===String(id));if(!selected)return;$('#detailTitle').textContent=selected.subject||labels[selected.request_type]||'Request';const fields=[['Request type',labels[selected.request_type]||selected.request_type],['Status',statusLabels[selected.status]||selected.status],['Name',selected.sender_name],['Email',selected.email],['Phone',selected.phone],['Organisation',selected.organisation],['Received',fmtDate(selected.created_at)],...Object.entries(payloadOf(selected)).map(([k,v])=>[k.replace(/([A-Z])/g,' $1').replace(/^./,s=>s.toUpperCase()),typeof v==='object'?JSON.stringify(v):v])];const seen=new Set();$('#detailContent').innerHTML=fields.filter(([k,v])=>v!==null&&v!==undefined&&String(v)!==''&&!seen.has(k)&&seen.add(k)).map(([k,v])=>`<div class="detail-field"><label>${safe(k)}</label><div>${safe(v)}</div></div>`).join('');$('#detailStatus').value=selected.status;$('#replyLink').href=selected.email?'mailto:'+encodeURIComponent(selected.email)+'?subject='+encodeURIComponent('ProtoVox — '+(selected.subject||'Your enquiry')):'#';$('#replyLink').style.opacity=selected.email?'1':'.45';$('#detailDrawer').classList.add('open');$('#detailBackdrop').classList.add('open')}
+ function closeDetail(){$('#detailDrawer').classList.remove('open');$('#detailBackdrop').classList.remove('open');selected=null}$('#closeDrawer').addEventListener('click',closeDetail);$('#detailBackdrop').addEventListener('click',closeDetail);
+ $('#saveStatusBtn').addEventListener('click',async()=>{if(!selected)return;const status=$('#detailStatus').value;const {error}=await sb.from('proto_requests').update({status,updated_at:new Date().toISOString()}).eq('id',selected.id);if(error){notice('Could not update status: '+error.message);return}selected.status=status;const i=requests.findIndex(r=>r.id===selected.id);if(i>=0)requests[i].status=status;closeDetail();render()});
+ $('#exportBtn').addEventListener('click',()=>{const list=filtered(),keys=['id','request_type','subject','sender_name','email','phone','organisation','status','created_at','payload'];const csv=[keys.join(','),...list.map(r=>keys.map(k=>'"'+String(r[k]??'').replaceAll('"','""')+'"').join(','))].join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='protovox-requests.csv';a.click();URL.revokeObjectURL(a.href)});
  init();
 })();

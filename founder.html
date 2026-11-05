@@ -2,66 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#10191d">
-<title>ProtoVox Founder Console</title>
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#07131d">
+<title>ProtoVox | Command Centre</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="founder-console.css">
 </head>
 <body class="founder-body">
-<section class="login-screen" id="loginScreen">
-  <div class="login-card">
-    <div class="login-mark">PV</div><div class="eyebrow">PRIVATE WORKSPACE / FOUNDER ACCESS</div>
-    <h1>ProtoVox<br><span>Founder Console</span></h1>
-    <p>Sign in with an authorised co-founder account to review requests and manage the ProtoVox pipeline.</p>
-    <form id="loginForm"><label>Email address<input name="email" type="email" autocomplete="username" required placeholder="Founder email"></label><label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Password"></label><button class="primary-btn" type="submit">Sign in securely <span>↗</span></button><p class="login-error" id="loginError" role="alert"></p></form>
-    <small>Access is restricted to founder accounts authorised in the database.</small>
-  </div>
-</section>
+<section class="login-screen" id="loginScreen"><div class="login-card"><div class="login-mark">PV</div><div class="eyebrow">PROTO VOX / SECURE FOUNDER ACCESS</div><h1>Command<br><span>Centre</span></h1><p>Authenticate to monitor requests, programmes and ProtoVox operations.</p><form id="loginForm"><label>Email address<input name="email" type="email" autocomplete="username" required placeholder="Founder email"></label><label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Password"></label><button class="primary-btn" type="submit">Authenticate <span>↗</span></button><p class="login-error" id="loginError" role="alert"></p></form><small>RESTRICTED ACCESS · AUTHORISED FOUNDER ACCOUNTS ONLY</small></div></section>
 <div class="console-shell" id="consoleShell" hidden>
-  <aside class="sidebar">
-    <a class="console-brand" href="index.html"><span class="brand-symbol">PV</span><span>ProtoVox<small>FOUNDER CONSOLE</small></span></a>
-    <div class="side-label">WORKSPACE</div>
-    <nav class="side-nav" id="sideNav">
-      <button class="active" data-view="overview"><span>◫</span> Overview</button>
-      <button data-view="kit_order"><span>▣</span> Kit Orders <b id="navKitCount">0</b></button>
-      <button data-view="workshop"><span>⌑</span> Workshops <b id="navWorkshopCount">0</b></button>
-      <button data-view="idea"><span>✳</span> Ideas <b id="navIdeaCount">0</b></button>
-      <button data-view="help"><span>ⓘ</span> Help Desk <b id="navHelpCount">0</b></button>
-      <button data-view="all"><span>▤</span> All Requests <b id="navAllCount">0</b></button>
-    </nav>
-    <div class="side-bottom"><div class="secure-label"><i></i> PRIVATE / AUTHENTICATED</div><button id="logoutBtn" class="logout-btn">↪ Log out</button></div>
-  </aside>
-  <main class="console-main">
-    <header class="topbar"><div><div class="eyebrow" id="pageEyebrow">FOUNDER WORKSPACE / OVERVIEW</div><h1 id="pageTitle">Dashboard</h1></div><div class="top-actions"><span class="live-pill"><i></i> LIVE DATABASE</span><div class="user-chip"><span class="avatar">PV</span><span id="signedInEmail">Founder</span></div></div></header>
-    <div class="notice" id="connectionNotice" hidden></div>
-    <section class="overview-view" id="overviewView">
-      <div class="welcome-row"><div><h2>Good to see you.</h2><p>Here is what's happening across ProtoVox.</p></div><button class="outline-btn" id="refreshBtn">↻ Refresh data</button></div>
-      <div class="stat-grid">
-        <article class="stat-card"><span>Total requests</span><strong id="statTotal">—</strong><small>All incoming enquiries</small><i>▤</i></article>
-        <article class="stat-card"><span>Needs attention</span><strong id="statPending">—</strong><small>New or under review</small><i>◷</i></article>
-        <article class="stat-card"><span>Workshops</span><strong id="statWorkshops">—</strong><small>Institutional requests</small><i>⌑</i></article>
-        <article class="stat-card"><span>Ideas submitted</span><strong id="statIdeas">—</strong><small>Student concepts</small><i>✳</i></article>
-      </div>
-      <div class="content-grid">
-        <section class="panel recent-panel"><div class="panel-head"><div><span class="eyebrow">INBOX / LATEST</span><h3>Recent requests</h3></div><button class="text-action" data-jump="all">View all ↗</button></div><div id="recentList" class="recent-list"><div class="empty-state">Connect the database to load requests.</div></div></section>
-        <section class="panel breakdown-panel"><div class="panel-head"><div><span class="eyebrow">PIPELINE / OVERVIEW</span><h3>Request distribution</h3></div></div><div id="typeBreakdown" class="breakdown-list"></div><div class="panel-foot">Counts update when new website forms are submitted.</div></section>
-      </div>
-    </section>
-    <section class="requests-view" id="requestsView" hidden>
-      <div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search name, email, subject or organisation"></div><select id="statusFilter"><option value="all">All statuses</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select><button class="outline-btn" id="exportBtn">↓ Export CSV</button></div>
-      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Request</th><th>Contact</th><th>Type</th><th>Status</th><th>Received</th><th></th></tr></thead><tbody id="requestRows"><tr><td colspan="6" class="empty-cell">No requests loaded.</td></tr></tbody></table></div></div>
-    </section>
-    <footer class="console-footer"><span>PROTO VOX / FOUNDER OPERATIONS</span><span>Confidential workspace · Do not share access</span></footer>
-  </main>
-  <div class="detail-backdrop" id="detailBackdrop"></div>
-  <aside class="detail-drawer" id="detailDrawer" aria-label="Request details">
-    <div class="drawer-head"><div><div class="eyebrow">REQUEST RECORD</div><h2 id="detailTitle">Request details</h2></div><button id="closeDrawer" class="icon-btn" aria-label="Close details">×</button></div>
-    <div id="detailContent" class="detail-content"></div>
-    <div class="drawer-actions"><label>Status<select id="detailStatus"><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select></label><button class="primary-btn" id="saveStatusBtn">Save status</button><a class="outline-btn" id="replyLink" href="#">Reply by email ↗</a></div>
-  </aside>
+ <aside class="sidebar"><a class="console-brand" href="index.html"><span class="brand-symbol">PV</span><span>ProtoVox<small>COMMAND CENTRE / 01</small></span></a><div class="system-state"><i></i><span>CORE SYSTEM ONLINE</span><b>LIVE</b></div><div class="side-label">OPERATIONS</div>
+ <nav class="side-nav" id="sideNav">
+  <button class="active" data-view="overview"><span>◈</span> Overview</button>
+  <button data-view="kit_order"><span>▣</span> Kit Orders <b id="navKitCount">0</b></button>
+  <button data-view="workshop"><span>⌑</span> Workshops <b id="navWorkshopCount">0</b></button>
+  <button data-view="internship"><span>⌬</span> Internships <b id="navInternshipCount">0</b></button>
+  <button data-view="idea"><span>✳</span> Student Ideas <b id="navIdeaCount">0</b></button>
+  <button data-view="help"><span>⌁</span> Help Desk <b id="navHelpCount">0</b></button>
+  <button data-view="research"><span>⌘</span> R&D Enquiries <b id="navResearchCount">0</b></button>
+  <button data-view="intelligence"><span>◉</span> Intelligence</button>
+  <button data-view="all"><span>▤</span> All Requests <b id="navAllCount">0</b></button>
+ </nav><div class="side-bottom"><div class="secure-label"><i></i> ENCRYPTED SESSION / AUTHENTICATED</div><button id="logoutBtn" class="logout-btn">↪ Terminate session</button></div></aside>
+ <main class="console-main"><header class="topbar"><div><div class="eyebrow" id="pageEyebrow">COMMAND CENTRE / OVERVIEW</div><h1 id="pageTitle">Operations overview</h1></div><div class="top-actions"><span class="live-pill"><i></i> DATABASE LINK ACTIVE</span><div class="user-chip"><span class="avatar">PV</span><span id="signedInEmail">Founder</span></div></div></header>
+ <div class="notice" id="connectionNotice" hidden></div>
+ <section class="overview-view" id="overviewView">
+  <div class="welcome-row"><div><div class="eyebrow">SYSTEM BRIEFING / TODAY</div><h2>Good to see you, Founder.</h2><p>Live operational intelligence across the ProtoVox pipeline.</p></div><button class="outline-btn" id="refreshBtn">↻ Sync database</button></div>
+  <div class="stat-grid">
+   <article class="stat-card"><span>Total requests</span><strong id="statTotal">—</strong><small>All incoming enquiries</small><i>▤</i></article>
+   <article class="stat-card"><span>Needs attention</span><strong id="statPending">—</strong><small>New or under review</small><i>◷</i></article>
+   <article class="stat-card"><span>Workshops</span><strong id="statWorkshops">—</strong><small>Institutional requests</small><i>⌑</i></article>
+   <article class="stat-card"><span>Internship applications</span><strong id="statInternships">—</strong><small>Applications received</small><i>⌬</i></article>
+  </div>
+  <div class="content-grid"><section class="panel recent-panel"><div class="panel-head"><div><span class="eyebrow">INBOX / LIVE FEED</span><h3>Recent activity</h3></div><button class="text-action" data-jump="all">Open request pipeline ↗</button></div><div id="recentList" class="recent-list"><div class="empty-state">Awaiting database records…</div></div></section><section class="panel pulse-panel"><div class="panel-head"><div><span class="eyebrow">SYSTEM / PIPELINE</span><h3>Request status</h3></div></div><div id="statusBreakdown" class="status-breakdown"></div><div class="panel-foot">Status counts reflect all loaded requests.</div></section></div>
+  <div class="analytics-grid"><section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">MARKET SIGNAL / 01</span><h3>Project demand intelligence</h3><p>Which project themes visitors are asking about most</p></div><span class="chart-tag">LIVE DATA</span></div><div class="chart-layout"><div class="donut-wrap"><div class="donut" id="projectDonut"><div class="donut-hole"><strong id="projectDemandTotal">0</strong><small>PROJECT REQUESTS</small></div></div></div><div id="projectLegend" class="chart-legend"></div></div><div class="chart-insight" id="projectInsight">Not enough project enquiries to identify a leading category yet.</div></section>
+  <section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">TALENT SIGNAL / 02</span><h3>Internship demand intelligence</h3><p>Most requested learning and internship tracks</p></div><span class="chart-tag">LIVE DATA</span></div><div class="chart-layout"><div class="donut-wrap"><div class="donut" id="internshipDonut"><div class="donut-hole"><strong id="internshipDemandTotal">0</strong><small>APPLICATIONS</small></div></div></div><div id="internshipLegend" class="chart-legend"></div></div><div class="chart-insight" id="internshipInsight">No internship applications have been recorded yet.</div></section></div>
+  <div class="bottom-grid"><section class="panel"><div class="panel-head"><div><span class="eyebrow">DEMAND / CATEGORY</span><h3>Request distribution</h3></div></div><div id="typeBreakdown" class="breakdown-list"></div></section><section class="panel"><div class="panel-head"><div><span class="eyebrow">OPERATIONS / SNAPSHOT</span><h3>Pipeline snapshot</h3></div></div><div class="snapshot-grid"><div><small>Completed</small><strong id="statCompleted">0</strong></div><div><small>Declined</small><strong id="statDeclined">0</strong></div><div><small>Research enquiries</small><strong id="statResearch">0</strong></div><div><small>Student ideas</small><strong id="statIdeas">0</strong></div></div></section></div>
+ </section>
+ <section class="requests-view" id="requestsView" hidden><div class="view-intro"><div><span class="eyebrow" id="listEyebrow">REQUEST PIPELINE</span><p id="listDescription">Review, filter and manage incoming requests.</p></div></div><div class="toolbar"><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search name, email, subject or organisation"></div><select id="statusFilter"><option value="all">All statuses</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select><button class="outline-btn" id="exportBtn">↓ Export CSV</button></div><div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>REQUEST / SUBJECT</th><th>CONTACT</th><th>CATEGORY</th><th>STATUS</th><th>RECEIVED</th><th></th></tr></thead><tbody id="requestRows"><tr><td colspan="6" class="empty-cell">No requests loaded.</td></tr></tbody></table></div></div></section>
+ <section class="intelligence-view" id="intelligenceView" hidden><div class="welcome-row"><div><div class="eyebrow">STRATEGIC SIGNALS / ANALYTICS</div><h2>Demand intelligence</h2><p>Understand what students, institutions and prospective partners are requesting.</p></div><button class="outline-btn" id="intelligenceRefresh">↻ Refresh insights</button></div><div class="analytics-grid"><section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">PROJECT ECOSYSTEM</span><h3>Project category demand</h3><p>Classified from idea, kit and project enquiry records</p></div></div><div class="chart-layout"><div class="donut-wrap"><div class="donut" id="projectDonutLarge"><div class="donut-hole"><strong id="projectDemandTotalLarge">0</strong><small>REQUESTS</small></div></div></div><div id="projectLegendLarge" class="chart-legend"></div></div><div class="chart-insight" id="projectInsightLarge"></div></section><section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">TALENT ECOSYSTEM</span><h3>Internship track demand</h3><p>Classified from submitted internship applications</p></div></div><div class="chart-layout"><div class="donut-wrap"><div class="donut" id="internshipDonutLarge"><div class="donut-hole"><strong id="internshipDemandTotalLarge">0</strong><small>APPLICATIONS</small></div></div></div><div id="internshipLegendLarge" class="chart-legend"></div></div><div class="chart-insight" id="internshipInsightLarge"></div></section></div><section class="panel intelligence-note"><div class="eyebrow">HOW TO READ THIS</div><p>Charts use request records currently available in the ProtoVox database. Project and internship categories are inferred from submitted form fields and text. Unclassified records are grouped as “Other / unspecified”. These figures represent enquiries and applications, not confirmed sales, placements or programme bookings.</p></section></section>
+ <footer class="console-footer"><span>PROTO VOX / COMMAND & OPERATIONS</span><span>PRIVATE FOUNDER WORKSPACE · SESSION MONITORED</span></footer></main>
+ <div class="detail-backdrop" id="detailBackdrop"></div><aside class="detail-drawer" id="detailDrawer" aria-label="Request details"><div class="drawer-head"><div><div class="eyebrow">REQUEST RECORD / DETAIL VIEW</div><h2 id="detailTitle">Request details</h2></div><button id="closeDrawer" class="icon-btn" aria-label="Close details">×</button></div><div id="detailContent" class="detail-content"></div><div class="drawer-actions"><label>Status<select id="detailStatus"><option value="new">New</option><option value="reviewing">Reviewing</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="declined">Declined</option></select></label><button class="primary-btn" id="saveStatusBtn">Save status</button><a class="outline-btn" id="replyLink" href="#">Reply by email ↗</a></div></aside>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
-<script src="founder-console.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="founder-console.js"></script>
 </body></html>
