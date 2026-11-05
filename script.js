@@ -118,8 +118,16 @@ async function submitProtoVoxRequest(type, payload, subject, body, context, form
 }
 $('#workshopBookingForm').addEventListener('submit',e=>{
  e.preventDefault();const fd=new FormData(e.currentTarget);
- const subject=`ProtoVox workshop request — ${fd.get('institution')}`;
- const body=makeEmailBody([['Institution',fd.get('institution')],['Contact person',fd.get('contact')],['Email',fd.get('email')],['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],['Request','Please confirm availability, proposed agenda, duration, pricing and next steps.']]);
+ const subject=`ProtoVox enquiry / workshop request — ${fd.get('institution')||fd.get('enquiryInstitution')||'New request'}`;
+ const body=makeEmailBody([
+  ['Name',fd.get('enquiryName')],['Email',fd.get('enquiryEmail')],['Phone',fd.get('enquiryPhone')],
+  ['General enquiry institution',fd.get('enquiryInstitution')],['Message',fd.get('enquiryMessage')],
+  ['Workshop institution',fd.get('institution')],['Contact person',fd.get('contact')],
+  ['Workshop email',fd.get('email')],['Workshop phone',fd.get('phone')],
+  ['Expected student count',fd.get('students')],['Preferred date',fd.get('date')],
+  ['Workshop type',fd.get('type')],['Additional information',fd.get('notes')],
+  ['Request','Please review this enquiry and confirm availability, proposed agenda, duration, pricing and next steps.']
+ ]);
  submitProtoVoxRequest('workshop',Object.fromEntries(fd.entries()),subject,body,'workshop',e.currentTarget);
 });
 $('#helpForm').addEventListener('submit',e=>{

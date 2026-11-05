@@ -171,24 +171,37 @@
 <form class="modal-close-form" method="dialog"><button aria-label="Close workshop booking" class="modal-close">×</button></form>
 <div class="workshop-modal-head">
 <span class="eyebrow"><span class="live-dot"></span> PROTOVOX / CONNECT</span>
-<h2>Book a Workshop</h2>
-<p>Tell us about your institution and the programme you're planning. Our team will review your request and get back to you.</p>
+<h2>Let's build something<br/><span class="gradient-text">worth remembering.</span></h2>
+<p>Send a message to our team or tell us about a workshop for your institution. We'll prepare an email for you to review and send.</p>
 </div>
+<form class="workshop-combined-form" id="workshopBookingForm">
 <div class="workshop-form-grid">
-<form class="workshop-form-card workshop-booking-card" id="workshopBookingForm">
+<div class="workshop-form-card">
+<div class="workshop-form-kicker">GENERAL ENQUIRY</div><h3>Contact ProtoVox</h3>
+<label>Name *<input name="enquiryName" placeholder="Your full name" required=""/></label>
+<label>Email *<input name="enquiryEmail" placeholder="your.email@example.com" required="" type="email"/></label>
+<label>Phone<input name="enquiryPhone" placeholder="+91 XXXX XXXXX" type="tel"/></label>
+<label>Institution<input name="enquiryInstitution" placeholder="Your school / college / company"/></label>
+<label>Message *<textarea name="enquiryMessage" placeholder="Tell us how we can help..." required="" rows="4"></textarea></label>
+</div>
+<div class="workshop-form-card workshop-booking-card">
 <div class="workshop-form-kicker">INSTITUTIONAL PROGRAMME</div><h3>Book a Workshop</h3>
 <label>Institution Name *<input name="institution" placeholder="School / College name" required=""/></label>
 <label>Contact Person *<input name="contact" placeholder="Coordinator name" required=""/></label>
+<div class="workshop-field-pair">
 <label>Email *<input name="email" placeholder="email@example.com" required="" type="email"/></label>
+<label>Phone *<input name="phone" placeholder="+91 XXXX XXXXX" required="" type="tel"/></label>
+</div>
 <div class="workshop-field-pair">
 <label>Student Count *<input min="1" name="students" placeholder="50" required="" type="number"/></label>
 <label>Preferred Date<input name="date" type="date"/></label>
 </div>
 <label>Workshop Type *<select name="type" required=""><option value="">Select workshop type</option><option>School Robotics Programme (K–12)</option><option>College Robotics &amp; Automation Workshop</option><option>Advanced Embedded Systems &amp; IoT</option><option>AI &amp; Machine Learning</option><option>PCB Design &amp; Electronics</option><option>3D Printing &amp; Prototyping</option><option>Custom / Interdisciplinary</option></select></label>
 <label>Additional Information<textarea name="notes" placeholder="Any specific requirements or questions?" rows="3"></textarea></label>
-<button class="button button-primary button-large" type="submit">Prepare booking request ↗</button>
-</form>
 </div>
+</div>
+<button class="button button-primary button-large workshop-submit" type="submit">Submit enquiry / workshop request ↗</button>
+</form>
 <p class="form-note workshop-footnote">No booking is confirmed automatically. Your email app opens with the request ready; ProtoVox will confirm availability and details after receiving it.</p>
 </dialog>
 <dialog class="modal" id="helpModal"><form class="modal-close-form" method="dialog"><button aria-label="Close" class="modal-close">×</button></form><div class="modal-heading"><span class="eyebrow">PROTOVOX / DEBUG DESK</span><h2>Let's solve the blocker.</h2><p>Share enough detail for someone to understand what you are building.</p></div><form class="modal-form" id="helpForm"><label>Your name<input name="name" placeholder="How should we call you?" required=""/></label><label>Your email<input name="email" placeholder="you@example.com" required="" type="email"/></label><label>What do you need help with?<select name="category" required=""><option value="">Choose a category</option><option>Hardware / circuit</option><option>Embedded code</option><option>IoT / connectivity</option><option>AI / software</option><option>PCB / CAD</option><option>Project kit</option><option>Documentation</option><option>Other</option></select></label><label>Describe the issue<textarea name="details" placeholder="What are you trying to build? What have you tried?" required="" rows="4"></textarea></label><button class="button button-primary button-large" type="submit">Prepare help request ↗</button><small class="form-note">Demo only: this form does not send or store your request.</small></form><div class="modal-success" hidden=""><div class="success-icon">✓</div><h3>Request drafted.</h3><p>This prototype doesn't send requests to a support team yet. Your details were not uploaded.</p><button class="button button-ghost" data-close-modal="">Close</button></div></dialog>
